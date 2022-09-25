@@ -1,0 +1,151 @@
+<x-guest-layout>
+
+    <x-jet-validation-errors class="mb-4" />
+
+    @if (session('status'))
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
+    @endif
+    
+    <section class="h-full gradient-form bg-gray-200 md:h-screen">
+        <div class="container py-12 px-6 mx-auto h-full">
+          <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+            <div class="xl:w-10/12">
+              <div class="block bg-white shadow-lg rounded-lg">
+                <div class="lg:flex lg:flex-wrap g-0">
+                  <div class="lg:w-6/12 px-4 py-4 md:px-0">
+                    <div class="md:p-12 md:mx-6">
+                      <div class="text-left">
+                        <div class="text-3xl font-bold">
+                            <div class="nav-title flex items-center">
+                              <img
+                                src="assets/img/Checkapp logo 2.0.png"
+                                alt="logo"
+                                class="w-14"
+                              />
+                              <span class="text-black">Check</span>
+                              <span class="text-green-500">App</span>
+                            </div>
+                        </div>
+                        <h5 class="text-xl font-semibold mt-1 mb-4 pb-1 text-gray-600">Your number one online clinic.</h5>
+                      </div>
+                      <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <p class="mb-4">Please login to your account</p>
+                        <div class="mb-4">
+                            <x-jet-label for="email" value="{{ __('Email') }}" />
+                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                        </div>
+                        
+                        <div class="mb-4">
+                            <x-jet-label for="password" value="{{ __('Password') }}" />
+                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                        </div>
+                        <div class="text-center pt-1 mb-4 pb-1">
+                          <div class="lg:flex lg:flex-wrap g-0">
+                            <div class="block lg:w-6/12 mb-4">
+                                <label for="remember_me" class="flex items-center">
+                                    <x-jet-checkbox id="remember_me" name="remember" />
+                                    <span class="ml-2 text-sm text-gray-600 hover:cursor-pointer ">{{ __('Remember me') }}</span>
+                                </label>
+                            </div>
+                            <div class="flex lg:w-6/12 items-center justify-end mb-4">
+                                @if (Route::has('password.request'))
+                                    <a class="text-sm text-gray-600 hover:text-gray-900 " href="{{ route('password.request') }}">
+                                        {{ __('Forgot your password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                          </div>
+                          <button
+                          class="inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full"
+                          type="submit"
+                          data-mdb-ripple="true"
+                          data-mdb-ripple-color="light"
+                          style=
+                          "
+                              background: rgb(209, 253, 193);
+                              background: linear-gradient(
+                                  90deg,
+                                  rgba(209, 253, 193, 1) 0%,
+                                  rgba(53, 191, 83, 1) 100%
+                              );
+                              box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),
+                                  0 9px 26px 0 rgba(43, 43, 43, 0.19);
+                          "
+                        >
+                        {{ __('Log in') }}
+                        </button>
+                        </div>
+                        <p style="font-size: 10px">
+                            By continuing, you agree to CheckApp’s
+                            <a href="#" class="text-emerald-600">Terms of Servce</a> ,
+                            <a href="#" class="text-emerald-600">Privacy Policy</a>
+                        </p>
+                        <div class="flex justify-center mt-4">
+                            <a href="{{ route('register') }}" class="text-sm font-semibold  text-emerald-600">Not yet on CheckApp? Register here!</a>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div
+                    class="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-cover
+                    " style="background-image: url('assets/img/mask group.jpg')">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    {{-- <x-jet-authentication-card>
+        <x-slot name="logo">
+        </x-slot>
+
+        
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="flex">
+                <div class="flex-1">
+                    <div class="my-5">Your number one online clinic.</div>
+                    <div class="mt-4">
+                        <x-jet-label for="email" value="{{ __('Email') }}" />
+                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    </div>
+        
+                    <div class="mt-4">
+                        <x-jet-label for="password" value="{{ __('Password') }}" />
+                        <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                    </div>
+        
+                    <div class="block mt-4">
+                        <label for="remember_me" class="flex items-center">
+                            <x-jet-checkbox id="remember_me" name="remember" />
+                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        </label>
+                    </div>
+        
+                    <div class="flex items-center justify-end mt-4">
+                        @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif
+        
+                        <x-jet-button class="ml-4">
+                            {{ __('Log in') }}
+                        </x-jet-button>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="mt-4">
+                        <x-jet-label for="email" value="{{ __('Email') }}" />
+                        <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </x-jet-authentication-card> --}}
+</x-guest-layout>
