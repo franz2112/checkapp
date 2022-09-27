@@ -8,14 +8,14 @@
         </div>
     @endif
     
-    <section class="h-full gradient-form bg-gray-200 md:h-screen">
-        <div class="container py-12 px-6 mx-auto h-full">
-          <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-            <div class="xl:w-10/12">
+    <section class="h-full sm:h-screen ">
+        <div class="container sm:px-4 mx-auto" >
+          <div class="flex justify-center items-center text-gray-800">
+            <div class="lg:w-10/12 py-16 min-h-screen">
               <div class="block bg-white shadow-lg rounded-lg">
-                <div class="lg:flex lg:flex-wrap g-0">
-                  <div class="lg:w-6/12 px-4 py-4 md:px-0">
-                    <div class="md:p-12 md:mx-6">
+                <div class="lg:flex lg:flex-wrap">
+                  <div class="lg:w-6/12 p-4 md:px-0">
+                    <div class="p-3 xl:p-7 md:mx-6">
                       <div class="text-left">
                         <div class="text-3xl font-bold">
                             <div class="nav-title flex items-center">
@@ -34,55 +34,58 @@
                         @csrf
                         <p class="mb-4">Please login to your account</p>
                         <div class="mb-4">
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
+                            <x-jet-label for="email" value="{{ __('Email *') }}" />
                             <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
                         </div>
                         
                         <div class="mb-4">
-                            <x-jet-label for="password" value="{{ __('Password') }}" />
+                            <x-jet-label for="password" value="{{ __('Password *') }}" />
                             <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
                         </div>
                         <div class="text-center pt-1 mb-4 pb-1">
-                          <div class="lg:flex lg:flex-wrap g-0">
-                            <div class="block lg:w-6/12 mb-4">
-                                <label for="remember_me" class="flex items-center">
-                                    <x-jet-checkbox id="remember_me" name="remember" />
-                                    <span class="ml-2 text-sm text-gray-600 hover:cursor-pointer ">{{ __('Remember me') }}</span>
-                                </label>
+                            <div class="lg:flex lg:flex-wrap">
+                                <div class="flex items-center lg:w-6/12 mb-4">
+                                    <label for="remember_me" class="">
+                                        <x-jet-checkbox id="remember_me" name="remember" />
+                                        <span class="ml-2 text-sm text-gray-600 hover:cursor-pointer ">{{ __('Remember me') }}</span>
+                                    </label>
+                                </div>
+                                <div class="flex lg:w-6/12 items-center lg:justify-end mb-4">
+                                    @if (Route::has('password.request'))
+                                        <a class="text-sm text-gray-600 hover:text-gray-900 " href="{{ route('password.request') }}">
+                                            {{ __('Forgot your password?') }}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="flex lg:w-6/12 items-center justify-end mb-4">
-                                @if (Route::has('password.request'))
-                                    <a class="text-sm text-gray-600 hover:text-gray-900 " href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                          </div>
-                          <button
-                          class="inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full"
-                          type="submit"
-                          data-mdb-ripple="true"
-                          data-mdb-ripple-color="light"
-                          style=
-                          "
-                              background: rgb(209, 253, 193);
-                              background: linear-gradient(
-                                  90deg,
-                                  rgba(209, 253, 193, 1) 0%,
-                                  rgba(53, 191, 83, 1) 100%
-                              );
-                              box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),
-                                  0 9px 26px 0 rgba(43, 43, 43, 0.19);
-                          "
-                        >
-                        {{ __('Log in') }}
-                        </button>
+                            <button
+                                class="
+                                inline-block px-6 py-2.5 
+                                text-white font-bold 
+                                text-md 
+                                leading-tight 
+                                uppercase 
+                                rounded shadow-md 
+                                bg-green-500
+                                hover:bg-green-600
+                                hover:shadow-lg 
+                                focus:shadow-lg focus:outline-none focus:ring-0 
+                                active:shadow-lg 
+                                transition duration-150 
+                                ease-in-out w-full"
+                                type="submit"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                          
+                            >
+                            {{ __('Log in') }}
+                            </button>
                         </div>
-                        <p style="font-size: 10px">
+                        {{-- <p style="font-size: 10px">
                             By continuing, you agree to CheckApp’s
                             <a href="#" class="text-emerald-600">Terms of Servce</a> ,
                             <a href="#" class="text-emerald-600">Privacy Policy</a>
-                        </p>
+                        </p> --}}
                         <div class="flex justify-center mt-4">
                             <a href="{{ route('register') }}" class="text-sm font-semibold  text-emerald-600">Not yet on CheckApp? Register here!</a>
                         </div>
@@ -91,7 +94,7 @@
                   </div>
                   <div
                     class="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-cover
-                    " style="background-image: url('assets/img/mask group.jpg')">
+                    " style="background-image: url('assets/img/Insurance-amico.jpg')">
                   </div>
                 </div>
               </div>
