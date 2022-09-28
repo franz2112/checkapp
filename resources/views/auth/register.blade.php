@@ -1,7 +1,4 @@
-<x-guest-layout>
-
-    <x-jet-validation-errors class="mb-4" />
-        
+<x-guest-layout>        
     <section class="h-full sm:h-screen ">
         <div class="container px-6 mx-auto">
           <div class="flex justify-center items-center text-gray-800">
@@ -23,8 +20,11 @@
                         <h5 class="text-xl font-semibold mt-1 text-gray-600">Welcome to CheckApp</h5>
                     </div>
                 </div>
+                
+                <x-jet-validation-errors class="lg:pl-6 md:mx-6" />
 
                 <form method="POST" action="{{ route('register') }}">
+                    
                     <div class="lg:flex lg:flex-wrap">
                         <div class="lg:w-6/12 p-4 md:px-0">
                             <div class="lg:pl-6 md:mx-6">
@@ -44,8 +44,8 @@
                                     <x-jet-input id="lname" class="block mt-1 w-full" type="text" name="lname" :value="old('lname')" required autofocus autocomplete="lname" />
                                 </div>
                                 <div class="mb-3">
-                                    <x-jet-label for="adress" value="{{ __('Address *') }}" />
-                                    <x-jet-input id="adress" class="block mt-1 w-full" type="text" name="adress" :value="old('adress')" required autofocus autocomplete="adress" />
+                                    <x-jet-label for="address" value="{{ __('Address *') }}" />
+                                    <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autofocus autocomplete="address" />
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,6 @@
                         <div class="lg:w-6/12 p-4 md:px-0">
                             <div class="xl:px-6 md:mx-6">
 
-                                @csrf
                                 <div class="mb-3">Account Details</div>
                                 <div class="mb-3">
                                     <x-jet-label for="email" value="{{ __('Email *') }}" />
@@ -94,7 +93,7 @@
                                             <button
                                             class="
                                             inline-block px-6 py-2.5 
-                                            text-white font-bold 
+                                            text-white font-semibold 
                                             text-md 
                                             leading-tight 
                                             uppercase 
@@ -110,7 +109,7 @@
                                             data-mdb-ripple="true"
                                             data-mdb-ripple-color="light"
                                             >
-                                            {{ __('Log in') }}
+                                            {{ __('Register') }}
                                             </button>
                                         </div>
                                     </div>
