@@ -1,7 +1,5 @@
 <x-guest-layout>
 
-    <x-jet-validation-errors class="mb-4" />
-
     @if (session('status'))
         <div class="mb-4 font-medium text-sm text-green-600">
             {{ session('status') }}
@@ -18,7 +16,7 @@
                     <div class="p-3 xl:p-7 md:mx-6">
                       <div class="text-left">
                         <div class="text-3xl font-bold">
-                            <div class="nav-title flex items-center">
+                            <a href="{{ url('/') }}" class="nav-title flex items-center">
                               <img
                                 src="assets/img/Checkapp logo 2.0.png"
                                 alt="logo"
@@ -26,12 +24,13 @@
                               />
                               <span class="text-black">Check</span>
                               <span class="text-green-500">App</span>
-                            </div>
+                            </a>
                         </div>
                         <h5 class="text-xl font-semibold mt-1 mb-4 pb-1 text-gray-600">Your number one online clinic.</h5>
                       </div>
                       <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <x-jet-validation-errors class="mb-4" />
                         <p class="mb-4">Please login to your account</p>
                         <div class="mb-4">
                             <x-jet-label for="email" value="{{ __('Email *') }}" />

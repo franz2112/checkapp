@@ -9,7 +9,12 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
+            input: [
+                "resources/css/app.css",
+                "resources/js/app.js",
+                "public/assets/css/theme.css",
+                "public/assets/js/theme.css",
+            ],
             refresh: [...refreshPaths, "app/Http/Livewire/**"],
         }),
     ],
