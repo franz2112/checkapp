@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="copyright" content="" />
 
-    <title>CheckApp</title>
+    <title>{{ config('app.name', 'CheckApp') }}</title>
 
     <link
       rel="icon"
@@ -67,10 +67,13 @@
         <div class="container">
           <img
             class="navbar-brand1"
-            src="../assets/img/Checkapp logo 2.0.png"
-          /><a class="navbar-brand" href="#"
-            >Check<span class="text-primary">App</span></a
-          >
+            src="../assets/img/Checkapp logo 2.0.png"/>
+          <a class="navbar-brand" href="#">
+            Check
+          <span class="text-primary">
+            App
+          </span></a>
+         
 
           <!-- <form action="#">
                     <div class="input-group input-navbar">
@@ -139,7 +142,7 @@
                         Amet ante nulla sem mauris. Sollicitudin ultrices enim
                         quam.
                       </p>
-                      <a href="#" class="btn btn-primary rounded-pill"
+                      <a href="{{ route('register') }}" class="btn btn-primary rounded-pill"
                         >Register</a
                       >
                     </div>

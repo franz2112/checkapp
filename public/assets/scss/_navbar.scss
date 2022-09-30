@@ -1,0 +1,82 @@
+// navpart
+nav {
+    .nav-link {
+        img {
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin: -8px 0;
+            float: left;
+            margin-right: 10px;
+        }
+        span {
+            padding-left: 10px;
+            font-weight: 600;
+        }
+    }
+    @media screen and (max-width: 991px) {
+        span {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 499px) {
+        padding: 0px 10px;
+    }
+}
+
+.navbar {
+    ul li i {
+        font-size: 14px;
+    }
+    ul.nav {
+        li {
+            a.notifications {
+                position: relative;
+                margin-right: 10px;
+            }
+            a.messages {
+                position: relative;
+                margin-right: 10px;
+            }
+        }
+    }
+    .dropdown-menu {
+        i {
+            font-size: 14px;
+            min-width: 22px;
+        }
+        li a {
+            color: #000;
+            padding: 8px 20px;
+            line-height: normal;
+            font-size: 14px;
+
+            :hover {
+                color: #333;
+            }
+            :active {
+                color: #333;
+            }
+        }
+        li span {
+            font-size: 12px;
+        }
+        .material-icons {
+            font-size: 21px;
+            line-height: 16px;
+            vertical-align: middle;
+            margin-top: -2px;
+        }
+    }
+    .badge {
+        background: #f44336;
+        font-size: 11px;
+        border-radius: 20px;
+        position: absolute;
+        min-width: 10px;
+        padding: 4px 6px 0;
+        min-height: 18px;
+        top: 5px;
+    }
+}
+// nav end

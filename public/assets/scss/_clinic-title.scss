@@ -1,0 +1,27 @@
+.main-title-page {
+  font-size: 16pt;
+  font-weight: bold;
+  align-items: center;
+  .nav-title {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .nav-title {
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+  }
+  img {
+    width: 40px;
+  }
+  span {
+    color: #35bf53;
+    img {
+      width: 100px;
+    }
+  }
+}

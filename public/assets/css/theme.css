@@ -153,7 +153,7 @@ a.bg-dark:focus {
 }
 
 .text-primary {
-    color: #00d9a5 !important;
+    color: #35bf53 !important;
 }
 
 a.text-primary:hover,
@@ -307,7 +307,7 @@ header {
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #fff;
-    background-color: #07be94;
+    background-color: #2aa344;
     border-color: transparent;
 }
 
@@ -315,8 +315,8 @@ header {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #00d9a5;
-    border-color: #07be94;
+    background-color: #2aa344;
+    border-color: #2aa344;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -564,7 +564,7 @@ header {
 .btn-danger:hover,
 .btn-dark:hover {
     color: #fff;
-    background-color: #596261;
+    background-color: #2aa344;
     border-color: transparent;
 }
 
@@ -585,7 +585,7 @@ header {
 .btn-dark:focus,
 .btn-dark.focus {
     color: #fff;
-    background-color: #475351;
+    background-color: #207a34;
     border-color: transparent;
     box-shadow: none;
 }
@@ -1026,7 +1026,7 @@ header {
 }
 
 .navbar-brand {
-    font-weight: 600;
+    font-weight: 700;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -1895,6 +1895,11 @@ footer {
     color: #fff;
 }
 
+.owl-carousel .owl-nav button.owl-next:hover,
+.owl-carousel .owl-nav button.owl-prev:hover {
+    background-color: #2aa344;
+}
+
 .owl-carousel .owl-nav button.owl-next {
     padding-right: 14px !important;
     padding-left: 7px !important;
@@ -2172,6 +2177,9 @@ footer {
         border-right: 1px solid #e7e7e7;
         padding-top: 10px;
         background-color: #fff;
+    }
+    .navbar-brand {
+        display: none;
     }
 }
 
