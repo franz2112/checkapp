@@ -16,7 +16,7 @@
                     <div class="p-3 xl:p-7 md:mx-6">
                       <div class="text-left">
                         <div class="text-3xl font-bold">
-                            <a href="{{ url('/') }}" class="nav-title flex items-center">
+                            <a href="{{ url('/welcome') }}" class="nav-title flex items-center">
                               <img
                                 src="assets/img/Checkapp logo 2.0.png"
                                 alt="logo"

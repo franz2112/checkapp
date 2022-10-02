@@ -65,10 +65,11 @@
 
       <nav class="navbar navbar-expand-xl">
         <div class="container">
-          <img
+          
+          <a class="navbar-brand" href="{{ url('/welcome') }}">
+            <img
             class="navbar-brand1"
             src="../assets/img/Checkapp logo 2.0.png"/>
-          <a class="navbar-brand" href="#">
             Check
           <span class="text-primary">
             App

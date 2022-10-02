@@ -21,12 +21,13 @@
     <!-- Back to top button -->
     <div class="back-to-top"></div>
 
+  
     <div class="master-part">
       <!-- sidebar -->
-      <aside class="sidebar-part">
+      <aside  x-data="{ open: false }"  class="sidebar-part">
         <ul>
           <div class="main-title-page py-4 px-3">
-            <a href="#" class="nav-title">
+            <a href="" class="nav-title">
               <img src="../assets/img/Checkapp logo 2.0.png" alt="logo" />
               <span class="links-name text-black">Check</span>
               <span class="links-name">App</span>
@@ -81,9 +82,10 @@
               <span class="links-name">Help</span>
             </a>
           </li>
+          
           <form method="POST" action="{{ route('logout') }}" x-data>
+            @csrf
             <li class="nav-lower">
-                @csrf
                 <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="side-nav-out" >
                     <i
                     class="icons fa-solid fa-arrow-right-from-bracket px-3"
@@ -103,6 +105,8 @@
           
           <nav class="navbar navbar-expand-lg py-4 px-lg-5 ">
             <div class="container-fluid d-block">
+                  
+                  {{-- responsive --}}
                   <div class="d-lg-none">
                     <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                       <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">             
@@ -113,22 +117,25 @@
                           <li><hr></li>
                           <li class="nav-item"><a class="nav-link" href="#">Another action</a></li>
                           <li class="nav-item"><a class="nav-link" href="#">Something else here</a></li>
+                          <li class="nav-item pt-2">Location</li>
+                          
                         </ul>
                     </div>
                   </div>
                   
+                  {{-- hover --}}
                   <div class="d-none d-lg-block">
                     <!-- Collection of nav links, forms, and other content for toggling -->
                     <div >
-                      <ul class="navbar-nav navbar-right d-flex justify-content-end">
+                      <ul class="navbar-nav navbar-right d-flex justify-content-end ">
                         <li class="dropdown"> 
-                          <a href="#" data-bs-toggle="dropdown" class="">Paula Wilson <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar"></a>
-                          <ul class="dropdown-menu shadow-lg">
+                          <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">{{ Auth::user()->lname}}, {{ Auth::user()->fname}} {{ Auth::user()->mname}} <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar"></div>
+                          <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
                             <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
+                            <li><a class="dropdown-item" href="#">Privacy</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Separated link</a></li> </ul>
+                            <li class="px-3 py-1 text-truncate"><i class="fa-solid fa-globe pe-2"></i>Location</li>
                         </li>
                       </ul>
                     </div>

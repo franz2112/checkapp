@@ -13,14 +13,18 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/home',[HomeController::class, 'redirect']);
 
-Route::get('/', function () {
+// Route::get('/',[HomeController::class, 'index']);
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/home',[HomeController::class, 'redirect']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'redirect']);
+});
 
-// Route::get('/',[HomeController::class, 'index']);
 
 Route::middleware([
     'auth:sanctum',
