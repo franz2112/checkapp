@@ -10,12 +10,25 @@
     <link rel="shortcut icon" href="../assets/img/Checkapp logo 2.0.png" />
     
     <link rel="stylesheet" href="../assets/css/style.css"/>
-   
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
-    @vite(['public/assets/css/style.css', 'public/assets/css/style.css', 'public/assets/js/check.js'])
+    @vite([
+      'public/assets/css/style.css', 
+      
+      'public/assets/js/check.js', 
+
+      'public/assets/vendor/all.js'
+       ])
     
     @livewireStyles
-</head>
+  </head>
 
   <body>
     <!-- Back to top button -->
@@ -24,127 +37,17 @@
   
     <div class="master-part">
       <!-- sidebar -->
-      <aside  x-data="{ open: false }"  class="sidebar-part">
-        <ul>
-          <div class="main-title-page py-4 px-3">
-            <a href="" class="nav-title">
-              <img src="../assets/img/Checkapp logo 2.0.png" alt="logo" />
-              <span class="links-name text-black">Check</span>
-              <span class="links-name">App</span>
-            </a>
-          </div>
-          <li class="nav-item active">
-            <!-- "active" for active Home -->
-            <a href="index.html" class="home-nav">
-              <i class="icons fa-solid fa-house px-2"></i>
-              <span class="links-name">Home</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <!-- "active - clinic" for active Clinic -->
-            <a href="/pages/clinic.html" class="side-nav-clinic">
-              <i class="fa-brands fa-medrt px-3"></i>
-              <span class="links-name">Clinics</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <!-- "active - appoint" for active Appointment -->
-            <a href="/pages/appointment.html" class="side-nav-appoint">
-              <i class="fa-solid fa-pen px-3"></i>
-              <span class="links-name">Appointments</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <!-- "active - notif" for active notification-->
-            <a href="/pages/notification.html" class="side-nav-notif">
-              <i class="fa-solid fa-message px-3"></i>
-              <span class="links-name">Notifications</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <!-- "active - Rec" for active Records-->
-            <a href="/pages/records.html" class="side-nav-rec">
-              <i class="fa-solid fa-file-prescription px-3"></i>
-              <span class="links-name">Records</span>
-            </a>
-          </li>
-
-          <!-- All navlower, the active is "active-lower" -->
-          <li class="pt-5 nav-lower">
-            <a href="#" class="side-nav-lower">
-              <i class="icons fa-solid fa-gear px-3"></i>
-              <span class="links-name">Settings</span>
-            </a>
-          </li>
-          <li class="nav-lower">
-            <a href="#" class="side-nav-lower">
-              <i class="icons fa-solid fa-circle-question px-3"></i>
-              <span class="links-name">Help</span>
-            </a>
-          </li>
-          
-          <form method="POST" action="{{ route('logout') }}" x-data>
-            @csrf
-            <li class="nav-lower">
-                <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="side-nav-out" >
-                    <i
-                    class="icons fa-solid fa-arrow-right-from-bracket px-3"
-                    data-fa-transform="flip-h"
-                    ></i>
-                    <span class="links-name">{{ __('Log Out') }}</span>
-                </a>
-            </li>
-          </form>
-        </ul>
-      </aside>
+      @include('user.aside')
       <!-- sidebar ends -->
+
       <!-- body part -->
       <div class="body-part">
         <div class="container">
-          <!-- header -->
           
-          <nav class="navbar navbar-expand-lg py-4 px-lg-5 ">
-            <div class="container-fluid d-block">
-                  
-                  {{-- responsive --}}
-                  <div class="d-lg-none">
-                    <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                      <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar">             
-                    </button>
-                    <div id="navbarCollapse" class="collapse navbar-collapse ">
-                        <ul class="nav navbar-nav me-auto">
-                          <li class="nav-item py-3">user@gmail.com</li>
-                          <li><hr></li>
-                          <li class="nav-item"><a class="nav-link" href="#">Another action</a></li>
-                          <li class="nav-item"><a class="nav-link" href="#">Something else here</a></li>
-                          <li class="nav-item pt-2">Location</li>
-                          
-                        </ul>
-                    </div>
-                  </div>
-                  
-                  {{-- hover --}}
-                  <div class="d-none d-lg-block">
-                    <!-- Collection of nav links, forms, and other content for toggling -->
-                    <div >
-                      <ul class="navbar-nav navbar-right d-flex justify-content-end ">
-                        <li class="dropdown"> 
-                          <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">{{ Auth::user()->lname}}, {{ Auth::user()->fname}} {{ Auth::user()->mname}} <img src="https://www.tutorialrepublic.com/examples/images/avatar/2.jpg" class="rounded-circle" alt="Avatar"></div>
-                          <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
-                            <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
-                            <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
-                            <li><a class="dropdown-item" href="#">Privacy</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li class="px-3 py-1 text-truncate"><i class="fa-solid fa-globe pe-2"></i>Location</li>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+          <!-- nav -->
+          @include('user.nav')
+          <!-- nav end -->
 
-          
-            </div>
-          </nav>
-          <!-- header end -->
           <div class="main-content">
             <div class="content-wrapper px-5">
               <div class="row">
@@ -292,8 +195,13 @@
       </footer>
     </div>
   </body>
-  <script src="../assets/vendor/all.js"></script>
-  <script src="../assets/vendor/bootstrap.bundle.js"></script>
-  <script src="../assets/vendor/jquery.min.js"></script>
-  <script src="../assets/js/check.js"></script>
+
+  {{-- <script src="../assets/vendor/all.js"></script> --}}
+  {{-- <script src="../assets/vendor/bootstrap.bundle.js"></script>
+  <script src="../assets/vendor/jquery.min.js"></script> --}}
+  {{-- <script src="../assets/vendor/popper.min.js"></script> --}}
+  {{-- <script src="../assets/js/check.js"></script> --}}
+  @stack('modals')
+
+  @livewireScripts
 </html>

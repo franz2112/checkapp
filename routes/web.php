@@ -23,6 +23,13 @@ Route::get('/welcome', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'redirect']);
+    Route::get('/clinics', function () {
+        return view('user.clinics');
+    });
+    Route::get('/clinic-menu', function () {
+        return view('user.clinic-menu');
+    });
+
 });
 
 
