@@ -17,7 +17,7 @@ export default defineConfig({
                 "public/assets/css/style.css",
                 "public/assets/css/style.css.map",
                 "public/assets/scss/style.scss",
-                "public/assets/js/check.css",
+                "public/assets/js/check.js",
             ],
             refresh: [...refreshPaths, "app/Http/Livewire/**"],
         }),

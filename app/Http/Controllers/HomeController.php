@@ -34,4 +34,10 @@ class HomeController extends Controller
     public function clinics(){
         return view('user.clinics');
     }
+    public function clinicians(){
+        return view('user.clinic-menu');
+    }
+    public function Appointments(){
+        return view('admin.Appointments');
+    }
 }

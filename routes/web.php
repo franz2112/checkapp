@@ -17,21 +17,38 @@ use App\Http\Controllers\HomeController;
 
 // Route::get('/',[HomeController::class, 'index']);
 
+
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
+    // user side auth
+    Route::get('/', [HomeController::class, 'redirect'])
+    ->name('/')
+    ->middleware('auth');
+
+    Route::get('/clinics', [HomeController::class, 'clinics'])
+    ->name('clinics')
+    ->middleware('auth');
+
+    Route::get('/clinic-menu', [HomeController::class, 'clinicians'])
+    ->name('clinic-menu')
+    ->middleware('auth');
+
+    
+    // admin part   
+    Route::get('/Appointments', [HomeController::class, 'Appointments'])
+    ->name('Appointments')
+    ->middleware('auth');
+});
+
+
+
+
+
+// user side not login
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'redirect']);
-    Route::get('/clinics', function () {
-        return view('user.clinics');
-    });
-    Route::get('/clinic-menu', function () {
-        return view('user.clinic-menu');
-    });
-
-});
-
+    
 
 Route::middleware([
     'auth:sanctum',
