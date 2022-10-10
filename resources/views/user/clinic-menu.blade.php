@@ -87,11 +87,14 @@
                 <ul class="m-0">
                   <li class="dropdown"> 
                     <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">
-                    <span class="ps-2">
-                      {{ Auth::user()->lname}}, 
-                      {{ Auth::user()->fname}} 
-                      {{ Auth::user()->mname}}
-                    </span></div>
+                      <span class="ps-2">
+                        {{ Auth::user()->lname}}, 
+                        {{ Auth::user()->fname}} 
+                        {{ Auth::user()->mname}}
+                     
+                      </span>
+                      <i class="ps-2 fa-solid fa-angle-down"></i>
+                    </div>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
                       <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
                       <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
@@ -234,65 +237,37 @@
                                 <h6 class="mt-2" for="doctor">Select Doctor</h6>
                                 <div class="input-group">
                                   <div class="row">
-                                    <div class="col-sm-6 p-0">
-                                      <div class="option m-1">
-                                        <input
-                                          type="radio"
-                                          name="doctor"
-                                          id="doc1"
-                                          value="doc1"
-                                        />
-                                        <label
-                                          class="label-d"
-                                          for="doc1"
-                                          aria-label="doc1"
-                                        >
-                                          <span></span>
-
-                                          Doctor Sol
-
-                                          <div
-                                            class="card card--white card--sm"
+                                    @foreach ($doctors as $doctors)
+                                      <div class="col-sm-6 p-0">
+                                        <div class="option m-1">
+                                          <input
+                                            type="radio"
+                                            name="doctor"
+                                            id="Doctor{{ $doctors->Dlname }}"
+                                            value="Doctor{{ $doctors->Dlname }}"
+                                          />
+                                          <label
+                                            class="label-d"
+                                            for="Doctor{{ $doctors->Dlname }}"
+                                            aria-label="Doctor{{ $doctors->Dlname }}"
                                           >
-                                            <img
-                                              src="/assets/img/3efdbd.jpeg"
-                                              alt=""
-                                            />
-                                          </div>
-                                        </label>
+                                            <span></span>
+
+                                            Doctor {{ $doctors->Dlname }}
+
+                                            <div
+                                              class="card card--white card--sm"
+                                            >
+                                              <img
+                                                src="/assets/admin/img/doctorimage/{{ $doctors->file }}"
+                                                alt=""
+                                              />
+                                            </div>
+                                          </label>
+                                        </div>
                                       </div>
-                                    </div>
-
-                                    <div class="col-sm-6 p-0">
-                                      <div class="option m-1">
-                                        <input
-                                          type="radio"
-                                          name="doctor"
-                                          id="doc2"
-                                          value="doc2"
-                                          
-                                        />
-                                        <label
-                                          class="label-d"
-                                          for="doc2"
-                                          aria-label="doc2"
-                                        >
-                                          <span></span>
-
-                                          Doctor Francis
-
-                                          <div
-                                            class="card card--white card--sm"
-                                          >
-                                            <img
-                                              src="/assets/img/3efdbd.jpeg"
-                                              alt=""
-                                            />
-                                          </div>
-                                        </label>
-                                      </div>
-                                    </div>
-
+                                      
+                                    @endforeach
                                     <div class="col-sm-6 p-0">
                                       <div class="option m-1">
                                         <input
@@ -308,13 +283,13 @@
                                         >
                                           <span></span>
 
-                                          Suggested Doctor
+                                          Suggest Doctor
 
                                           <div
                                             class="card card--white card--sm"
                                           >
                                             <img
-                                              src="/assets/img/3efdbd.jpeg"
+                                              src="/assets/admin/img/blmkl.jpg"
                                               alt=""
                                             />
                                           </div>

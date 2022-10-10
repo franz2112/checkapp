@@ -210,7 +210,7 @@
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="../pages/virtual-reality.html">
+            <a class="nav-link " href="/Add-Doctor">
                 <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
@@ -254,7 +254,7 @@
                     </g>
                 </svg>
                 </div>
-                <span class="nav-link-text ms-1">Virtual Reality</span>
+                <span class="nav-link-text ms-1">Add Doctor</span>
             </a>
             </li>
 
@@ -409,7 +409,7 @@
             id="navbar"
           >
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-              <div class="input-group">
+              {{-- <div class="input-group">
                 <span class="input-group-text text-body"
                   ><i class="fas fa-search" aria-hidden="true"></i
                 ></span>
@@ -418,7 +418,7 @@
                   class="form-control"
                   placeholder="Type here..."
                 />
-              </div>
+              </div> --}}
             </div>
             <ul class="navbar-nav justify-content-end">
    

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
+use App\Models\Doctor;
+
 class HomeController extends Controller
 {
     //
@@ -35,9 +37,9 @@ class HomeController extends Controller
         return view('user.clinics');
     }
     public function clinicians(){
-        return view('user.clinic-menu');
+
+        $doctors = doctor::all();
+        return view('user.clinic-menu', compact('doctors'));
     }
-    public function Appointments(){
-        return view('admin.Appointments');
-    }
+
 }

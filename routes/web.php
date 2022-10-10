@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,8 +37,16 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     
     // admin part   
-    Route::get('/Appointments', [HomeController::class, 'Appointments'])
+    Route::get('/Appointments', [AdminController::class, 'Appointments'])
     ->name('Appointments')
+    ->middleware('auth');
+
+    Route::get('/Add-Doctor', [AdminController::class, 'AddDoctor'])
+    ->name('Add-Doctor')
+    ->middleware('auth');
+
+    Route::post('/upload-doctor', [AdminController::class, 'upload'])
+    ->name('Add-Doctor')
     ->middleware('auth');
 });
 
