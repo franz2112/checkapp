@@ -289,7 +289,7 @@
                                             class="card card--white card--sm"
                                           >
                                             <img
-                                              src="/assets/admin/img/blmkl.jpg"
+                                              src="/assets/admin/img/blmkl.png"
                                               alt=""
                                             />
                                           </div>
