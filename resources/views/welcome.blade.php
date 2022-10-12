@@ -14,9 +14,20 @@
       type="image/x-icon"
     />
 
-    <link rel="stylesheet" href="../assets/css/all.css" />
+    <!--     Fonts and icons     -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+    rel="stylesheet" />
+   
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
 
     <link
       rel="stylesheet"
@@ -25,10 +36,15 @@
 
     <link rel="stylesheet" href="../assets/vendor/animate/animate.css" />
 
-    <link rel="stylesheet" href="../assets/css/theme.css" />
+    {{-- <link rel="stylesheet" href="../assets/css/theme.css" /> --}}
 
      <!-- Scripts -->
-     @vite(['public/assets/css/theme.css', 'public/assets/js/theme.js'])
+     @vite([
+      'public/assets/css/theme.css', 
+      'public/assets/css/all.css', 
+      'public/assets/js/theme.js',
+      'public/assets/js/all.js'
+     ])
 
      <!-- Styles -->
      @livewireStyles
@@ -39,13 +55,13 @@
     <div class="back-to-top"></div>
 
     <header>
-      <div class="topbar">
+      {{-- <div class="topbar">
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
               <div class="site-info">
-                <span>Have a Clinic?</span>
-                <a href="#"><u>Register Here</u></a>
+                <span>Want to establish clinic online?</span>
+                <a href="{{ url('/clinic-register') }}"><u>Register Here</u></a>
               </div>
             </div>
             <div class="col-lg-4 text-end">
@@ -61,7 +77,7 @@
         </div>
         <!-- .container -->
       </div>
-      <!-- .topbar -->
+      <!-- .topbar --> --}}
 
       <nav class="navbar navbar-expand-xl">
         <div class="container">
@@ -497,7 +513,7 @@
               <span class="price">$12</span>
               <h4>Standard Plan App</h4>
               <div class="icon">
-                <img src="assets/images/pricing-table-01.png" alt="" />
+                <img src="..." alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -513,11 +529,11 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="pricing-item-pro">
+            <div class="pricing-item-pro ">
               <span class="price">$25</span>
               <h4>Business Plan App</h4>
               <div class="icon">
-                <img src="assets/images/pricing-table-01.png" alt="" />
+                <img src="..." alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -537,7 +553,7 @@
               <span class="price">$66</span>
               <h4>Premium Plan App</h4>
               <div class="icon">
-                <img src="assets/images/pricing-table-01.png" alt="" />
+                <img src="..." alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -652,15 +668,14 @@
                 <li><a href="#">Terms & Condition</a></li>
                 <li><a href="#">Privacy</a></li>
                 <li><a href="#">Advertise</a></li>
-                <li><a href="#">Join as Doctors</a></li>
+                <li><a href="#">Become a sponsor</a></li>
               </ul>
             </div>
             <div class="col-sm-6 col-lg-3 py-3">
               <h5>Our partner</h5>
               <ul class="footer-menu">
-                <li><a href="#">One-Fitness</a></li>
-                <li><a href="#">One-Drugs</a></li>
-                <li><a href="#">One-Live</a></li>
+                <li><a href="{{ url('/clinic-register') }}" target="_blank">Register Clinic</a></li>
+                <li><a href="{{ url('/clinic-register') }}" target="_blank">Login as Clinic</a></li>
               </ul>
             </div>
             <div class="col-sm-6 col-lg-3 py-3">
@@ -673,7 +688,7 @@
 
               <h5 class="mt-3">Social Media</h5>
               <div class="footer-sosmed mt-3">
-                <a href="#" target="_blank"
+                <a href="" target="_blank"
                   ><i class="fa-brands fa-facebook-f"></i
                 ></a>
                 <a href="#" target="_blank"
@@ -703,16 +718,10 @@
       </div>
     </footer>
 
-    <script src="../assets/js/jquery-3.5.1.min.js"></script>
-
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="../assets/js/all.js"></script>
-
     <script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
 
     <script src="../assets/vendor/wow/wow.min.js"></script>
 
-    <script src="../assets/js/theme.js"></script>
+
   </body>
 </html>

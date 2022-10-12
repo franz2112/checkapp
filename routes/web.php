@@ -48,6 +48,18 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::post('/upload-doctor', [AdminController::class, 'upload'])
     ->name('Add-Doctor')
     ->middleware('auth');
+
+    // // clinic Registration...
+    // if (Features::enabled(Features::registration())) {
+    //     if ($enableViews) {
+    //         Route::get('/register-clinic', [RegisteredUserController::class, 'create'])
+    //             ->middleware(['guest:'.config('fortify.guard')])
+    //             ->name('register');
+    //     }
+
+    //     Route::post('/register-clinic', [RegisteredUserController::class, 'store'])
+    //         ->middleware(['guest:'.config('fortify.guard')]);
+    // }
 });
 
 
@@ -57,6 +69,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 // user side not login
 Route::get('/welcome', function () {
     return view('welcome');
+});
+
+Route::get('/clinic-register', function () {
+    return view('admin.clinicreg');
 });
     
 
