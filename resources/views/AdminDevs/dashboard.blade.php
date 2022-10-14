@@ -34,7 +34,7 @@
             'public/assets/vendor/all.js'
              ])
           
-        @livewireStyles
+          @livewireStyles
       </head>
 
   <body class="g-sidenav-show bg-gray-300">
@@ -61,97 +61,97 @@
         <hr class="horizontal dark mt-0" />
         <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/">
+          <li class="nav-item ">
+            <a class="nav-link active" href="/home">
                 <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                 >
-                  <svg
-                      width="12px"
-                      height="12px"
-                      viewBox="0 0 42 42"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                      <title>office</title>
-                      <g
-                      stroke="none"
-                      stroke-width="1"
-                      fill="none"
-                      fill-rule="evenodd"
-                      >
-                      <g
-                          transform="translate(-1869.000000, -293.000000)"
-                          fill="#FFFFFF"
-                          fill-rule="nonzero"
-                      >
-                          <g transform="translate(1716.000000, 291.000000)">
-                          <g
-                              id="office"
-                              transform="translate(153.000000, 2.000000)"
-                          >
-                              <path
-                              class="color-background opacity-6"
-                              d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
-                              ></path>
-                              <path
-                              class="color-background"
-                              d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
-                              ></path>
-                          </g>
-                          </g>
-                      </g>
-                      </g>
-                  </svg>
+                <svg
+                    width="12px"
+                    height="12px"
+                    viewBox="0 0 42 42"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                    <title>office</title>
+                    <g
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                    >
+                    <g
+                        transform="translate(-1869.000000, -293.000000)"
+                        fill="#FFFFFF"
+                        fill-rule="nonzero"
+                    >
+                        <g transform="translate(1716.000000, 291.000000)">
+                        <g
+                            id="office"
+                            transform="translate(153.000000, 2.000000)"
+                        >
+                            <path
+                            class="color-background opacity-6"
+                            d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z"
+                            ></path>
+                            <path
+                            class="color-background"
+                            d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z"
+                            ></path>
+                        </g>
+                        </g>
+                    </g>
+                    </g>
+                </svg>
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
               </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link active" href="/clinic-request'">
-                  <div
-                  class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
-                  >
-                  <svg
-                      width="12px"
-                      height="12px"
-                      viewBox="0 0 43 36"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                      <title>credit-card</title>
-                      <g
-                      stroke="none"
-                      stroke-width="1"
-                      fill="none"
-                      fill-rule="evenodd"
-                      >
-                      <g
-                          transform="translate(-2169.000000, -745.000000)"
-                          fill="#FFFFFF"
-                          fill-rule="nonzero"
-                      >
-                          <g transform="translate(1716.000000, 291.000000)">
-                          <g transform="translate(453.000000, 454.000000)">
-                              <path
-                              class="color-background opacity-6"
-                              d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
-                              ></path>
-                              <path
-                              class="color-background"
-                              d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"
-                              ></path>
-                          </g>
-                          </g>
-                      </g>
-                      </g>
-                  </svg>
-                  </div>
-                  <span class="nav-link-text ms-1">Clinics Request</span>
-              </a>
-          </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/clinic-request">
+                    <div
+                    class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
+                    >
+                    <svg
+                        width="12px"
+                        height="12px"
+                        viewBox="0 0 43 36"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                        <title>credit-card</title>
+                        <g
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                        >
+                        <g
+                            transform="translate(-2169.000000, -745.000000)"
+                            fill="#FFFFFF"
+                            fill-rule="nonzero"
+                        >
+                            <g transform="translate(1716.000000, 291.000000)">
+                            <g transform="translate(453.000000, 454.000000)">
+                                <path
+                                class="color-background opacity-6"
+                                d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                ></path>
+                                <path
+                                class="color-background"
+                                d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"
+                                ></path>
+                            </g>
+                            </g>
+                        </g>
+                        </g>
+                    </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">Clinics Request</span>
+                </a>
+            </li>
 
             {{-- <li class="nav-item">
                 <a class="nav-link " href="/Add-Doctor">
@@ -495,289 +495,9 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="container-fluid py-4 pt-1">
-        @include('AdminDevs.clinicforms')
-        <div class="row">
-          <div class="col-md-7 my-2 my-lg-0">
-              <div class="card" style="height: 576px">
-                <div class="card-header pb-0 px-3">
-                  <h6 class="mb-0">Appointment History</h6>
-                </div>
-                <div class="card-body pt-4 p-3 overflow-auto">
-                  <ul class="list-group">
-                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                          <span class="mb-2 text-xs"
-                              >Company Name:
-                              <span class="text-dark font-weight-bold ms-sm-2">
-                              Viking Burrito
-                              </span>
-                          </span>
-                          <span class="mb-2 text-xs">
-                            Email Address:
-                            <span class="text-dark ms-sm-2 font-weight-bold">
-                              oliver@burrito.com
-                            </span>
-                          </span>
-                          <span class="text-xs">
-                            VAT Number:
-                            <span class="text-dark ms-sm-2 font-weight-bold">
-                              FRB1235476
-                            </span>
-                          </span>
-                      </div>
-                      <div class="ms-auto text-end">
-                        <a
-                          class="btn btn-link text-danger text-gradient px-3 mb-0"
-                          href="javascript:;"
-                          ><i class="far fa-trash-alt me-2"></i>Delete
-                        </a>
-                          <a
-                            class="btn btn-link text-dark px-3 mb-0"
-                            href="javascript:;"
-                            ><i
-                            class="fas fa-pencil-alt text-dark me-2"
-                            aria-hidden="true"
-                            ></i
-                            >Edit</a>
-                        </div>
-                    </li>
-                    <li
-                      class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg"
-                    >
-                        <div class="d-flex flex-column">
-                          <h6 class="mb-3 text-sm">Lucas Harper</h6>
-                          <span class="mb-2 text-xs"
-                              >Company Name:
-                              <span class="text-dark font-weight-bold ms-sm-2"
-                              >Stone Tech Zone</span
-                              ></span
-                          >
-                          <span class="mb-2 text-xs"
-                              >Email Address:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >lucas@stone-tech.com</span
-                              ></span
-                          >
-                          <span class="text-xs"
-                              >VAT Number:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >FRB1235476</span
-                              ></span
-                          >
-                        </div>
-                        <div class="ms-auto text-end">
-                          <a
-                              class="btn btn-link text-danger text-gradient px-3 mb-0"
-                              href="javascript:;"
-                              ><i class="far fa-trash-alt me-2"></i>Delete</a
-                          >
-                          <a
-                              class="btn btn-link text-dark px-3 mb-0"
-                              href="javascript:;"
-                              ><i
-                              class="fas fa-pencil-alt text-dark me-2"
-                              aria-hidden="true"
-                              ></i
-                              >Edit</a
-                          >
-                        </div>
-                      </li>
-                      <li
-                          class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg"
-                      >
-                          <div class="d-flex flex-column">
-                          <h6 class="mb-3 text-sm">Ethan James</h6>
-                          <span class="mb-2 text-xs"
-                              >Company Name:
-                              <span class="text-dark font-weight-bold ms-sm-2"
-                              >Fiber Notion</span
-                              ></span
-                          >
-                          <span class="mb-2 text-xs"
-                              >Email Address:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >ethan@fiber.com</span
-                              ></span
-                          >
-                          <span class="text-xs"
-                              >VAT Number:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >FRB1235476</span
-                              ></span
-                          >
-                          </div>
-                          <div class="ms-auto text-end">
-                          <a
-                              class="btn btn-link text-danger text-gradient px-3 mb-0"
-                              href="javascript:;"
-                              ><i class="far fa-trash-alt me-2"></i>Delete</a
-                          >
-                          <a
-                              class="btn btn-link text-dark px-3 mb-0"
-                              href="javascript:;"
-                              ><i
-                              class="fas fa-pencil-alt text-dark me-2"
-                              aria-hidden="true"
-                              ></i
-                              >Edit</a
-                          >
-                          </div>
-                      </li>
-                      <li
-                          class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg"
-                      >
-                          <div class="d-flex flex-column">
-                          <h6 class="mb-3 text-sm">Ethan James</h6>
-                          <span class="mb-2 text-xs"
-                              >Company Name:
-                              <span class="text-dark font-weight-bold ms-sm-2"
-                              >Fiber Notion</span
-                              ></span
-                          >
-                          <span class="mb-2 text-xs"
-                              >Email Address:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >ethan@fiber.com</span
-                              ></span
-                          >
-                          <span class="text-xs"
-                              >VAT Number:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                              >FRB1235476</span
-                              ></span
-                          >
-                          </div>
-                          <div class="ms-auto text-end">
-                          <a
-                              class="btn btn-link text-danger text-gradient px-3 mb-0"
-                              href="javascript:;"
-                              ><i class="far fa-trash-alt me-2"></i>Delete</a
-                          >
-                          <a
-                              class="btn btn-link text-dark px-3 mb-0"
-                              href="javascript:;"
-                              ><i
-                              class="fas fa-pencil-alt text-dark me-2"
-                              aria-hidden="true"
-                              ></i
-                              >Edit</a
-                          >
-                          </div>
-                      </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          <div class="col-md-5 mt-2 mt-lg-0">
-              <div class="card mb-4" style="height: 576px">
-              <div class="card-header pb-0 px-3">
-                  <div class="row">
-                  <div class="col-md-6">
-                      <h6 class="mb-0">Upcoming Request</h6>
-                  </div>
-                  <div
-                      class="col-md-6 d-flex justify-content-end align-items-center"
-                  >
-                      <i class="far fa-calendar-alt me-2"></i>
-                      <small>
-                          <script>
-                              document.write(new Date().toISOString().slice(0, 10))
-                          </script>
-                      </small>
-                  </div>
-                  </div>
-              </div>
-              <div class="card-body pt-4 p-3 overflow-auto">
-  
-                <ul class="list-group">
 
-                  @if ($data->count()>0)
-                    @foreach ($data as $clinicreqst)
-                      <a href="#" class=""  onclick="request({{ $clinicreqst->id }})" >
-                        <li
-                        class="list-group-item list-group-item-action border-0 d-flex justify-content-between border-radius-lg"
-                        >
-                          <div class="d-flex align-items-center">
-                          <div
-                              class="btn btn-icon-only btn-rounded btn-outline-warning mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                          >
-                              <i class="fas fa-spinner"></i>
-                          </div>
-                            <div class="d-flex flex-column">
-                                <h6 class="mb-1 text-dark text-sm">{{ $clinicreqst->clinicname }}</h6>
-                                <span class="text-xs">{{ $clinicreqst->cemail  }}</span>
-                            </div>
-                          </div>
-                          <div
-                          class="d-flex align-items-center text-sm "
-                          >
-                          {{ $clinicreqst->created_at}}
-                          </div>
-                        </li>
-                      </a>
-                    @endforeach
-
-                  @else
-                    <li
-                    class="list-group-item list-group-item-action border-0 d-flex justify-content-between border-radius-lg"
-                    >
-                      <div class="d-flex align-items-center">
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm"></h6>
-                            <span class="text-xs">
-                        </div>
-                      </div>
-                      <div
-                      class="d-flex align-items-center text-sm font-weight-bold"
-                      >
-                      No Upcoming Request
-                      </div>
-                    </li>
-                  @endif
-
-                  {{-- <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-                  >
-                      <div class="d-flex align-items-center">
-                      <button
-                          class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                      >
-                          <i class="fas fa-arrow-up"></i>
-                      </button>
-                      <div class="d-flex flex-column">
-                          <h6 class="mb-1 text-dark text-sm">Apple</h6>
-                          <span class="text-xs">27 March 2020, at 04:30 AM</span>
-                      </div>
-                      </div>
-                      <div
-                      class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                      >
-                      + $ 2,000
-                      </div>
-                  </li> --}}
-                </ul>
-              </div>
-              </div>
-          </div>
-        </div>
-  
-      </div>
     </main>
-    <script>
-        function request(id){
-          $.ajax({
-                url: '/clinic-request/{id}',
-                type: 'GET',
-                data: { id: id },
-                success: function(response)
-                {
-                    $('#response').html(response);
-                }
-            });
-        }
-    </script>
+
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>

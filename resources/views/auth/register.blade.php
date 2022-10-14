@@ -75,6 +75,7 @@
                                     <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                                 </div>
 
+                                {{-- already register --}}
                                 <div class="text-center mb-3">
                                     <p class="text-[10px] mb-3">
                                         By continuing, you agree to CheckApp’s

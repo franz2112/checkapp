@@ -739,11 +739,11 @@
                       <div
                         class="position-relative d-flex align-items-center justify-content-center h-100"
                       >
-                        <img
+                        {{-- <img
                           class="w-100 position-relative z-index-2 pt-4"
                           src="../assets/admin/img/illustrations/rocket-white.png"
                           alt="rocket"
-                        />
+                        /> --}}
                       </div>
                     </div>
                   </div>

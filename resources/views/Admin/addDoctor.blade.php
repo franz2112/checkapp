@@ -37,6 +37,9 @@
       src="https://kit.fontawesome.com/42d5adcbca.js"
       crossorigin="anonymous"
     ></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <link href="../assets/admin/css/nucleo-svg.css" rel="stylesheet" />
 
     @vite([
@@ -53,20 +56,26 @@
   <body class="g-sidenav-show bg-gray-100">
   
     @if (session()->has('message'))
-      <div class="alert alert-dismissible fade show" role="alert">
-        <div class="card z-index-2 position-fixed bottom-0 end-0 p-0 m-3 shadow-lg">
-          <div class="card-header bg-primary">
-              <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" alt="logo">
-              <span class="me-5 fw-bolder">CheckApp</span>
-              <span class="text-sm text-white">Just Now</span>
-              <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-1 px-3 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg text-white"></i></button>      
-            </div>
-          <div class="card-body">
-            <div class="text-center">
-              {{session()->get('message')}}
+        <div class="alert alert-dismissible fade show" role="alert">
+          <div class="card z-index-2 position-fixed bottom-0 end-0 p-0 m-3 shadow-lg">
+              <div class="card-header bg-primary py-3">
+                  <div class="row">
+                      <div class="col-7 d-flex align-item-center">
+                          <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" alt="logo">
+                          <span class="me-5 fw-bolder pt-1">CheckApp</span>
+                      </div>
+                      <div class="col-5 d-flex justify-content-end align-item-center">
+                          <span class="text-white py-2 fst-italic pe-2" style="font-size: 12px">Just Now</span>
+                          <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-2 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg text-white"></i></button>      
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body">
+              <div class="text-sm text-center">
+                {{session()->get('message')}}
+              </div>
             </div>
           </div>
-        </div>
       </div>
     @endif
 

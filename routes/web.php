@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\DeveloperController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +38,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->middleware('auth');
 
     
-    // admin part   
+    // admin clinic part   
     Route::get('/Appointments', [AdminController::class, 'Appointments'])
     ->name('Appointments')
     ->middleware('auth');
@@ -48,6 +50,20 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::post('/upload-doctor', [AdminController::class, 'upload'])
     ->name('Add-Doctor')
     ->middleware('auth');
+
+    
+    // admin developers side
+    Route::get('/clinic-request', [DeveloperController::class, 'clinicreq'])
+    ->name('clinic-request')
+    ->middleware('auth');
+
+    Route::post('/selected-clinic', [DeveloperController::class, 'clinicslct'])
+    ->name('selected-clinic')
+    ->middleware('auth');
+
+
+
+
 
     // // clinic Registration...
     // if (Features::enabled(Features::registration())) {
@@ -62,6 +78,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     // }
 });
 
+
+
+Route::post('/upload-clinics', [DeveloperController::class, 'Cupload']);
+
+// Route::post('/clinic-request', [DeveloperController::class, 'clinicreq']);
 
 
 

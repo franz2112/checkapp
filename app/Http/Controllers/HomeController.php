@@ -19,10 +19,10 @@ class HomeController extends Controller
                 return view('user.home');
             }
             else if (Auth::user()->usertype=='1'){
-                return view('clinic.home');
+                return view('admin.home');
             }
             else{
-                return view('admin.home');
+                return view('AdminDevs.dashboard');
             }
         }
         else{

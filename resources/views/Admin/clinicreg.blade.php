@@ -37,6 +37,9 @@
       src="https://kit.fontawesome.com/42d5adcbca.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     <link href="../assets/admin/css/nucleo-svg.css" rel="stylesheet" />
 
     @vite([
@@ -52,6 +55,30 @@
 
   <body class="g-sidenav-show bg-gray-100">
     
+    @if (session()->has('message'))
+        <div class="alert alert-dismissible fade show" role="alert">
+            <div class="card z-index-2 position-fixed bottom-0 end-0 p-0 m-3 shadow-lg">
+                <div class="card-header bg-primary py-3">
+                    <div class="row">
+                        <div class="col-7 d-flex align-item-center">
+                            <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" alt="logo">
+                            <span class="me-5 fw-bolder pt-1">CheckApp</span>
+                        </div>
+                        <div class="col-5 d-flex justify-content-end align-item-center">
+                            <span class="text-white py-2 fst-italic pe-2" style="font-size: 12px">Just Now</span>
+                            <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-2 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg text-white"></i></button>      
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                <div class="text-sm text-center">
+                    {{session()->get('message')}}
+                </div>
+            </div>
+            </div>
+        </div>
+    @endif
+
     <!-- End Navbar -->
     <main class="main-content  mt-0">
         <section class="min-vh-100">
@@ -69,67 +96,71 @@
             <div class="container">
                 <div class="row mt-lg-n10 mt-md-n11 mt-n10">
                 <div class="col-xl-6 col-lg-5 col-md-7 mx-auto">
-                    <div class="card z-index-0 shadow-lg">
-                        <div class="card-header text-center pt-4">
-                            <h5>Register as a Doctor</h5>
-                            <p>Please fill in the following information.</p>
-                        </div>
                     
-                        <div class="card-body pt-0 text-primary ">
-                            <form role="form text-left">
-                                <div class="form-floating mb-2">
-                                    <input type="name" name="clinicname" class="form-control" id="floatingInput" placeholder="clinic name" required>
-                                    <label for="floatingInput" class="text-secondary ">Clinic Name</label>
-                                </div>
-                                
-                                <div class="form-floating mb-2">
-                                    <input type="name" name="ofname" class="form-control" id="floatingInput" placeholder="ofname" required>
-                                    <label for="floatingInput" class="text-secondary ">Owner's First Name</label>
-                                </div>
-                                
-                                <div class="form-floating mb-2">
-                                    <input type="name" name="olname" class="form-control" id="floatingInput" placeholder="olname" required>
-                                    <label for="floatingInput" class="text-secondary ">Owner's Last Name</label>
-                                </div>
+                    <form method="POST" action="{{url('upload-clinics') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card z-index-0 shadow-lg">
+                            <div class="card-header text-center pt-4">
+                                <h5>Register as a Clinic</h5>
+                                <p>Please fill out the following information.</p>
+                            </div>
+                        
+                            <div class="card-body pt-0 text-primary ">
+                                <form role="form text-left">
+                                    <div class="form-floating mb-2">
+                                        <input type="name" name="clinicname" class="form-control" id="floatingInput" placeholder="clinic name" required>
+                                        <label for="floatingInput" class="text-secondary ">Clinic's Name</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-2">
+                                        <input type="name" name="ofname" class="form-control" id="floatingInput" placeholder="ofname" required>
+                                        <label for="floatingInput" class="text-secondary ">Owner's First Name</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-2">
+                                        <input type="name" name="olname" class="form-control" id="floatingInput" placeholder="olname" required>
+                                        <label for="floatingInput" class="text-secondary ">Owner's Last Name</label>
+                                    </div>
 
-                                <div class="form-floating mb-2">
-                                    <input type="name" name="caddress" class="form-control" id="floatingInput" placeholder="olname" required>
-                                    <label for="floatingInput" class="text-secondary ">Address</label>
-                                </div>
-                            
-                                <div class="form-floating mb-2">
-                                    <input type="name" name="Contact" class="form-control" id="floatingInput" placeholder="Contact" required>
-                                    <label for="floatingInput" class="text-secondary ">Contact Number</label>
-                                </div>
-                            
-                                <div class="form-floating mb-1">
-                                    <input type="email" name="cemail" class="form-control" id="floatingInput" placeholder="email address" required>
-                                    <label for="floatingInput" class="text-secondary ">Email Address</label>
-                                </div>
+                                    <div class="form-floating mb-2">
+                                        <input type="name" name="caddress" class="form-control" id="floatingInput" placeholder="olname" required>
+                                        <label for="floatingInput" class="text-secondary ">Address</label>
+                                    </div>
                                 
-                                <div class="mb-1">
-                                    <label for="file" class="form-label">Add Clinic Profile </label>
-                                    <input type="file" name="file" class="form-control" id="file">                            
-                                </div>
+                                    <div class="form-floating mb-2">
+                                        <input type="email" name="cemail" class="form-control" id="floatingInput" placeholder="email address" required>
+                                        <label for="floatingInput" class="text-secondary ">Email Address</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-1">
+                                        <input type="name" name="Ccontact" class="form-control" id="floatingInput" placeholder="Contact" required>
+                                        <label for="floatingInput" class="text-secondary ">Contact Number</label>
+                                    </div>
                                 
-                                <div class="mb-3">
-                                    <label for="file" class="form-label">Clinic License</label>
-                                    <input type="file" name="file" class="form-control" id="file">                            
-                                </div>
-                                
-                                <div class="form-check form-check-info text-left">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    I agree the <a href="javascript:;" target="_blank" class="text-primary font-weight-bolder">Terms and Conditions</a>
-                                    </label>
-                                </div>
-                                <div class="text-center">
-                                    <button type="button" class="btn bg-gradient-primary w-100 my-2">Submit</button>
-                                </div>
-                                {{-- <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p> --}}
-                            </form>
+                                    <div class="mb-1">
+                                        <label for="file" class="form-label">Add Clinic Profile </label>
+                                        <input type="file" name="Profile" class="form-control" id="file">                            
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label">Clinic License</label>
+                                        <input type="file" name="Proof" class="form-control" id="file">                            
+                                    </div>
+                                    
+                                    <div class="form-check form-check-info text-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        I agree the <a href="javascript:;" target="_blank" class="text-primary font-weight-bolder">Terms and Conditions</a>
+                                        </label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-2">Submit</button>
+                                    </div>
+                                    {{-- <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p> --}}
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>    
                 </div>
                 </div>
             </div>
@@ -209,6 +240,15 @@
   
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
+    </script>
+    <script>
+        window.setTimeout(function () {
+            $(".alert")
+                .fadeTo(3000, 0)
+                .slideUp(500, function () {
+                    $(this).remove();
+                });
+        }, 2000);
     </script>
   </body>
   @stack('modals')

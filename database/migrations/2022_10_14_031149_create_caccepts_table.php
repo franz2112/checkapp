@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Caccept;
 
 return new class extends Migration
 {
@@ -13,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clinics', function (Blueprint $table) {
+        Schema::create('caccepts', function (Blueprint $table) {
             $table->id();
             $table->string('clinicname');
             $table->string('ofname');
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clinics');
+        Schema::dropIfExists('caccepts');
     }
 };
