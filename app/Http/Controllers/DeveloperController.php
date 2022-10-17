@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Database\Query\JoinClause;
+
 use App\Models\Clinic;
 
 use App\Models\Caccept;
+
+use App\Models\User;
 
 class DeveloperController extends Controller
 {
@@ -35,76 +39,43 @@ class DeveloperController extends Controller
 
     public function clinicreq(){
         $data = clinic::all();
-        // $data = clinic::all();
         return view('AdminDevs.home', compact('data'));
-        
     }
-    
-    // public function clinicreqst(){
-    //     // $id = $_GET['id'];
-    //     // $data = clinic::where('id', '=', $id);
-    //     // $reqst = '
-    //     //     <div
-    //     //     class="card-body  position-relative z-index-1"
-    //     //     >
-    //     //     <div class="mb-3">
-    //     //     <img
-    //     //     class="w-20 position-relative z-index-2"
-    //     //     src="../assets/admin/img/clinicimage/asdasd"
-    //     //     alt="profile"
-    //     //     />
-    //     //     </div>
-    //     //     <div class="row">
-    //     //         <div class="col-6">
-    //     //             <h6 class="text-sm mb-0">Clinics Name:</h6>
-    //     //             <p class="text-md mb-2">'. $data->clinicname .'</p>
-    //     //             <h6 class="text-sm mb-0">Owners Name:</h6>
-    //     //             <p class="text-md mb-2">
-    //     //                 asdasd
-    //     //             </p>
-    //     //             <h6 class="text-sm mb-0">Address:</h6>
-    //     //             <p class="text-md mb-2">
-    //     //                 asd
-    //     //             </p>
-    //     //         </div>
-    //     //         <div class="col-6">
-    //     //             <h6 class="text-sm mb-0">Email:</h6>
-    //     //             <p class="text-md mb-2">asdas
-    //     //             </p>
-    //     //             <h6 class="text-sm mb-0">Contact:</h6>
-    //     //             <p class="text-md mb-2">
-    //     //                 asdasd
-    //     //             </p>
-    //     //         </div>
-    //     //     </div>
-    //     // </div>    
-    //     // ';
 
-    //     return view('AdminDevs.home');
-
-    //     // $data = clinic::all();
-    //     // return view('AdminDevs.home', compact('data'));
+    public function clinicslct($id){
+    //    $update = [ 'Users.usertype' => 1, 
+    //    'Clinics.status' => 'registered' ];
+        // $cemail = clinic::find($id)->pluck('cemail')->first();
+        $cemail = clinic::select('cemail')
+            ->where('id', $id)
+            ->pluck('cemail')
+            ->first();
+        $email = User::where('email', $cemail)->exists();
         
-    // }
-    
-    // public function clinicslct(Request $request){
-    //     $data = clinic::first();
-    //     $user = DB::table('caccepts')->insert([
-    //         'clinicname' => $request->$data->clinicname,
-    //         'ofname' => 'kayla@example.com',
-    //         'olname' => 'kayla@example.com',
-    //         'caddress' => 'kayla@example.com',
-    //         'cemail' => 'kayla@exasmple.com',
-    //         'Ccontact' => 'kayla@example.com',
-    //         'Profile' => 'kayla@example.com',
-    //         'Proof' => 'kayla@example.com',
-    //         'created_at' => date("Y-m-d H:i:s", strtotime('now')),
-    //         'updated_at' => date("Y-m-d H:i:s", strtotime('now')),
-    //     ]);
-    //     return redirect()->back();
-    //     dd($data);
-    // }
+        $flag='';
 
+        if ($email){
+            User::where('email', $cemail)->update(['usertype' => 1]);
+            clinic::where('cemail', $cemail)->update(['status' => 'registered']);
+            // User::where('email', $cemail)->exists();
+            // $data = DB::table('clinics')
+            // ->select('id', $id)
+            // ->join('Users', function($join){
+            //     $join->on('clinics.cemail', '=', 'Users.email');
+            // })
+            // ->where('Users.id', '=', $id)
+            // ->where('Users.email', $cemail)        
+            // ->update($update);
+            $flag='success';
+        }else{
+            $flag=$cemail;
+        }
+        return redirect()->back()->with('message', $flag);
+
+        // dd($data);
+     }
+
+        
 
 
      

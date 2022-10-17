@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('Ccontact')->unique();
             $table->string('Profile')->nullable();
             $table->string('Proof')->nullable();
+            $table->string('status')->default('pending');
+            $table->foreignId('clinic_id')->nullable();
             $table->timestamps();
         });
     }

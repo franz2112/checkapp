@@ -57,7 +57,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('clinic-request')
     ->middleware('auth');
 
-    Route::post('/selected-clinic', [DeveloperController::class, 'clinicslct'])
+    Route::get('/selected-clinic/{id}', [DeveloperController::class, 'clinicslct'])
+    ->name('selected-clinic')
+    ->middleware('auth');
+
+    Route::get('/selected-reject/{id}', [DeveloperController::class, 'clinicdecline'])
     ->name('selected-clinic')
     ->middleware('auth');
 

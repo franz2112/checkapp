@@ -68,9 +68,9 @@
           </div>
         </div>
         <!-- modal -->
-        <div class="container-lg">
+        <div class="container-fluid px-5" >
           <!-- header -->
-          <nav class="py-4">
+          <nav class="py-3">
             <div class="row">
               <div class="col-6 d-flex align-items-center p-lg-0">
                 <div class="main-title-page">
