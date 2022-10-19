@@ -53,7 +53,7 @@
                 <div class="row">
                   <div class="col d-flex align-items-center">
                     <button
-                      class="btn input-group-text dropdown-own"
+                      class="btn input-group-text dropdown-own shadow"
                       id="defaultDropdown"
                       type="button"
                       data-bs-toggle="dropdown"
@@ -63,7 +63,7 @@
                       <i class="fa-solid fa-sort"></i>
                       Filter
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-start">
+                    <ul class="dropdown-menu dropdown-menu-start shadow-lg">
                       <li><a class="dropdown-item" href="#">Recent</a></li>
                       <li>
                         <a class="dropdown-item" href="#">Favorites</a>
@@ -80,7 +80,7 @@
                     </ul>
                   </div>
                   <div class="col align-items-center">
-                    <div class="input-group input-navbar">
+                    <div class="input-group input-navbar shadow">
                       <button
                         class="btn input-group-text"
                         type="button"
@@ -101,136 +101,23 @@
               </div>
               <!-- navsearch end -->
               <div class="row">
-                <div class="col-md-6 col-lg-3 py-4 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="/clinic-menu">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
+                @foreach ($data as $clinics)
+                  @if ($clinics->status=='registered')
+                      <div class="col-md-6 col-lg-3 pt-4 wow zoomIn">
+                        <div class="card-doctor">
+                          <a href="{{ url('clinic-menu', $clinics->id) }}">
+                            <div class="header">
+                              <img src="../assets/admin/img/clinicimage/{{ $clinics->Profile }}" alt="" class="bg-white"/>
+                            </div>
+                            <div class="body">
+                              <h5 class="text-xl mb-0">{{ $clinics->clinicname }}</h5>
+                              <p class="text-sm text-grey text-truncate">{{ $clinics->caddress }}</p>
+                            </div>
+                          </a>
+                        </div>
                       </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 py-4 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 py-4 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 py-4 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow zoomIn">
-                  <div class="card-doctor">
-                    <a href="#">
-                      <div class="header">
-                        <img src="../assets/img/doc.jpg" alt="" />
-                      </div>
-                      <div class="body">
-                        <h5 class="text-xl mb-0">Dr. Stein Albert</h5>
-                        <p class="text-sm text-grey">Cardiology</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
+                  @endif
+                @endforeach
               </div>
             </div>
           </div>

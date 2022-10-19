@@ -10,6 +10,8 @@ use App\Models\User;
 
 use App\Models\Doctor;
 
+use App\Models\Clinic;
+
 class HomeController extends Controller
 {
     //
@@ -20,6 +22,8 @@ class HomeController extends Controller
             }
             else if (Auth::user()->usertype=='1'){
                 return view('admin.home');
+                
+                // return Clinic::find(1)->getUser;
             }
             else{
                 return view('AdminDevs.dashboard');
@@ -34,10 +38,10 @@ class HomeController extends Controller
         return view('welcome');
     }
     public function clinics(){
-        return view('user.clinics');
+        $data = clinic::all();
+        return view('user.clinics', compact('data'));
     }
-    public function clinicians(){
-
+    public function clinicians($id){
         $doctors = doctor::all();
         return view('user.clinic-menu', compact('doctors'));
     }

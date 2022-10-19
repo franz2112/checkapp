@@ -7,19 +7,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\DeveloperController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-// Route::get('/home',[HomeController::class, 'redirect']);
 
-// Route::get('/',[HomeController::class, 'index']);
+
+// user side not login
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
@@ -33,7 +26,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('clinics')
     ->middleware('auth');
 
-    Route::get('/clinic-menu', [HomeController::class, 'clinicians'])
+    Route::get('/clinic-menu/{id}', [HomeController::class, 'clinicians'])
     ->name('clinic-menu')
     ->middleware('auth');
 
@@ -88,13 +81,6 @@ Route::post('/upload-clinics', [DeveloperController::class, 'Cupload']);
 
 // Route::post('/clinic-request', [DeveloperController::class, 'clinicreq']);
 
-
-
-
-// user side not login
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 Route::get('/clinic-register', function () {
     return view('admin.clinicreg');

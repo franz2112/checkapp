@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('Demail')->nullable();
             $table->string('Dphone')->nullable();
             $table->string('file')->nullable();
+            $table->foreignId('clinic_id')->references('id')->on('clinics')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

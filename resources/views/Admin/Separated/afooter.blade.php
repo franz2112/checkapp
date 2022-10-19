@@ -5,18 +5,10 @@
           <div
             class="copyright text-center text-sm text-muted text-lg-start"
           >
-            ©
+          Copyright © 
             <script>
               document.write(new Date().getFullYear());
             </script>
-            , made with <i class="fa fa-heart"></i> by
-            <a
-              href="https://www.creative-tim.com"
-              class="font-weight-bold"
-              target="_blank"
-              >Creative Tim</a
-            >
-            for a better web.
           </div>
         </div>
         <div class="col-lg-6">
@@ -28,7 +20,7 @@
                 href="https://www.creative-tim.com"
                 class="nav-link text-muted"
                 target="_blank"
-                >Creative Tim</a
+                >CheckApp</a
               >
             </li>
             <li class="nav-item">

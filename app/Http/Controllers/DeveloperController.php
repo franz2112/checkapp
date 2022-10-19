@@ -43,39 +43,29 @@ class DeveloperController extends Controller
     }
 
     public function clinicslct($id){
-    //    $update = [ 'Users.usertype' => 1, 
-    //    'Clinics.status' => 'registered' ];
-        // $cemail = clinic::find($id)->pluck('cemail')->first();
+
         $cemail = clinic::select('cemail')
             ->where('id', $id)
             ->pluck('cemail')
             ->first();
         $email = User::where('email', $cemail)->exists();
-        
         $flag='';
-
         if ($email){
             User::where('email', $cemail)->update(['usertype' => 1]);
             clinic::where('cemail', $cemail)->update(['status' => 'registered']);
-            // User::where('email', $cemail)->exists();
-            // $data = DB::table('clinics')
-            // ->select('id', $id)
-            // ->join('Users', function($join){
-            //     $join->on('clinics.cemail', '=', 'Users.email');
-            // })
-            // ->where('Users.id', '=', $id)
-            // ->where('Users.email', $cemail)        
-            // ->update($update);
             $flag='success';
         }else{
-            $flag=$cemail;
+            $flag='Email not found';
         }
         return redirect()->back()->with('message', $flag);
+    }
 
-        // dd($data);
-     }
-
-        
+    public function clinicdecline($id){
+        $data=clinic::select('id')
+        ->where('id', $id)
+        ->update(['status' => 'declined']);     
+        return redirect()->back()->with('message', 'Request have been declined!');
+    }
 
 
      

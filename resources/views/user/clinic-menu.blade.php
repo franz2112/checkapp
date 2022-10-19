@@ -68,7 +68,7 @@
           </div>
         </div>
         <!-- modal -->
-        <div class="container-fluid px-5" >
+        <div class="container-fluid px-md-5 pt-lg-2">
           <!-- header -->
           <nav class="py-3">
             <div class="row">
@@ -236,7 +236,7 @@
                                 <p id="output" class="my-2 text-danger"></p>
                                 <h6 class="mt-2" for="doctor">Select Doctor</h6>
                                 <div class="input-group">
-                                  <div class="row">
+                                  <div class="row m-0">
                                     @foreach ($doctors as $doctors)
                                       <div class="col-sm-6 p-0">
                                         <div class="option m-1">
@@ -247,13 +247,21 @@
                                             value="Doctor{{ $doctors->Dlname }}"
                                           />
                                           <label
-                                            class="label-d"
+                                            class="label-d" 
                                             for="Doctor{{ $doctors->Dlname }}"
                                             aria-label="Doctor{{ $doctors->Dlname }}"
                                           >
                                             <span></span>
-
-                                            Doctor {{ $doctors->Dlname }}
+                                            <div class="row">
+                                              <div class="d-block text-truncate"
+                                              style="min-width: 150px;">
+                                                Doc {{ $doctors->Dlname }}
+                                              </div>
+                                              <div class="d-block text-truncate"
+                                              style="min-width: 150px;">
+                                                {{ $doctors->Specialization }}
+                                              </div>
+                                            </div>
 
                                             <div
                                               class="card card--white card--sm"
@@ -266,7 +274,6 @@
                                           </label>
                                         </div>
                                       </div>
-                                      
                                     @endforeach
                                     <div class="col-sm-6 p-0">
                                       <div class="option m-1">
@@ -277,14 +284,15 @@
                                           value="suggest"
                                         />
                                         <label
-                                          class="label-d"
+                                          class="label-d" 
                                           for="suggest"
                                           aria-label="suggest"
                                         >
                                           <span></span>
-
-                                          Suggest Doctor
-
+                                            <div class="d-block text-truncate"
+                                            style="min-width: 150px;">
+                                              Suggest Doctor
+                                            </div>
                                           <div
                                             class="card card--white card--sm"
                                           >
@@ -303,7 +311,7 @@
                                   Select Consultation Type
                                 </h6>
                                 <div class="input-group">
-                                  <div class="row">
+                                  <div class="row m-0">
                                     <div class="col-sm-6 p-0">
                                       <div class="option m-1">
                                         <input
@@ -363,7 +371,7 @@
                                   </div>
                                 </div>
 
-                                <div class="">
+                                <div class="ms-2">
                                   <a
                                     id="btn"
                                     type="submit"
