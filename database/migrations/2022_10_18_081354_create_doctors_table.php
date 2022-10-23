@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('Dfname');
             $table->string('Dlname');
             $table->string('Gender')->nullable();
-            $table->string('date');
+            $table->string('Bdate');
             $table->string('Specialization');
             $table->string('Demail')->nullable();
             $table->string('Dphone')->nullable();
             $table->string('file')->nullable();
-            $table->foreignId('clinic_id')->references('id')->on('clinics')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('clinic_id')->nullable()->index();
             $table->timestamps();
         });
     }

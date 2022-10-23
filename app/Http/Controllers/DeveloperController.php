@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Str;
 
 use Illuminate\Database\Query\JoinClause;
 
@@ -37,22 +41,29 @@ class DeveloperController extends Controller
         return redirect()->back()->with('message', 'Application Submitted, wait for the confirmation!');
     }
 
+    // request clinics
     public function clinicreq(){
         $data = clinic::all();
         return view('AdminDevs.home', compact('data'));
     }
 
-    public function clinicslct($id){
-
+    // approve clinic request
+    public function clinicslct(Request $request, $id){
+        
         $cemail = clinic::select('cemail')
             ->where('id', $id)
             ->pluck('cemail')
             ->first();
         $email = User::where('email', $cemail)->exists();
+        $data = User::where('email', $cemail)->pluck('id')->first();
         $flag='';
         if ($email){
             User::where('email', $cemail)->update(['usertype' => 1]);
-            clinic::where('cemail', $cemail)->update(['status' => 'registered']);
+            clinic::where('cemail', $cemail)
+                ->update([
+                    'status' => 'registered',
+                    'user_id' => $data
+                ]);
             $flag='success';
         }else{
             $flag='Email not found';

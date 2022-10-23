@@ -243,9 +243,9 @@ $("document").ready(function () {
     if (document.location.pathname == "/clinics") {
         $(".nav-item").removeClass("active");
         $("#active-c").addClass("active-clinic");
-    } else if (document.location.pathname == "/appointments") {
+    } else if (document.location.pathname == "/Appointment") {
         $(".nav-item").removeClass("active");
-        $("#active-c").addClass("active-appoint");
+        $("#active-a").addClass("active-appoint");
     }
 });
 

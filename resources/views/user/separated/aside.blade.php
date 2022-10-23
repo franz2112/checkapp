@@ -23,7 +23,7 @@
       </li>
       <li id="active-a" class="nav-item">
         <!-- "active - appoint" for active Appointment -->
-        <a href="/" class="side-nav-appoint">
+        <a href="/Appointment" class="side-nav-appoint">
           <i class="fa-solid fa-pen px-3"></i>
           <span class="links-name">Appointments</span>
         </a>

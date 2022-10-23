@@ -12,6 +12,8 @@ use App\Models\Doctor;
 
 use App\Models\Clinic;
 
+use App\Models\Appointment;
+
 class HomeController extends Controller
 {
     //
@@ -37,13 +39,26 @@ class HomeController extends Controller
     public function index(){
         return view('welcome');
     }
+
+    public function appoints(){
+        $id = Auth::id();
+        $dataAppoints = appointment::where('patient_id', $id)
+        ->with('clinic')->get();
+        // return $dataAppoints;
+        return view('user.appoints', compact('dataAppoints')); 
+
+    }
+
     public function clinics(){
         $data = clinic::all();
         return view('user.clinics', compact('data'));
     }
-    public function clinicians($id){
-        $doctors = doctor::all();
-        return view('user.clinic-menu', compact('doctors'));
+    
+    public function selectedClinic($id){
+        $dataDoctors = doctor::where('clinic_id', $id)->get();
+        $clinic = clinic::where('id', $id)->get();
+        return view('user.clinic-menu', compact('clinic', 'dataDoctors' ));
+
     }
 
 }

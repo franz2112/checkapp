@@ -68,13 +68,13 @@
           </div>
         </div>
         <!-- modal -->
-        <div class="container-fluid px-md-5 pt-lg-2">
+        <div class="container-fluid px-md-5 pt-lg-1">
           <!-- header -->
           <nav class="py-3">
             <div class="row">
               <div class="col-6 d-flex align-items-center p-lg-0">
                 <div class="main-title-page">
-                  <a href="/" class="nav-title">
+                  <a href="/" class="">
                     <img src="../assets/img/CheckappLogo.png" alt="logo" />
                     <span class="links-name text-black">Check</span>
                     <span class="links-name">App</span>
@@ -125,14 +125,16 @@
           <div class="content-wrapper">
             <div class="row">
               <!--  info -->
+              @foreach ($clinic as $clinicdata)
               <div class="col-lg-3 px-lg-0 py-1">
                 <div class="card details mb-2">
                   <div class="card-body">
                     <div class="col-12">
                       <img
-                        src="/assets/img/doc.jpg"
+                        src="/assets/admin/img/clinicimage/{{$clinicdata->Profile}}"
                         class="img-thumbnail rounded-circle"
                         alt="..."
+                        style="height: 150px;"
                       />
 
                       <hr class=" border-success border-2 opacity-50" />
@@ -188,27 +190,29 @@
                   </div>
                 </div>
               </div>
+              @endforeach
 
               <!-- appoint -->
               <div class="col-lg-6 py-1">
                 <div class="row">
-                  <div class="col-lg-12">
-                    <div class="clinic-title">
-                      <h2 class="px-1 mb-0">Clinic Name</h2>
-                      <button class="like-btn mt-1">
-                        <span id="icon"><i class="far fa-star"></i></span>
-                        Favorites
-                      </button>
+                  @foreach ($clinic as $dataClinics)
+                    <div class="col-lg-12">
+                      <div class="clinic-title">
+                        <h2 class="px-1 mb-0">{{$dataClinics->clinicname}}</h2>
+                        <button class="like-btn mt-1">
+                          <span id="icon"><i class="far fa-star"></i></span>
+                          Favorites
+                        </button>
+                      </div>
+                      <p class="px-1 mb-2">
+                        <i
+                          class="fa-solid fa-location-dot"
+                          style="color: #fdc269"
+                        ></i>
+                        {{$dataClinics->caddress}}
+                      </p>
                     </div>
-                    <p class="px-1 mb-2">
-                      <i
-                        class="fa-solid fa-location-dot"
-                        style="color: #fdc269"
-                      ></i>
-                      St. Address Brgy. of the City of the Clinic
-                    </p>
-                  </div>
-
+                  @endforeach
                   {{-- set appointment --}}
                   <div class="col-lg-12 mb-3">
                     <div class="card set-appoint">
@@ -217,7 +221,9 @@
                           <div class="col-12">
                             <h5 class="mb-0 px-3">Set an Appointment</h5>
                             <hr class="m-2" />
-                            <form action="#" id="style-2" class="form py-0">
+                            @foreach ($clinic as $clinics)
+                            <form  method="POST" action="{{ url('Request-Appointment', $clinics->id) }}" id="style-2" class="form py-0" " enctype="multipart/form-data">
+                              @csrf
                               <!-- Progress bar -->
                               <div class="progressbar mt-1">
                                 <div
@@ -237,7 +243,7 @@
                                 <h6 class="mt-2" for="doctor">Select Doctor</h6>
                                 <div class="input-group">
                                   <div class="row m-0">
-                                    @foreach ($doctors as $doctors)
+                                    @foreach ($dataDoctors as $doctors)
                                       <div class="col-sm-6 p-0">
                                         <div class="option m-1">
                                           <input
@@ -386,9 +392,9 @@
                                 <p id="output" class="my-2 text-danger"></p>
 
                                 <div class="row mb-1">
-                                  <div class="col-md-7">
+                                  <div class="col-md-6">
                                     <h6 class="mt-2">Select Date</h6>
-                                    <div class="container-cl">
+                                    {{-- <div class="container-cl">
                                       <div class="calendar">
                                         <div class="month">
                                           <span class="prev">
@@ -417,20 +423,23 @@
                                         </div>
                                         <div class="days"></div>
                                       </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-5">
+                                    </div> --}}
+                                    <input type="date" name="date" class="form-select form-select-sm mb-3" required="required">
+                                                                    </div>
+                                  <div class="col-md-6">
                                     <h6 class="mt-2">Select Time</h6>
                                     <select
                                       class="form-select form-select-sm mb-3"
                                       aria-label=".form-select-lg example"
+                                      name="time"
                                     >
                                       <option selected>8:00 AM</option>
-                                      <option value="1">10:00 AM</option>
-                                      <option value="2">11:00 AM</option>
-                                      <option value="3">12:00 PM</option>
-                                      <option value="3">01:00 PM</option>
-                                      <option value="3">02:00 AM</option>
+                                      <option value="10:00 AM">10:00 AM</option>
+                                      <option value="11:00 AM">11:00 AM</option>
+                                      <option value="12:00 PM">12:00 PM</option>
+                                      <option value="01:00 PM">01:00 PM</option>
+                                      <option value="02:00 PM">02:00 PM</option>
+                                      <option value="03:00 PM">03:00 PM</option>
                                     </select>
                                   </div>
                                 </div>
@@ -449,7 +458,7 @@
                                       class="form-control my-3"
                                       rows="8"
                                       id="comment"
-                                      name="inputCmplnts"
+                                      name="reason"
                                       placeholder="Add message here"
                                       style="font-size: 13px"
                                     ></textarea>
@@ -475,6 +484,7 @@
                                         class="form-control"
                                         type="file"
                                         id="formFile"
+                                        name="specialId"
                                       />
                                     </div>
                                     <div class="col-12">
@@ -509,13 +519,14 @@
                                 </div>
                               </div>
                             </form>
+                            @endforeach
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> 
              {{-- set appointment --}}
 
 
@@ -661,7 +672,49 @@
       @include('user.separated.footer')
       {{-- footer end --}}
 
+    {{-- @if (session()->has('message')) --}}
+    <div class="alert alert-success 
+    alert-dissmissible 
+    fade show 
+    position-fixed
+    z-index-2  
+    bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
+    " role="alert">
+      <div class="card  rounded-0">
+          <div class="card-header rounded-0">
+              <div class="row">
+                  <div class="col-7 d-flex align-item-center">
+                      <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" style="height: 30px" alt="logo">
+                      <span class="me-5 fw-bolder pt-1">CheckApp</span>
+                  </div>
+                  <div class="col-5 d-flex justify-content-end align-item-center">
+                      <span class="py-2 fst-italic pe-2" style="font-size: 12px"></span>
+                      <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg"></i></button>      
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+          <div class="text-sm text-center">
+              {{session()->get('message')}}
+          </div>
+          <div class="text-center" style="font-size: 13px">
+            Please wait for the confirmation.
+          </div>
+        </div>
+      </div>
     </div>
+    {{-- @endif --}}
+
+    </div>
+    <script>
+      window.setTimeout(function () {
+          $(".alert")
+              .fadeTo(3000, 1)
+              .slideUp(500, function () {
+                  $(this).remove();
+              });
+        }, 2000);
+    </script>
   </body>
 
   @stack('modals')
