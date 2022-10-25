@@ -23,9 +23,11 @@ class HomeController extends Controller
                 return view('user.home');
             }
             else if (Auth::user()->usertype=='1'){
-                return view('admin.home');
+                $id = Auth::id();
+                $clinicInfo = clinic::where('user_id', $id)->get();
+
+                return view('admin.home', compact('clinicInfo'));
                 
-                // return Clinic::find(1)->getUser;
             }
             else{
                 return view('AdminDevs.dashboard');
@@ -42,11 +44,10 @@ class HomeController extends Controller
 
     public function appoints(){
         $id = Auth::id();
-        $dataAppoints = appointment::where('patient_id', $id)
+        $dataAppoints = appointment::where('user_id', $id)
         ->with('clinic')->get();
         // return $dataAppoints;
         return view('user.appoints', compact('dataAppoints')); 
-
     }
 
     public function clinics(){
@@ -58,7 +59,6 @@ class HomeController extends Controller
         $dataDoctors = doctor::where('clinic_id', $id)->get();
         $clinic = clinic::where('id', $id)->get();
         return view('user.clinic-menu', compact('clinic', 'dataDoctors' ));
-
     }
 
 }

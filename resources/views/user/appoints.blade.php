@@ -165,7 +165,7 @@
                             </div>
                             </div>
                             <div class="body">
-                              <h5 class="text-xl mb-0">{{$appoints->clinic->clinicname}}</h5>
+                              <h6 class=" mb-0 text-uppercase text-truncate pe-2">{{$appoints->clinic->clinicname}}</h6>
                               <span>
                                   <p>{{$appoints->doctor}}e</p>
                               </span>

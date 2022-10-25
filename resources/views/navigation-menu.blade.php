@@ -6,7 +6,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img
+                        src="../assets/admin/img/CheckappLogo.png"
+                        class="w-10"
+                        alt="main_logo">
                     </a>
                 </div>
 

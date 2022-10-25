@@ -9,7 +9,7 @@
     />
 
     <link sizes="76x76" rel="icon" type="image/png" href="../assets/admin/img/CheckappLogo.png" />
-    <title>{{ config('app.name', 'CheckApp') }}</title>
+    <title>{{ config('Add-Doctor.name') }}</title>
         
     <!--     Fonts and icons     -->
     <link
@@ -589,7 +589,9 @@
               </li>
               <li class="nav-item ps-1 d-flex align-items-center">
                 <div href="#" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">
-                    {{ Auth::user()->lname}}
+                  @foreach ($clinicInfo as $info)
+                  {{ $info->clinicname}}
+                  @endforeach
                  </div>
               </li>
             </ul>
@@ -726,6 +728,10 @@
                                 class="w-100 position-relative "
                                 src="../assets/admin/img/doctorimage//{{ $doctor->file }}""
                                 alt="rocket"
+                                style="
+                                background-repeat: no-repeat; 
+                                background-position: center;  
+                                height: 170px"
                                 />
                             </div>
                         </div> 

@@ -324,7 +324,7 @@
                                           type="radio"
                                           name="consultation"
                                           id="ol"
-                                          value="ol"
+                                          value="Online"
                                           required
                                         />
                                         <label
@@ -354,7 +354,7 @@
                                           type="radio"
                                           name="consultation"
                                           id="f2f"
-                                          value="f2f"
+                                          value="Face-to-Face"
                                         />
                                         <label
                                           class="label-d"
@@ -672,7 +672,7 @@
       @include('user.separated.footer')
       {{-- footer end --}}
 
-    {{-- @if (session()->has('message')) --}}
+    @if (session()->has('message'))
     <div class="alert alert-success 
     alert-dissmissible 
     fade show 
@@ -703,14 +703,14 @@
         </div>
       </div>
     </div>
-    {{-- @endif --}}
+    @endif
 
     </div>
     <script>
       window.setTimeout(function () {
-          $(".alert")
+          $("#dissmiss")
               .fadeTo(3000, 1)
-              .slideUp(500, function () {
+              .fadeOut(3000, function () {
                   $(this).remove();
               });
         }, 2000);

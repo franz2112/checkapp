@@ -19,7 +19,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     // user side auth
     Route::get('/', [HomeController::class, 'redirect'])
-    ->name('/')
+    ->name('Home')
     ->middleware('auth');
 
     Route::get('/clinics', [HomeController::class, 'clinics'])
@@ -54,6 +54,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     Route::post('/Request-Appointment/{id}', [AdminController::class, 'rqstAppoint'])
     ->name('Add-Doctor')
+    ->middleware('auth');
+
+    Route::get('/Appointment-Approval/{id}', [AdminController::class, 'AppRoval'])
+    ->name('Appointment-Approval')
+    ->middleware('auth');
+
+    Route::get('/Appointment-Cancel/{id}', [AdminController::class, 'AppCel'])
+    ->name('Appointment-Approval')
     ->middleware('auth');
 
     

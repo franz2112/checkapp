@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.6
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +8,7 @@
     />
 
     <link sizes="76x76" rel="icon" type="image/png" href="../assets/admin/img/CheckappLogo.png" />
-    <title>{{ config('app.name', 'CheckApp') }}</title>
+    <title>{{ config('home.name') }}</title>
         
     <!--     Fonts and icons     -->
     <link
@@ -267,7 +253,7 @@
             </h6>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/profile.html">
+            <a class="nav-link" href="{{ route('profile.show') }}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -315,7 +301,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/sign-in.html">
+            <a class="nav-link" href="#">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -575,7 +561,9 @@
               </li>
               <li class="nav-item ps-1 d-flex align-items-center">
                 <div href="#" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">
-                    {{ Auth::user()->lname}}
+                  @foreach ($clinicInfo as $info)
+                  {{ $info->clinicname}}
+                  @endforeach
                  </div>
               </li>
             </ul>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,12 +11,30 @@ use App\Models\Clinic;
 
 use App\Models\Appointment;
 
+use App\Models\User;
+
 class AdminController extends Controller
 {
-    //
+    // doctor side
     public function Appointments(){
-        return view('admin.Appointments');
+        
+        $id = Auth::id(); 
+        $ClinicId = clinic::where('user_id', $id)->pluck('id')->first();
+        $dataAppoints = appointment::where('clinic_id', $ClinicId)
+        ->with('User')->get();
+        $ClinicInfo = clinic::where('user_id', $id)->get();
+        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo')); 
     }
+    public function AppRoval(Request $request, $id){
+        $appoint = appointment::where('id', $id)
+            ->update(['status' => 'Approved']);
+            return redirect()->back()->with('message', 'Appointment has been Approved!');
+        }
+    public function AppCel(Request $request, $id){
+        $appoint = appointment::where('id', $id)
+            ->update(['status' => 'Declined']);
+            return redirect()->back()->with('message', 'Appointment has been declined!');
+        }
     // add new doctor
     public function upload(Request $request){
         $doctor=new doctor;
@@ -45,7 +62,9 @@ class AdminController extends Controller
         $Cid = clinic::where('user_id', $id)->pluck('id')->first();
         
         $datadoctor = Doctor::where('clinic_id', $Cid)->get();
-        return view('admin.addDoctor', compact('datadoctor'));
+        $clinicInfo = clinic::where('user_id', $id)->get();
+
+        return view('admin.addDoctor', compact('datadoctor', 'clinicInfo'));
     }
     
     public function rqstAppoint(Request $request, $id){
@@ -64,7 +83,7 @@ class AdminController extends Controller
         $appoint->reason=$request->reason;
         $appoint->specialId=$request->specialId;
         $appoint->clinic_id=$id;
-        $appoint->patient_id=$ids;
+        $appoint->user_id=$ids;
 
         $appoint->save();
         return redirect()->back()->with('message', 'Appointment Request Successful!');

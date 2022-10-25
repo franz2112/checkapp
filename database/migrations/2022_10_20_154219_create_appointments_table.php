@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('meetingLink')->nullable();
             $table->string('status')->default('pending');
             $table->foreignId('clinic_id')->constrained();
-            $table->foreignId('patient_id')->nullable()->index();
+            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('patient_id')->nullable()->index();
             $table->timestamps();
         });
     }

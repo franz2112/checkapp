@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Clinic extends Model
 {
     use HasFactory;
-    public function clinic()
+    public function doc()
     {
-    	// return $this->belongsTo('App\Models\Doctor');
-        return $this->belongsTo(Doctor::class, 'doctor_id', 'id');
+        // return $this->belongsTo(Doctor::class, 'doctor_id', 'id');
+        return $this->hasMany(Doctor::class, 'doctor_id', 'id');
+
+        // return $this->hasMany(User::class, 'clinic_id', 'id');
+
     }
 }
