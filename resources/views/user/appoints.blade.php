@@ -144,7 +144,7 @@
                 >
                     <div class="row">
                         @foreach ($dataAppoints as $appoints)
-                        <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
+                        <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                         <div class="card-appoint">
                             <div class="header">
                             <div class="row">
@@ -153,12 +153,12 @@
                                 </div>
                                 <div class="col-6">
                                 <div class="cover">
-                                  @if ($appoints->status=='approve')
+                                  @if ($appoints->status=='Approved')
                                     <span class="active">Approved</span>
                                   @elseif ($appoints->status=='pending')
                                     <span class="pending">Pending</span>
                                   @else
-                                    <span class="cancelled">Cancelled</span>
+                                    <span class="cancel">Cancelled</span>
                                   @endif
                                 </div>
                                 </div>
@@ -167,7 +167,7 @@
                             <div class="body">
                               <h6 class=" mb-0 text-uppercase text-truncate pe-2">{{$appoints->clinic->clinicname}}</h6>
                               <span>
-                                  <p>{{$appoints->doctor}}e</p>
+                                  <p>{{$appoints->doctor}}</p>
                               </span>
                               <span>
                                   <p>{{$appoints->Consultatio}}</p>
@@ -176,13 +176,13 @@
                                   <p>{{$appoints->date}} | {{$appoints->time}}</p>
                               </span>
                             <span>
-                              @if ($appoints->status=='approve')
+                              @if ($appoints->status=='Approved')
                                 <a href="#" class="btn view">View Details</a>
                               @elseif ($appoints->status=='pending')
-                                <a href="#" class="btn cancel">
+                                <a href="{{ url('Cancel-appoint', $appoints->id) }}" class="btn cancel">
                                   Cancel Appointment
                                 </a>                              
-                              @else
+                              @elseif ($appoints->status=='Declined')
                                 <a href="#" class="btn view">View Details</a>
                               @endif
                             </span>

@@ -13,7 +13,7 @@
       type="image/png"
       href="../assets/admin/img/CheckappLogo.png"
     />
-    <title>{{ config('Appointments.name') }}</title>
+    <title>{{ config('Appointments.name', 'CheckApp') }}</title>
 
     <!--     Fonts and icons     -->
     <link
@@ -375,7 +375,7 @@
       <!-- Navbar -->
       <nav
         class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-        id="navbarBlur"
+        {{-- id="navbarBlur" --}}
         navbar-scroll="true"
       >
         <div class="container-fluid py-1 px-3">
@@ -571,14 +571,9 @@
                   data-bs-display="static"
                   class=""
                 >
-                  <img
-                    src="/assets/img/3efdbd.jpeg"
-                    class="img-thumbnail rounded-circle"
-                    alt="Avatar"
-                    width="36px"
-                  />
                   @foreach ($ClinicInfo as $info)
-                    {{ $info->clinicname}}
+                  <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                  {{ $info->clinicname}}
                   @endforeach
                 </div>
               </li>
@@ -588,9 +583,9 @@
       </nav>
       <!-- End Navbar -->
       <div class="container-fluid py-4">
+        <div class="card shadow-lg bg-light p-3 mb-3" style="height: 535px;">
         @foreach ($dataAppoints as $AppointsInfo)
         @if ($AppointsInfo->status=='pending')
-        <div class="card shadow-lg bg-light p-3 mb-3">
           <div class="row">
             <div class="col-lg-8">
               <div class="row">
@@ -605,11 +600,12 @@
                             <div
                               class="position-relative d-flex justify-content-center"
                             >
-                              <img
+                              {{-- <img
                                 class="w-100 position-relative z-index-2"
                                 src="../assets/admin/img/team-3.jpg"
                                 alt="profile"
-                              />
+                              /> --}}
+                              <img class="w-100" src="https://ui-avatars.com/api/?name={{ urlencode($AppointsInfo->user->fname) }}&background=random&length=1&size=100%&color=ff000" alt="">
                             </div>
                           </div>
                           <div class="col-10">
@@ -642,20 +638,20 @@
                           >Physician
                         </span>
                         <hr class="horizontal dark mb-0" />
-                        <div class="card-header py-2 mb-0 text-center">
-                          <img
-                            class="w-35 position-relative z-index-2"
-                            src="../assets/admin/img/team-1.jpg"
-                            alt="rocket"
-                          />
+                        <div class="card-header py-3 mb-0 text-center">
+                          <div
+                          class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
+                          >
+                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
+                          </div>
                         </div>
-                        <div class="card-body pt-0 mt-0 p-2 text-center">
+                        <div class="card-body pt-0 mt-0 p-2 pb-0 text-center">
                           @if ($AppointsInfo->doctor !='suggest')
                           <span class="text-xs">Doctor</span>
-                          <h6 class="text-sm">  {{$AppointsInfo->doctor}} </h6>
-                          <h6 class="text-sm">  {{$AppointsInfo->doctor}} </h6>
+                          <h6 class="mb-0">  {{$AppointsInfo->doctor}} </h6>
+                          <h6 class="text-sm fw-light">Specialization</h6>
                           @else
-                          <h6 class="text-sm py-3">Suggest Doctor </h6>
+                          <h6 class="text-sm py-2">Suggest Doctor </h6>
                           <button class="btn btn-outline-primary btn-sm py-1">
                             Select
                           </button>
@@ -676,7 +672,7 @@
                           <div
                             class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
                           >
-                            <i class="fab fa-paypal opacity-10"></i>
+                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
                           </div>
                         </div>
                         <div class="card-body pt-0 p-3 text-center">
@@ -795,20 +791,79 @@
               </div>
             </div>
           </div>
-        </div>
+        @else
         @endif
         @endforeach
+        </div>
+        {{-- <div class="row">{{ $dataAppoints->links() }}</div> --}}
+
+
+        
 
 
       <div class="row">
-        <div class="col-md-7 my-4">
+        <div class="col-md-6 mt-4">
+          <div class="card mb-4" style="height: 576px">
+            <div class="card-header pb-0 px-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6 class="mb-0">Upcoming Request</h6>
+                </div>
+                <div
+                  class="col-md-6 d-flex justify-content-end align-items-center"
+                >
+                  <i class="far fa-calendar-alt me-2"></i>
+                  <small> 
+                    <script>
+                      document.write(new Date().toISOString().slice(0, 10))
+                    </script>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-4 p-3 overflow-auto">
+              <h6
+                class="text-uppercase text-body text-xs font-weight-bolder mb-3"
+              >
+                Newest Pending
+              </h6>
+              <div class="list-group">
+                @foreach ($allAppoints as $appointInfo)
+                  @if ($appointInfo->status=='pending')
+                    <a type="button" id="appointInfo" data-id={{$appointInfo->id}} 
+                      class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
+                    >
+                      <div class="d-flex align-items-center">
+                        {{-- <button
+                          class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
+                        >
+                          o
+                        </button> --}}
+                        <div class="d-flex flex-column">
+                          <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
+                          <span class="text-xs">{{$appointInfo->date}} , at {{$appointInfo->time}} </span>
+                        </div>
+                      </div>
+                      <div
+                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
+                      >
+                      {{$appointInfo->consultation}} Consultation
+                      </div>
+                    </a>
+                  @endif
+                @endforeach
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 my-4">
           <div class="card" style="height: 576px">
             <div class="card-header pb-0 px-3">
               <h6 class="mb-0">Appointment History</h6>
             </div>
             <div class="card-body pt-4 p-3 overflow-auto">
               <ul class="list-group">
-                @foreach ($dataAppoints as $historyAppoints)
+                @foreach ($allAppoints as $historyAppoints)
                   @if ($historyAppoints->status != 'pending')
                   <li
                   class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
@@ -859,61 +914,6 @@
                   </li>
                   @endif
                 @endforeach
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 mt-4">
-          <div class="card mb-4" style="height: 576px">
-            <div class="card-header pb-0 px-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <h6 class="mb-0">Upcoming Request</h6>
-                </div>
-                <div
-                  class="col-md-6 d-flex justify-content-end align-items-center"
-                >
-                  <i class="far fa-calendar-alt me-2"></i>
-                  <small> 
-                    <script>
-                      document.write(new Date().toISOString().slice(0, 10))
-                    </script>
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="card-body pt-4 p-3 overflow-auto">
-              <h6
-                class="text-uppercase text-body text-xs font-weight-bolder mb-3"
-              >
-                Newest Pending
-              </h6>
-              <ul class="list-group">
-                @foreach ($dataAppoints as $appointInfo)
-                  @if ($appointInfo->status=='pending')
-                    <li
-                      class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-                    >
-                      <div class="d-flex align-items-center">
-                        <button
-                          class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                        >
-                          o
-                        </button>
-                        <div class="d-flex flex-column">
-                          <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
-                          <span class="text-xs">{{$appointInfo->date}} , at {{$appointInfo->time}} </span>
-                        </div>
-                      </div>
-                      <div
-                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                      >
-                      {{$appointInfo->consultation}} Consultation
-                      </div>
-                    </li>
-                  @endif
-                @endforeach
-         
               </ul>
             </div>
           </div>
@@ -969,8 +969,13 @@
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
     <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
 
-    <!-- Github buttons -->
-    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    {{-- <script type="text/javascript">
+      $(document).ready(function(){
+        $('#appointInfo').click(function(){
+          var appointId = $(this).data('id');
+          alert(appointId);
+        });
+      });
+    </script> --}}
   </body>
 </html>

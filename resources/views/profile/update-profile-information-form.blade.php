@@ -28,7 +28,8 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    {{-- <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->fname }}" class="rounded-full h-20 w-20 object-cover"> --}}
+                    <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -52,11 +53,23 @@
             </div>
         @endif
 
-        <!-- Name -->
+        <!-- First Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-label for="fname" value="{{ __('First Name') }}" />
+            <x-jet-input id="fname" type="text" class="mt-1 block w-full" wire:model.defer="state.fname" autocomplete="fname" />
+            <x-jet-input-error for="fname" class="mt-2" />
+        </div>
+        <!-- Middle Name -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="mname" value="{{ __('Middle Name') }}" />
+            <x-jet-input id="mname" type="text" class="mt-1 block w-full" wire:model.defer="state.mname" autocomplete="mname" />
+            <x-jet-input-error for="mname" class="mt-2" />
+        </div>
+        <!-- Last Name -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="lname" value="{{ __('Last Name') }}" />
+            <x-jet-input id="lname" type="text" class="mt-1 block w-full" wire:model.defer="state.lname" autocomplete="lname" />
+            <x-jet-input-error for="lname" class="mt-2" />
         </div>
 
         <!-- Email -->

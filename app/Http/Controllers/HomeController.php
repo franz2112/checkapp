@@ -61,4 +61,9 @@ class HomeController extends Controller
         return view('user.clinic-menu', compact('clinic', 'dataDoctors' ));
     }
 
+    public function CnclAppnt(Request $request, $id){
+        $appoint = appointment::where('id', $id)
+            ->update(['status' => 'Declined']);
+            return redirect()->back()->with('message', 'Appointment has been declined!');
+    }
 }

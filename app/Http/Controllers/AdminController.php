@@ -19,22 +19,33 @@ class AdminController extends Controller
     public function Appointments(){
         
         $id = Auth::id(); 
-        $ClinicId = clinic::where('user_id', $id)->pluck('id')->first();
-        $dataAppoints = appointment::where('clinic_id', $ClinicId)
-        ->with('User')->get();
         $ClinicInfo = clinic::where('user_id', $id)->get();
-        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo')); 
+        
+        // get clinic info
+        $ClinicId = clinic::where('user_id', $id)->pluck('id')->first();    
+
+        // get who have appointment in this clinic
+        $dataAppoints = appointment::where('clinic_id', $ClinicId)
+        ->where('status', 'pending')
+        // ->with('User')
+        ->paginate(1);
+        
+        $allAppoints = appointment::where('clinic_id', $ClinicId)
+        ->get();
+
+        // return $dataAppoints;
+        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints')); 
     }
     public function AppRoval(Request $request, $id){
         $appoint = appointment::where('id', $id)
-            ->update(['status' => 'Approved']);
+            ->update(['status' => 'Approved']);  
             return redirect()->back()->with('message', 'Appointment has been Approved!');
         }
     public function AppCel(Request $request, $id){
         $appoint = appointment::where('id', $id)
             ->update(['status' => 'Declined']);
             return redirect()->back()->with('message', 'Appointment has been declined!');
-        }
+    }
     // add new doctor
     public function upload(Request $request){
         $doctor=new doctor;

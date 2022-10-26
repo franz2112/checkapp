@@ -25,7 +25,10 @@
           
               <ul class="navbar-nav navbar-right d-flex justify-content-end ">
                 <li class="dropdown"> 
-                  <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px"><span class="ps-2">{{ Auth::user()->lname}}, {{ Auth::user()->fname}} {{ Auth::user()->mname}}</span></div>
+                  <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
+                    <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                    <span>{{ Auth::user()->fname}} {{ Auth::user()->mname}} {{ Auth::user()->lname}}</span>
+                  </div>
                   <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
                     <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
                     <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>

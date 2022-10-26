@@ -86,11 +86,12 @@
               >
                 <ul class="m-0">
                   <li class="dropdown"> 
-                    <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">
-                      <span class="ps-2">
-                        {{ Auth::user()->lname}}, 
+                    <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
+                      <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                      <span class="ps-1">
                         {{ Auth::user()->fname}} 
                         {{ Auth::user()->mname}}
+                        {{ Auth::user()->lname}}
                      
                       </span>
                       <i class="ps-2 fa-solid fa-angle-down"></i>

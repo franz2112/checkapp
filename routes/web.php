@@ -38,6 +38,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('clinic-menu')
     ->middleware('auth');
 
+    Route::get('/Cancel-appoint/{id}', [HomeController::class, 'CnclAppnt'])
+    ->name('Cancel-Appointment')
+    ->middleware('auth');
+
     
     // admin clinic part   
     Route::get('/Appointments', [AdminController::class, 'Appointments'])

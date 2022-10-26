@@ -560,8 +560,9 @@
                 </a>
               </li>
               <li class="nav-item ps-1 d-flex align-items-center">
-                <div href="#" data-bs-toggle="dropdown"  data-bs-display="static"  class=""><img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">
+                <div href="#" data-bs-toggle="dropdown"  data-bs-display="static"  class="">                                   
                   @foreach ($clinicInfo as $info)
+                  <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
                   {{ $info->clinicname}}
                   @endforeach
                  </div>
@@ -1687,7 +1688,7 @@
     <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../assets/admin/js/plugins/chartjs.min.js"></script>
     <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 
     <script>
