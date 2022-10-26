@@ -68,7 +68,7 @@
           </div>
         </div>
         <!-- modal -->
-        <div class="container-fluid px-md-5 pt-lg-1">
+        <div class="container-fluid px-md-5">
           <!-- header -->
           <nav class="py-3">
             <div class="row">
@@ -115,6 +115,7 @@
                             </a>
                         </li>
                       </form>
+                    </ul>
                   </li>
                 </ul>
               </div>
@@ -240,7 +241,82 @@
 
                               <!-- Steps -->
                               <div class="form-step f-active">
+                                {{-- error --}}
                                 <p id="output" class="my-2 text-danger"></p>
+
+                                {{-- date --}}
+                                <div class="row mb-1">
+                                <div class="col-md-6">
+                                  <h6 class="mt-2">Select Date</h6>
+                                  {{-- <div class="container-cl">
+                                    <div class="calendar">
+                                      <div class="month">
+                                        <span class="prev">
+                                          <i
+                                            class="fa-solid fa-angle-left"
+                                          ></i>
+                                        </span>
+                                        <div class="date">
+                                          <h1></h1>
+                                          <p class="mb-0"></p>
+                                        </div>
+                                        <span class="next">
+                                          <i
+                                            class="fa-solid fa-angle-right"
+                                          ></i>
+                                        </span>
+                                      </div>
+                                      <div class="weekdays">
+                                        <div>Sun</div>
+                                        <div>Mon</div>
+                                        <div>Tue</div>
+                                        <div>Wed</div>
+                                        <div>Thu</div>
+                                        <div>Fri</div>
+                                        <div>Sat</div>
+                                      </div>
+                                      <div class="days"></div>
+                                    </div>
+                                  </div> --}}
+                                  <input type="date" name="date" class="form-select form-select-sm mb-3" required="required">
+                                </div>
+                                <div class="col-md-6">
+                                  <h6 class="mt-2">Select Time</h6>
+                                  <select
+                                    class="form-select form-select-sm mb-3"
+                                    aria-label=".form-select-lg example"
+                                    name="time"
+                                  >
+                                    <option selected>8:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="01:00 PM">01:00 PM</option>
+                                    <option value="02:00 PM">02:00 PM</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                  </select>
+                                </div>
+                              </div>
+                              
+
+                                <div class="ms-4">
+                                  <a
+                                    id="btn"
+                                    type="submit"
+                                    class="btn btn-next width-50 ml-auto"
+                                  >
+                                    Next
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div class="form-step">
+
+                                {{-- error --}}
+                                <p id="output" class="my-2 text-danger"></p>
+
+ 
+                                
                                 <h6 class="mt-2" for="doctor">Select Doctor</h6>
                                 <div class="input-group">
                                   <div class="row m-0">
@@ -282,6 +358,7 @@
                                         </div>
                                       </div>
                                     @endforeach
+                                    {{-- suggest --}}
                                     <div class="col-sm-6 p-0">
                                       <div class="option m-1">
                                         <input
@@ -377,74 +454,7 @@
                                     </div>
                                   </div>
                                 </div>
-
-                                <div class="ms-2">
-                                  <a
-                                    id="btn"
-                                    type="submit"
-                                    class="btn btn-next width-50 ml-auto"
-                                  >
-                                    Next
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div class="form-step">
-                                <p id="output" class="my-2 text-danger"></p>
-
-                                <div class="row mb-1">
-                                  <div class="col-md-6">
-                                    <h6 class="mt-2">Select Date</h6>
-                                    {{-- <div class="container-cl">
-                                      <div class="calendar">
-                                        <div class="month">
-                                          <span class="prev">
-                                            <i
-                                              class="fa-solid fa-angle-left"
-                                            ></i>
-                                          </span>
-                                          <div class="date">
-                                            <h1></h1>
-                                            <p class="mb-0"></p>
-                                          </div>
-                                          <span class="next">
-                                            <i
-                                              class="fa-solid fa-angle-right"
-                                            ></i>
-                                          </span>
-                                        </div>
-                                        <div class="weekdays">
-                                          <div>Sun</div>
-                                          <div>Mon</div>
-                                          <div>Tue</div>
-                                          <div>Wed</div>
-                                          <div>Thu</div>
-                                          <div>Fri</div>
-                                          <div>Sat</div>
-                                        </div>
-                                        <div class="days"></div>
-                                      </div>
-                                    </div> --}}
-                                    <input type="date" name="date" class="form-select form-select-sm mb-3" required="required">
-                                                                    </div>
-                                  <div class="col-md-6">
-                                    <h6 class="mt-2">Select Time</h6>
-                                    <select
-                                      class="form-select form-select-sm mb-3"
-                                      aria-label=".form-select-lg example"
-                                      name="time"
-                                    >
-                                      <option selected>8:00 AM</option>
-                                      <option value="10:00 AM">10:00 AM</option>
-                                      <option value="11:00 AM">11:00 AM</option>
-                                      <option value="12:00 PM">12:00 PM</option>
-                                      <option value="01:00 PM">01:00 PM</option>
-                                      <option value="02:00 PM">02:00 PM</option>
-                                      <option value="03:00 PM">03:00 PM</option>
-                                    </select>
-                                  </div>
-                                </div>
-
+                                
                                 <div class="btns-group">
                                   <a href="#" class="btn btn-prev">Back</a>
                                   <a href="#" class="btn btn-next">Next</a>
@@ -646,11 +656,7 @@
                                     error sit voluptatem accusantium vdoloremque
                                     laudantium, totam rem aasdasd asdas d Sed ut
                                     perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium vdoloremque
-                                    laudantium, totam rem aasdasd asdas d Sed ut
-                                    perspiciatis unde omnis iste natus error sit
-                                    voluptatem accusantium vdoloremque
-                                    laudantium, totam rem aasdasd asdas d
+                                    
                                   </p>
                                 </div>
                               </div>
@@ -680,26 +686,24 @@
     position-fixed
     z-index-2  
     bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
-    " role="alert">
-      <div class="card  rounded-0">
-          <div class="card-header rounded-0">
-              <div class="row">
-                  <div class="col-7 d-flex align-item-center">
-                      <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" style="height: 30px" alt="logo">
-                      <span class="me-5 fw-bolder pt-1">CheckApp</span>
-                  </div>
-                  <div class="col-5 d-flex justify-content-end align-item-center">
-                      <span class="py-2 fst-italic pe-2" style="font-size: 12px"></span>
-                      <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg"></i></button>      
-                  </div>
+    "role="alert"
+    id="dismiss">
+      <div class="p-3  rounded-0">
+        <div class="row">
+          <div class="col-10 d-flex justify-content-center align-item-center">
+            <div class="card-body">
+              <div class="text-center" style="font-size: 13px; font-weight: 600">
+                  {{session()->get('message')}}
               </div>
+              <div class="text-center" style="font-size: 12px">
+                Please wait for the confirmation.
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-          <div class="text-sm text-center">
-              {{session()->get('message')}}
-          </div>
-          <div class="text-center" style="font-size: 13px">
-            Please wait for the confirmation.
+          <div class="col-2 d-flex justify-content-center align-item-center">
+            <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>      
           </div>
         </div>
       </div>
@@ -709,9 +713,9 @@
     </div>
     <script>
       window.setTimeout(function () {
-          $("#dissmiss")
-              .fadeTo(3000, 1)
-              .fadeOut(3000, function () {
+          $("#dismiss")
+              .fadeIn(3000, 1)
+              .fadeOut(5000, function () {
                   $(this).remove();
               });
         }, 2000);

@@ -66,4 +66,28 @@ class HomeController extends Controller
             ->update(['status' => 'Declined']);
             return redirect()->back()->with('message', 'Appointment has been declined!');
     }
+        
+    public function rqstAppoint(Request $request, $id){
+        $appoint=new appointment;
+        $ids = Auth::id();
+        $image=$request->specialId;
+        if ($request->$image){
+            $imagename=time().'.'.$image->getClientoriginalExtension();
+            $request->specialId->move('assets/admin/img/specialId',$imagename);
+            $appoint->specialId=$imagename;
+        }
+        $appoint->doctor=$request->doctor;
+        $appoint->consultation=$request->consultation;
+        $appoint->date=$request->date;
+        $appoint->time=$request->time;
+        $appoint->reason=$request->reason;
+        $appoint->specialId=$request->specialId;
+        $appoint->clinic_id=$id;
+        $appoint->user_id=$ids;
+
+        $appoint->save();
+        return redirect()->back()->with('message', 'Appointment Request Successful!');
+
+    }
+
 }

@@ -42,6 +42,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Cancel-Appointment')
     ->middleware('auth');
 
+    Route::post('/Request-Appointment/{id}', [HomeController::class, 'rqstAppoint'])
+    ->name('Request-Appointment')
+    ->middleware('auth');
+
     
     // admin clinic part   
     Route::get('/Appointments', [AdminController::class, 'Appointments'])
@@ -53,10 +57,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->middleware('auth');
 
     Route::post('/upload-doctor', [AdminController::class, 'upload'])
-    ->name('Add-Doctor')
-    ->middleware('auth');
-
-    Route::post('/Request-Appointment/{id}', [AdminController::class, 'rqstAppoint'])
     ->name('Add-Doctor')
     ->middleware('auth');
 

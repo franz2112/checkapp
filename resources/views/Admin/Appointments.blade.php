@@ -830,7 +830,7 @@
               <div class="list-group">
                 @foreach ($allAppoints as $appointInfo)
                   @if ($appointInfo->status=='pending')
-                    <a type="button" id="appointInfo" data-id={{$appointInfo->id}} 
+                    <a id="appointInfo" data-id={{$appointInfo->id}} 
                       class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
                     >
                       <div class="d-flex align-items-center">
@@ -922,31 +922,36 @@
     </div>
 
       @if (session()->has('message'))
-      <div class="alert alert-success 
+      <div class="alert
       alert-dissmissible 
       fade show 
       position-fixed
       z-index-2  
       bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
-      " 
-      id="dissmiss"
-      role="alert">
-        <div class="card  rounded-0">
-            <div class="card-header rounded-0">
-                <div class="row">
-                    <div class="col-7 d-flex align-item-center">
-                        <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" style="height: 30px" alt="logo">
-                        <span class="me-5 fw-bolder pt-1">CheckApp</span>
-                    </div>
-                    <div class="col-5 d-flex justify-content-end align-item-center">
-                        <span class="py-2 fst-italic pe-2" style="font-size: 12px"></span>
-                        <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg"></i></button>      
-                    </div>
+      "
+      style="
+      background-color: #D1E7DD;
+      border-color: #add1a4;
+      color: #2E5724;
+      "
+      role="alert"
+      id="dismiss">
+        <div class="p-3  rounded-0">
+          <div class="row">
+            <div class="col-10 d-flex justify-content-center align-item-center">
+              <div class="card-body">
+                <div class="text-center" style="font-size: 13px; font-weight: 600">
+                    {{session()->get('message')}}
                 </div>
+                <div class="text-center" style="font-size: 12px">
+                  Information sent!
+                </div>
+              </div>
             </div>
-            <div class="card-body pt-0">
-            <div class="text-center">
-               <h5>{{session()->get('message')}}</h5>
+            <div class="col-2 d-flex justify-content-center align-item-center">
+              <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </button>      
             </div>
           </div>
         </div>
@@ -957,9 +962,9 @@
     </main>
     <script>
       window.setTimeout(function () {
-          $("#dissmiss")
-              .fadeTo(3000, 1)
-              .fadeOut(3000, function () {
+          $("#dismiss")
+              .fadeIn(3000, 1)
+              .fadeOut(5000, function () {
                   $(this).remove();
               });
         }, 2000);

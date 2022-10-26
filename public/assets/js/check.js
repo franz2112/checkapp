@@ -97,18 +97,21 @@ $("document").ready(function () {
         // });
         btn.addEventListener("click", () => {
             // let selectedSize;
-            for (const btndoctor of radioButtons) {
-                if (btndoctor.checked) {
-                    // selectedSize = radioButton.value;
-                    formStepsNum++;
-                    updateFormSteps();
-                    updateProgressbar();
-                    rmvTxt();
-                    break;
-                } else {
-                    output.innerHTML = `You have to select <span class="fw-bold">Doctor</span>  and <span class="fw-bold">Consultation Type</span>`;
-                }
-            }
+            formStepsNum++;
+            updateFormSteps();
+            updateProgressbar();
+            // for (const btndoctor of radioButtons) {
+            //     if (btndoctor.checked) {
+            //         // selectedSize = radioButton.value;
+            //         formStepsNum++;
+            //         updateFormSteps();
+            //         updateProgressbar();
+            //         rmvTxt();
+            //         break;
+            //     } else {
+            //         output.innerHTML = `You have to select <span class="fw-bold">Doctor</span>  and <span class="fw-bold">Consultation Type</span>`;
+            //     }
+            // }
         });
     });
 
