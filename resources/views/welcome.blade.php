@@ -123,10 +123,10 @@
                 <a class="nav-link" href="#how-it-works">How it works</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blog.html">Prices</a>
+                <a class="nav-link" href="#page-price">Prices</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">About us</a>
+                <a class="nav-link" href="#page-footer">About us</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('login') }}" class="btn btn-primary ms-lg-3 rounded-pill" href="#"
@@ -499,7 +499,7 @@
     <!-- .bg-light -->
     <!-- .bg-light -->
 
-    <div class="page-price">
+    <div class="page-price"  id="page-price">
       <div class="container">
         <h1 class="text-center wow fadeInUp">
           Choose the price that’s right for you.
@@ -574,7 +574,7 @@
     <hr />
     <!-- .page-price -->
 
-    <footer class="page-footer">
+    <footer class="page-footer"  id="page-footer">
       <div class="page-about banner-home">
         <div class="container py-5 py-lg-0">
           <h1 class="wow fadeInUp text-primary display-4">About Us</h1>

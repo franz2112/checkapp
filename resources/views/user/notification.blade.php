@@ -134,8 +134,7 @@
           <!-- header end -->
           <div class="content-wrapper">
             <div class="row">
-              <section class="section-50">
-                <div class="container">
+              <section class="section-50 pt-2 ">
                   <h3 class="m-b-50 heading-line">
                     Notifications <i class="fa fa-bell text-muted"></i>
                   </h3>
@@ -144,31 +143,28 @@
                     <div class="notification-list notification-list--unread">
                       <div class="notification-list_content">
                         <div class="notification-list_img">
-                          <img src="images/users/user1.jpg" alt="user" />
+                            <img src="https://picsum.photos/500/500?random=2">
                         </div>
                         <div class="notification-list_detail">
-                          <p><b>John Doe</b> reacted to your post</p>
+                          <p><b>CinicName1</b> Approve your appointment</p>
                           <p class="text-muted">
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Unde, dolorem.
                           </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
+                          <p class="text-muted"><small>1 min ago</small></p>
                         </div>
                       </div>
                       <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random1.jpg"
-                          alt="Feature image"
-                        />
+                        <a href="#" class="btn view">View Details</a>
                       </div>
                     </div>
                     <div class="notification-list notification-list--unread">
                       <div class="notification-list_content">
                         <div class="notification-list_img">
-                          <img src="images/users/user2.jpg" alt="user" />
+                            <img src="https://picsum.photos/200/300?random=2">
                         </div>
                         <div class="notification-list_detail">
-                          <p><b>Richard Miles</b> liked your post</p>
+                          <p><b>CinicName2</b> Message you</p>
                           <p class="text-muted">
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Unde, dolorem.
@@ -177,120 +173,104 @@
                         </div>
                       </div>
                       <div class="notification-list_feature-img">
-                        <img src="https://picsum.photos/200/300?random=2">
+                        <a href="#" class="btn view">View Details</a>
+                    </div>
+                    </div>
+                    <div class="notification-list">
+                      <div class="notification-list_content">
+                        <div class="notification-list_img">
+                            <img src="https://picsum.photos/500/500?random=2">
+                        </div>
+                        <div class="notification-list_detail">
+                            <p><b>CinicName1</b> Approve your appointment</p>
+                            <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Unde, dolorem.
+                          </p>
+                          <p class="text-muted"><small>1 week ago</small></p>
+                        </div>
+                      </div>
+                      <div class="notification-list_feature-img">
+                        <a href="#" class="btn view">View Details</a>
+                    </div>
+                    </div>
+                    <div class="notification-list">
+                      <div class="notification-list_content">
+                        <div class="notification-list_img">
+                            <img src="https://picsum.photos/200/300?random=2">
+                        </div>
+                        <div class="notification-list_detail">
+                            <p><b>CinicName2</b> Reschedule your appointment</p>
+                            <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Unde, dolorem.
+                          </p>
+                          <p class="text-muted"><small>2 months ago</small></p>
+                        </div>
+                      </div>
+                      <div class="notification-list_feature-img">
+                        <a href="#" class="btn view">View Details</a>
                       </div>
                     </div>
                     <div class="notification-list">
                       <div class="notification-list_content">
                         <div class="notification-list_img">
-                          <img src="images/users/user3.jpg" alt="user" />
+                            <img src="https://picsum.photos/200/300?random=2">
                         </div>
                         <div class="notification-list_detail">
-                          <p><b>Brian Cumin</b> reacted to your post</p>
+                            <p><b>CinicName2</b> Decline your appointment</p>
                           <p class="text-muted">
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Unde, dolorem.
                           </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
+                          <p class="text-muted"><small>8 months ago</small></p>
                         </div>
                       </div>
                       <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random3.jpg"
-                          alt="Feature image"
-                        />
-                      </div>
+                        <a href="#" class="btn view">View Details</a>
+                    </div>
                     </div>
                     <div class="notification-list">
                       <div class="notification-list_content">
                         <div class="notification-list_img">
-                          <img src="images/users/user4.jpg" alt="user" />
+                            <img src="https://picsum.photos/500/500?random=2">
                         </div>
                         <div class="notification-list_detail">
-                          <p><b>Lance Bogrol</b> reacted to your post</p>
+                            <p><b>CinicName1</b> Approve your appointment</p>
                           <p class="text-muted">
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Unde, dolorem.
                           </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
+                          <p class="text-muted"><small>8 months ago</small></p>
                         </div>
                       </div>
                       <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random4.jpg"
-                          alt="Feature image"
-                        />
-                      </div>
+                        <a href="#" class="btn view">View Details</a>
+                    </div>
                     </div>
                     <div class="notification-list">
                       <div class="notification-list_content">
                         <div class="notification-list_img">
-                          <img src="images/users/user1.jpg" alt="user" />
+                            <img src="https://picsum.photos/100/300?random=2">
                         </div>
                         <div class="notification-list_detail">
-                          <p><b>Parsley Montana</b> reacted to your post</p>
+                            <p><b>CinicName3</b> Message you</p>
                           <p class="text-muted">
                             Lorem ipsum dolor sit amet consectetur, adipisicing
                             elit. Unde, dolorem.
                           </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
+                          <p class="text-muted"><small>10 months ago</small></p>
                         </div>
                       </div>
                       <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random1.jpg"
-                          alt="Feature image"
-                        />
-                      </div>
+                        <a href="#" class="btn view">View Details</a>
                     </div>
-                    <div class="notification-list">
-                      <div class="notification-list_content">
-                        <div class="notification-list_img">
-                          <img src="images/users/user3.jpg" alt="user" />
-                        </div>
-                        <div class="notification-list_detail">
-                          <p><b>Brian Cumin</b> reacted to your post</p>
-                          <p class="text-muted">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Unde, dolorem.
-                          </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
-                        </div>
-                      </div>
-                      <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random3.jpg"
-                          alt="Feature image"
-                        />
-                      </div>
-                    </div>
-                    <div class="notification-list">
-                      <div class="notification-list_content">
-                        <div class="notification-list_img">
-                          <img src="images/users/user2.jpg" alt="user" />
-                        </div>
-                        <div class="notification-list_detail">
-                          <p><b>Lance Bogrol</b> reacted to your post</p>
-                          <p class="text-muted">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Unde, dolorem.
-                          </p>
-                          <p class="text-muted"><small>10 mins ago</small></p>
-                        </div>
-                      </div>
-                      <div class="notification-list_feature-img">
-                        <img
-                          src="images/features/random2.jpg"
-                          alt="Feature image"
-                        />
-                      </div>
                     </div>
                   </div>
 
                   <div class="text-center">
                     <a href="#!" class="dark-link">Load more activity</a>
                   </div>
-                </div>
               </section>
             </div>
           </div>
