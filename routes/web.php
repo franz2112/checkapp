@@ -46,6 +46,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Request-Appointment')
     ->middleware('auth');
 
+    Route::get('/Notifications', [HomeController::class, 'notif'])
+    ->name('Notifications')
+    ->middleware('auth');
+
     
     // admin clinic part   
     Route::get('/Appointments', [AdminController::class, 'Appointments'])

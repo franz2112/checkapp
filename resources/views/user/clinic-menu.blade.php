@@ -96,8 +96,9 @@
                       </span>
                       <i class="ps-2 fa-solid fa-angle-down"></i>
                     </div>
-                    <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
-                      <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px; font-size: 14px">
+                      <li class="px-3 py-1 text-center fw-light" style="font-size: 12px"><span>Manage Account</span> </li>
+                      <li><a class="dropdown-item" href="{{ url('Appointment') }}">Appointments</a></li>
                       <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
                       <li><a class="dropdown-item" href="#">Privacy</a></li>
                       <li><hr class="dropdown-divider"></li>

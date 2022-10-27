@@ -30,7 +30,7 @@
                     <span>{{ Auth::user()->fname}} {{ Auth::user()->mname}} {{ Auth::user()->lname}}</span>
                   </div>
                   <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
-                    <li class="px-3 py-1 text-center"><span>Manage Account</span> </li>
+                    <li class="px-3 py-1 text-center fw-light"><span>Manage Account</span> </li>
                     <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
                     <li><a class="dropdown-item" href="#">Privacy</a></li>
                     <li><hr class="dropdown-divider"></li>

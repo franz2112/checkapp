@@ -30,7 +30,7 @@
       </li>
       <li id="active-n"  class="nav-item">
         <!-- "active - notif" for active notification-->
-        <a href="/pages/notification.html" class="side-nav-notif">
+        <a href="/Notifications" class="side-nav-notif">
           <i class="fa-solid fa-message px-3"></i>
           <span class="links-name">Notifications</span>
         </a>

@@ -5,28 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ config('app.name', 'CheckApp') }}</title>
-    
+
     <link rel="shortcut icon" href="../assets/img/Checkapp logo 2.0.png" />
-    
-    <link rel="stylesheet" href="../assets/css/style.css"/>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    
-    @vite([
-      'public/assets/css/style.css', 
-      
-      'public/assets/js/check.js', 
 
-      'public/assets/vendor/all.js'
-       ])
-    @livewireStyles
-</head>
+    @vite([ 'public/assets/css/style.css', 'public/assets/js/check.js',
+    'public/assets/vendor/all.js' ]) @livewireStyles
+  </head>
 
   <body>
     <!-- Back to top button -->
@@ -39,13 +46,13 @@
       <!-- body part -->
       <div class="body-part">
         <div class="container">
-        <!-- header -->
+          <!-- header -->
 
-        <!-- nav -->
-        @include('user.separated.nav')
-        <!-- nav end -->
+          <!-- nav -->
+          @include('user.separated.nav')
+          <!-- nav end -->
 
-        <!-- header end -->
+          <!-- header end -->
           <div class="main-content">
             <div class="content-wrapper px-5">
               <div class="nav-search">
@@ -135,6 +142,7 @@
               </div>
               <!-- nav-end -->
               <div class="tab-content" id="pills-tabContent">
+                <!-- Latest pane -->
                 <div
                   class="tab-pane fade show active"
                   id="pills-latest"
@@ -142,119 +150,74 @@
                   aria-labelledby="pills-latest-tab"
                   tabindex="0"
                 >
-                    <div class="row">
-                        @foreach ($dataAppoints as $appoints)
-                        <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
-                        <div class="card-appoint">
-                            <div class="header">
-                            <div class="row">
-                                <div class="col-6">
-                                <img src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}" alt="" />
-                                </div>
-                                <div class="col-6">
-                                <div class="cover">
-                                  @if ($appoints->status=='Approved')
-                                    <span class="active">Approved</span>
-                                  @elseif ($appoints->status=='pending')
-                                    <span class="pending">Pending</span>
-                                  @else
-                                    <span class="cancel">Cancelled</span>
-                                  @endif
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="body">
-                              <h6 class=" mb-0 text-uppercase text-truncate pe-2">{{$appoints->clinic->clinicname}}</h6>
-                              <span>
-                                  <p>{{$appoints->doctor}}</p>
-                              </span>
-                              <span>
-                                  <p>{{$appoints->Consultatio}}</p>
-                              </span>
-                              <span>
-                                  <p>{{$appoints->date}} | {{$appoints->time}}</p>
-                              </span>
-                            <span>
-                              @if ($appoints->status=='Approved')
-                                <a href="#" class="btn view">View Details</a>
-                              @elseif ($appoints->status=='pending')
-                                <a href="{{ url('Cancel-appoint', $appoints->id) }}" class="btn cancel">
-                                  Cancel Appointment
-                                </a>                              
-                              @elseif ($appoints->status=='Declined')
-                                <a href="#" class="btn view">View Details</a>
-                              @endif
-                            </span>
-                            </div>
+                  <div class="row">
+                    @if ($dataAppoints->isEmpty() )
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no appointment for this month.
                         </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @foreach ($dataAppoints as $appoints)
+                    <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
+                      <div class="card-appoint">
+                        <div class="header">
+                          <div class="row">
+                            <div class="col-6">
+                              <img
+                                src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}"
+                                alt=""
+                              />
+                            </div>
+                            <div class="col-6">
+                              <div class="cover">
+                                @if ($appoints->status=='Approved')
+                                <span class="active">Approved</span>
+                                @elseif ($appoints->status=='pending')
+                                <span class="pending">Pending</span>
+                                @else
+                                <span class="cancel">Cancelled</span>
+                                @endif
+                              </div>
+                            </div>
+                          </div>
                         </div>
-
-                        {{-- <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
-                        <div class="card-appoint">
-                            <div class="header">
-                            <div class="row">
-                                <div class="col-6">
-                                <img src="../assets/images/doc.jpg" alt="" />
-                                </div>
-                                <div class="col-6">
-                                <div class="cover">
-                                    <span class="pending">Pending</span>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="body">
-                            <h5 class="text-xl mb-0">EXAMPLE CLINIC NAME</h5>
-                            <span>
-                                <p>Doctor Name</p>
-                            </span>
-                            <span>
-                                <p>Face-to-face Consultation</p>
-                            </span>
-                            <span>
-                                <p>August 1, 2022 | 10:30 AM</p>
-                            </span>
-                            <span>
-                                <a href="#" class="btn cancel">
-                                Cancel Appointment
-                                </a>
-                            </span>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
-                        <div class="card-appoint">
-                            <div class="header">
-                            <div class="row">
-                                <div class="col-6">
-                                <img src="../assets/images/doc.jpg" alt="" />
-                                </div>
-                                <div class="col-6">
-                                <div class="cover">
-                                    <span class="cancel">Cancelled</span>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="body">
-                            <h5 class="text-xl mb-0">EXAMPLE CLINIC NAME</h5>
-                            <span>
-                                <p>Doctor Name</p>
-                            </span>
-                            <span>
-                                <p>Face-to-face Consultation</p>
-                            </span>
-                            <span>
-                                <p>August 1, 2022 | 10:30 AM</p>
-                            </span>
+                        <div class="body">
+                          <h6 class="mb-0 text-uppercase text-truncate pe-2">
+                            {{$appoints->clinic->clinicname}}
+                          </h6>
+                          <span>
+                            <p>{{$appoints->doctor}}</p>
+                          </span>
+                          <span>
+                            <p>{{$appoints->Consultatio}}</p>
+                          </span>
+                          <span>
+                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                          </span>
+                          <span>
+                            @if ($appoints->status=='Approved')
                             <a href="#" class="btn view">View Details</a>
-                            </div>
+                            @elseif ($appoints->status=='pending')
+                            <a
+                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              class="btn cancel"
+                            >
+                              Cancel Appointment
+                            </a>
+                            @elseif ($appoints->status=='Declined')
+                            <a href="#" class="btn view">View Details</a>
+                            @endif
+                          </span>
                         </div>
-                        </div> --}}
-                        @endforeach
-                    </div>                    
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
                 </div>
 
                 <!-- approved pane -->
@@ -266,37 +229,73 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
+                    @if ($dataAppoints->count()<=0 )
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no approved appointment for this month.
+                        </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @foreach ($dataAppoints as $appoints)
+                    @if($appoints->status == 'Approved')
+                    <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                       <div class="card-appoint">
                         <div class="header">
                           <div class="row">
                             <div class="col-6">
-                              <img src="../assets/images/doc.jpg" alt="" />
+                              <img
+                                src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}"
+                                alt=""
+                              />
                             </div>
                             <div class="col-6">
                               <div class="cover">
+                                @if ($appoints->status=='Approved')
                                 <span class="active">Approved</span>
+                                @elseif ($appoints->status=='pending')
+                                <span class="pending">Pending</span>
+                                @else
+                                <span class="cancel">Cancelled</span>
+                                @endif
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="body">
-                          <h5 class="text-xl mb-0">EXAMPLE CLINIC NAME</h5>
+                          <h6 class="mb-0 text-uppercase text-truncate pe-2">
+                            {{$appoints->clinic->clinicname}}
+                          </h6>
                           <span>
-                            <p>Doctor Name</p>
+                            <p>{{$appoints->doctor}}</p>
                           </span>
                           <span>
-                            <p>Face-to-face Consultation</p>
+                            <p>{{$appoints->Consultatio}}</p>
                           </span>
                           <span>
-                            <p>August 1, 2022 | 10:30 AM</p>
+                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
                           </span>
                           <span>
+                            @if ($appoints->status=='Approved')
                             <a href="#" class="btn view">View Details</a>
+                            @elseif ($appoints->status=='pending')
+                            <a
+                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              class="btn cancel"
+                            >
+                              Cancel Appointment
+                            </a>
+                            @elseif ($appoints->status=='Declined')
+                            <a href="#" class="btn view">View Details</a>
+                            @endif
                           </span>
                         </div>
                       </div>
                     </div>
+                    @endif @endforeach
                   </div>
                 </div>
 
@@ -309,39 +308,73 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
+                    @if ($dataAppoints->count()<=0 )
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no pending appointment for this month.
+                        </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @foreach ($dataAppoints as $appoints)
+                    @if($appoints->status=='pending')
+                    <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                       <div class="card-appoint">
                         <div class="header">
                           <div class="row">
                             <div class="col-6">
-                              <img src="../assets/images/doc.jpg" alt="" />
+                              <img
+                                src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}"
+                                alt=""
+                              />
                             </div>
                             <div class="col-6">
                               <div class="cover">
+                                @if ($appoints->status=='Approved')
+                                <span class="active">Approved</span>
+                                @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
+                                @else
+                                <span class="cancel">Cancelled</span>
+                                @endif
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="body">
-                          <h5 class="text-xl mb-0">EXAMPLE CLINIC NAME</h5>
+                          <h6 class="mb-0 text-uppercase text-truncate pe-2">
+                            {{$appoints->clinic->clinicname}}
+                          </h6>
                           <span>
-                            <p>Doctor Name</p>
+                            <p>{{$appoints->doctor}}</p>
                           </span>
                           <span>
-                            <p>Face-to-face Consultation</p>
+                            <p>{{$appoints->Consultatio}}</p>
                           </span>
                           <span>
-                            <p>August 1, 2022 | 10:30 AM</p>
+                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            <a href="#" class="btn cancel">
+                            @if ($appoints->status=='Approved')
+                            <a href="#" class="btn view">View Details</a>
+                            @elseif ($appoints->status=='pending')
+                            <a
+                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              class="btn cancel"
+                            >
                               Cancel Appointment
                             </a>
+                            @elseif ($appoints->status=='Declined')
+                            <a href="#" class="btn view">View Details</a>
+                            @endif
                           </span>
                         </div>
                       </div>
                     </div>
+                    @endif @endforeach
                   </div>
                 </div>
 
@@ -354,39 +387,78 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    <div class="col-xl-4 col-lg-6 py-3 wow zoomIn">
+                    @if ($dataAppoints->count()<=0 )
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no cancelled appointment for this month.
+                        </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @foreach ($dataAppoints as $appoints)
+                    @if($appoints->status == 'Declined')
+                    <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                       <div class="card-appoint">
                         <div class="header">
                           <div class="row">
                             <div class="col-6">
-                              <img src="../assets/images/doc.jpg" alt="" />
+                              <img
+                                src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}"
+                                alt=""
+                              />
                             </div>
                             <div class="col-6">
                               <div class="cover">
+                                @if ($appoints->status=='Approved')
+                                <span class="active">Approved</span>
+                                @elseif ($appoints->status=='pending')
+                                <span class="pending">Pending</span>
+                                @else
                                 <span class="cancel">Cancelled</span>
+                                @endif
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="body">
-                          <h5 class="text-xl mb-0">EXAMPLE CLINIC NAME</h5>
+                          <h6 class="mb-0 text-uppercase text-truncate pe-2">
+                            {{$appoints->clinic->clinicname}}
+                          </h6>
                           <span>
-                            <p>Doctor Name</p>
+                            <p>{{$appoints->doctor}}</p>
                           </span>
                           <span>
-                            <p>Face-to-face Consultation</p>
+                            <p>{{$appoints->Consultatio}}</p>
                           </span>
                           <span>
-                            <p>August 1, 2022 | 10:30 AM</p>
+                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
                           </span>
                           <span>
+                            @if ($appoints->status=='Approved')
                             <a href="#" class="btn view">View Details</a>
+                            @elseif ($appoints->status=='pending')
+                            <a
+                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              class="btn cancel"
+                            >
+                              Cancel Appointment
+                            </a>
+                            @elseif ($appoints->status=='Declined')
+                            <a href="#" class="btn view">View Details</a>
+                            @endif
                           </span>
                         </div>
                       </div>
                     </div>
+                    @endif 
+                    @endforeach
                   </div>
                 </div>
+
+                <!-- History -->
                 <div
                   class="tab-pane fade"
                   id="pills-history"
@@ -394,7 +466,76 @@
                   aria-labelledby="pills-history-tab"
                   tabindex="0"
                 >
-                  History
+                  <div class="row">
+                    @if ($dataAppoints->count()<=0 )
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no appointment history.
+                        </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @foreach ($dataAppoints as $appoints)
+                    @if($appoints->status !== 'pending')
+                    <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
+                      <div class="card-appoint">
+                        <div class="header">
+                          <div class="row">
+                            <div class="col-6">
+                              <img
+                                src="../assets/admin/img/clinicimage/{{$appoints->clinic->Profile}}"
+                                alt=""
+                              />
+                            </div>
+                            <div class="col-6">
+                              <div class="cover">
+                                @if ($appoints->status=='Approved')
+                                <span class="active">Approved</span>
+                                @elseif ($appoints->status=='pending')
+                                <span class="pending">Pending</span>
+                                @else
+                                <span class="cancel">Cancelled</span>
+                                @endif
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="body">
+                          <h6 class="mb-0 text-uppercase text-truncate pe-2">
+                            {{$appoints->clinic->clinicname}}
+                          </h6>
+                          <span>
+                            <p>{{$appoints->doctor}}</p>
+                          </span>
+                          <span>
+                            <p>{{$appoints->Consultatio}}</p>
+                          </span>
+                          <span>
+                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                          </span>
+                          <span>
+                            @if ($appoints->status=='Approved')
+                            <a href="#" class="btn view">View Details</a>
+                            @elseif ($appoints->status=='pending')
+                            <a
+                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              class="btn cancel"
+                            >
+                              Cancel Appointment
+                            </a>
+                            @elseif ($appoints->status=='Declined')
+                            <a href="#" class="btn view">View Details</a>
+                            @endif
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    @endif 
+                    @endforeach
+                  </div>
                 </div>
               </div>
             </div>
@@ -404,12 +545,8 @@
       </div>
       <!-- Body part-->
 
-        {{-- footer --}}
-        @include('user.separated.footer')
-        {{-- footer end --}}
+      {{-- footer --}} @include('user.separated.footer') {{-- footer end --}}
     </div>
   </body>
-  @stack('modals')
-
-  @livewireScripts
+  @stack('modals') @livewireScripts
 </html>

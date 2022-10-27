@@ -90,4 +90,8 @@ class HomeController extends Controller
 
     }
 
+    public function notif(){
+        return view('user.notification');
+    }
+
 }
