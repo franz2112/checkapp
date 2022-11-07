@@ -36,9 +36,20 @@ class AppointmentSetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        dd($request->all());
+    public function store(Request $request, $id)
+    {   
+        $setAppoint = AppointmentSet::create([
+            'doctor_id' => $id,
+            'date' => $request->date 
+        ]);
+        foreach($request->time as $time){
+            Time::create([
+                'appointmentSet_id' => $setAppoint->id,
+                'time' => $time,
+                // 'status' => 0,
+            ]);
+        }
+        return redirect()->back()->with('message', 'Appointment created for'. $request->date);
     }
 
     /**

@@ -337,7 +337,7 @@
                 <div class="pb-0 text-left bg-transparent">
                   <p>Set Time and Date of the Doctor's Availability</p>
                 </div>
-                <form class="form-style" action="{{url('Appointment-Set')}}" method="post">
+                <form class="form-style" action="{{url('Appointment-Set', $data->id)}}" method="post">
                   @csrf
 
                   <div class="pb-2">Choose date</div>
@@ -666,7 +666,36 @@
         </div>
       </main>
     </div>
-
+    @if (session()->has('message'))
+    <div class="alert alert-success 
+    alert-dissmissible 
+    fade show 
+    position-fixed
+    z-index-2  
+    bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
+    "role="alert"
+    id="dismiss">
+      <div class="p-3  rounded-0">
+        <div class="row">
+          <div class="col-10 d-flex justify-content-center align-item-center">
+            <div class="card-body">
+              <div class="text-center" style="font-size: 13px; font-weight: 600">
+                  {{session()->get('message')}}
+              </div>
+              <div class="text-center" style="font-size: 12px">
+                Please wait for the confirmation.
+              </div>
+            </div>
+          </div>
+          <div class="col-2 d-flex justify-content-center align-item-center">
+            <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>      
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>

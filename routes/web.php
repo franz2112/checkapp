@@ -83,7 +83,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->middleware('auth');
 
     // admin set appoint
-    Route::post('/Appointment-Set', [AppointmentSetController::class,'store'])
+    Route::post('/Appointment-Set/{id}', [AppointmentSetController::class,'store'])
     ->name('Appointment-Set')
     ->middleware('auth');
 
