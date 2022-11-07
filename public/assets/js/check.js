@@ -249,6 +249,9 @@ $("document").ready(function () {
     } else if (document.location.pathname == "/Appointment") {
         $(".nav-item").removeClass("active");
         $("#active-a").addClass("active-appoint");
+    } else if (document.location.pathname == "/Notifications") {
+        $(".nav-item").removeClass("active");
+        $("#active-n").addClass("active-notif");
     }
 });
 

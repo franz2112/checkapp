@@ -14,6 +14,7 @@ use App\Models\Clinic;
 
 use App\Models\Appointment;
 
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     //
@@ -71,6 +72,8 @@ class HomeController extends Controller
         $appoint=new appointment;
         $ids = Auth::id();
         $image=$request->specialId;
+  
+
         if ($request->$image){
             $imagename=time().'.'.$image->getClientoriginalExtension();
             $request->specialId->move('assets/admin/img/specialId',$imagename);
@@ -85,8 +88,9 @@ class HomeController extends Controller
         $appoint->clinic_id=$id;
         $appoint->user_id=$ids;
 
-        $appoint->save();
-        return redirect()->back()->with('message', 'Appointment Request Successful!');
+        // $appoint->save();
+        // return redirect()->back()->with('message', 'Appointment Request Successful!');
+        return $appoint;
 
     }
 

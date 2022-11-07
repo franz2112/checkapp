@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('doctor');
             $table->string('consultation');
-            $table->string('date');
+            $table->date('date');
             $table->string('time');
             $table->longText('reason');
             $table->string('specialId')->nullable();

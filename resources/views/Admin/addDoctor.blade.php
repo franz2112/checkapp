@@ -1,44 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+  
+  @include('Admin.Separated.header')
 
-    <link sizes="76x76" rel="icon" type="image/png" href="../assets/admin/img/CheckappLogo.png" />
-    <title>{{ config('Add-Doctor.name') }}</title>
-        
-    <!--     Fonts and icons     -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-      rel="stylesheet"
-    />
-    <!-- Nucleo Icons -->
-    <link href="../assets/admin/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/admin/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script
-      src="https://kit.fontawesome.com/42d5adcbca.js"
-      crossorigin="anonymous"
-    ></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-    <link href="../assets/admin/css/nucleo-svg.css" rel="stylesheet" />
-
-    @vite([
-        'public/assets/admin/css/soft-ui-dashboard.css?v=1.0.6"', 
-        
-        'public/assets/admin/js/soft-ui-dashboard.js', 
-          
-        'public/assets/vendor/all.js'
-         ])
-      
-      @livewireStyles
-  </head>
 
   <body class="g-sidenav-show bg-gray-100">
   
@@ -414,10 +379,10 @@
                 class="breadcrumb-item text-sm text-dark active"
                 aria-current="page"
               >
-                Dashboard
+                Add Doctors
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+            <h6 class="font-weight-bolder mb-0">Add Doctors</h6>
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -675,7 +640,7 @@
                     <button type="submit" class="btn bg-gradient-primary">submit</button>
                   </div>
                 </div>
-              </forma>
+              </form>
             </div>
           </div>
         </div>
@@ -717,11 +682,6 @@
                 <div class="card">
                     <div class="card-header p-3">
                         <div class="bg-gradient-primary border-radius-lg h-100">
-                            <img
-                                src="../assets/admin/img/shapes/waves-white.svg"
-                                class="position-absolute h-100 w-50 top-0 d-lg-block d-none"
-                                alt="waves"
-                            />
                             <div
                                 class="position-relative d-flex align-items-center justify-content-center h-100"
                             >
@@ -746,7 +706,7 @@
                                 <p class="text-sm"> {{ $doctor->Dphone }} </p>
                                 <a
                                     class="text-sm font-weight-bold"
-                                    href="#"
+                                    href="{{ url('Doctor-details', $doctor->id) }}""
                                 >
                                     Edit Information
                                     <i

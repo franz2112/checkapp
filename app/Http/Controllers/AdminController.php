@@ -13,6 +13,8 @@ use App\Models\Appointment;
 
 use App\Models\User;
 
+use Carbon\Carbon;
+ 
 class AdminController extends Controller
 {
     // doctor side
@@ -77,6 +79,37 @@ class AdminController extends Controller
 
         return view('admin.addDoctor', compact('datadoctor', 'clinicInfo'));
     }
+    // doctor details
+    public function DocD($id){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->get();
 
+        $data=doctor::find($id);
+        
+        // $dates = doctor::where('id', $id)->pluck('bdate')->first();
 
+        // $newformat = date('Y-m-d',$dates);
+        // return $profiles;
+        return view('admin.doctorDetails', compact('data', 'profiles'));
+    }
+
+    public function editDoctor(Request $request, $id){
+        $doctor=doctor::find($id);
+        $image=$request->file;
+        if($image){
+            $imagename = time().'.'.$image->getClientoriginalExtension();
+            $request->file->move('assets/admin/img/doctorimage', $imagename);
+            $doctor->file=$imagename;
+        }
+        $doctor->Dfname=$request->Dfname;
+        $doctor->Dlname=$request->Dlname;
+        $doctor->bdate=$request->date;
+        $doctor->Specialization=$request->Specialization;
+        $doctor->Demail=$request->Demail;
+        $doctor->Dphone=$request->Dphone;
+        
+        $doctor->save();
+        return redirect()->back()->with('message', 'Doctor Edited Successfully');
+    }
 }

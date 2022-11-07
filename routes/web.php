@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\DeveloperController;
 
+use App\Http\Controllers\AppointmentSetController;
+
 
 // user side not login
 Route::get('/welcome', function () {
@@ -70,6 +72,19 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     Route::get('/Appointment-Cancel/{id}', [AdminController::class, 'AppCel'])
     ->name('Appointment-Approval')
+    ->middleware('auth');
+
+    Route::get('/Doctor-details/{id}', [AdminController::class,'DocD'])
+    ->name('Doctor-details')
+    ->middleware('auth');
+    
+    Route::post('/Doctor-details/{id}', [AdminController::class,'editDoctor'])
+    ->name('Doctor-details')
+    ->middleware('auth');
+
+    // admin set appoint
+    Route::post('/Appointment-Set', [AppointmentSetController::class,'store'])
+    ->name('Appointment-Set')
     ->middleware('auth');
 
     

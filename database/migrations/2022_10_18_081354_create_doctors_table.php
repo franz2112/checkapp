@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Dfname');
             $table->string('Dlname');
             $table->string('Gender')->nullable();
-            $table->string('Bdate');
+            $table->date('Bdate');
             $table->string('Specialization');
             $table->string('Demail')->nullable();
             $table->string('Dphone')->nullable();

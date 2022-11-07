@@ -22,6 +22,8 @@ class DeveloperController extends Controller
 {
     //
     public function Cupload(Request $request){
+        $this->validateCupload($request);
+
         $clinic=new clinic;
         $profile=$request->Profile;
         $proof=$request->Proof;

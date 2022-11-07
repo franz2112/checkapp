@@ -513,7 +513,7 @@
               <span class="price">$12</span>
               <h4>Standard Plan App</h4>
               <div class="icon">
-                <img src="..." alt="" />
+                <img src="../assets/img/4040101.png" alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -533,7 +533,7 @@
               <span class="price">$25</span>
               <h4>Business Plan App</h4>
               <div class="icon">
-                <img src="..." alt="" />
+                <img src="../assets/img/3594609.png" alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -553,7 +553,7 @@
               <span class="price">$66</span>
               <h4>Premium Plan App</h4>
               <div class="icon">
-                <img src="..." alt="" />
+                <img src="../assets/img/TaeAugust11-[Converted].png" alt="" />
               </div>
               <ul>
                 <li>Lorem Ipsum Dolores</li>
@@ -660,6 +660,7 @@
                 <li><a href="#">Career</a></li>
                 <li><a href="#">Editorial Team</a></li>
                 <li><a href="#">Protection</a></li>
+
               </ul>
             </div>
             <div class="col-sm-6 col-lg-3 py-3">
@@ -722,6 +723,6 @@
 
     <script src="../assets/vendor/wow/wow.min.js"></script>
 
-
+    @livewireScripts
   </body>
 </html>

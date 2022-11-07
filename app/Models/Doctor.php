@@ -9,8 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Doctor extends Model
 {
     use HasFactory;
+
     
-    // public function doctors(){
-    //     return $this->hasMany('App\Models\Doctor');
-    // }
+    public function setBirthDateAttribute($value){
+        $this->attributes ['bdate'] = Carbon::createFromFormat('m/d/Y',  $value)->format('Y-m-d');
+    }
+    public function getBirthDateAttribute(){
+        return Carbon::createFromFormat('Y-m-d',  $this->attributes['bdate'] )->format('m/d/Y');
+    }
 }

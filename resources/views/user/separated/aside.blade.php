@@ -1,7 +1,7 @@
 <aside  x-data="{ open: false }"  class="sidebar-part">
     <ul class="navbar-nav ps-4">
       <div class="main-title-page py-4 px-3">
-        <a href="" class="nav-title">
+        <a href="" class="">
           <img src="../assets/img/Checkapp logo 2.0.png" alt="logo" />
           <span class="links-name text-black">Check</span>
           <span class="links-name">App</span>

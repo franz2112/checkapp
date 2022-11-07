@@ -20,11 +20,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         
         @vite([
+          'resources/js/app.js',
+          
+          'resources/js/bootstrap.js',
+
           'public/assets/css/style.css', 
           
           'public/assets/js/check.js', 
     
           'public/assets/vendor/all.js'
+
            ])
         
         @livewireStyles
@@ -98,11 +103,11 @@
                     </div>
                     <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px; font-size: 14px">
                       <li class="px-3 py-1 text-center fw-light" style="font-size: 12px"><span>Manage Account</span> </li>
-                      <li><a class="dropdown-item" href="{{ url('Appointment') }}">Appointments</a></li>
                       <li><a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}</a></li>
                       <li><a class="dropdown-item" href="#">Privacy</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li class="px-3 py-1 text-truncate"><i class="fa-solid fa-globe pe-2"></i> Location</li>
+                      <li class="px-3 py-1 text-truncate"><i class="fa-solid fa-globe pe-2"></i>{{ Auth::user()->address}}
+                      </li>
                       <li><hr class="dropdown-divider"></li>
                       <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
@@ -279,7 +284,10 @@
                                       <div class="days"></div>
                                     </div>
                                   </div> --}}
-                                  <input type="date" name="date" class="form-select form-select-sm mb-3" required="required">
+                                  {{-- <input type="date" name="date"  class="form-select form-select-sm mb-3" required="required"> --}}
+                                 {{-- <div id="app">
+                                 </div> --}}
+                                 
                                 </div>
                                 <div class="col-md-6">
                                   <h6 class="mt-2">Select Time</h6>
@@ -547,8 +555,8 @@
                 <div class="row">
                   <div class="r-sidebar">
                     <div class="col-12 mb-2">
-                      <a href="/clinics">
-                        <div class="find-new-btn">Find New Clinic</div>
+                      <a href="/Appointment">
+                        <div class="find-new-btn">My Appointments</div>
                       </a>
                     </div>
 

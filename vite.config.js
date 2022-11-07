@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import laravel, { refreshPaths } from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     server: {
@@ -20,6 +21,14 @@ export default defineConfig({
                 "public/assets/js/check.js",
             ],
             refresh: [...refreshPaths, "app/Http/Livewire/**"],
+        }),
+        vue({
+            template: {
+                compilerOptions: {
+                    // treat all tags with a dash as custom elements
+                    isCustomElement: (tag) => tag.includes("-"),
+                },
+            },
         }),
     ],
 });

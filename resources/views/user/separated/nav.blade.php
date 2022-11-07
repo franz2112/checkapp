@@ -4,11 +4,11 @@
           {{-- responsive --}}
           <div class="d-lg-none">
             <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <img src="/assets/img/3efdbd.jpeg" class="img-thumbnail rounded-circle" alt="Avatar" width="36px">          
+              <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
             </button>
             <div id="navbarCollapse" class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav me-auto">
-                  <li class="nav-item py-3">user@gmail.com</li>
+                  <li class="nav-item py-3">{{ Auth::user()->fname}} {{ Auth::user()->mname}} {{ Auth::user()->lname}}</li>
                   <li><hr></li>
                   <li class="nav-item"><span class="nav-link fw-semibold text-dark">Manage Account</span></li>
                   <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">{{ __('Profile') }}</a></li>
