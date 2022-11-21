@@ -11,6 +11,10 @@ use App\Models\Clinic;
 
 use App\Models\Appointment;
 
+use App\Models\AppointmentSet;
+
+use App\Models\Time;
+
 use App\Models\User;
 
 use Carbon\Carbon;
@@ -112,4 +116,77 @@ class AdminController extends Controller
         $doctor->save();
         return redirect()->back()->with('message', 'Doctor Edited Successfully');
     }
+
+    public function create($id){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->get();
+
+        $data=doctor::find($id);
+        return view('admin.doctorCreate', compact('data', 'profiles'));
+    }
+
+    public function store(Request $request, $id){   
+        $this->validate($request,[
+            'date'=>'required|unique:appointment_sets,date,NULL,id,doctor_id,'.$id,
+            'time' =>'required'
+        ]);
+        $setAppoint = AppointmentSet::create([
+            'doctor_id' => $id,
+            'date' => $request->date 
+        ]);
+        foreach($request->time as $time){
+            Time::create([
+                'appointmentSet_id' => $setAppoint->id,
+                'time' => $time,
+                // 'status' => 0,
+            ]);
+        }
+        return redirect()->back()->with('message', 'Appointment created for '. $request->date);
+    }
+
+    public function index($id){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->get();
+
+        $data=doctor::find($id);
+        $appointments=AppointmentSet::latest()->where('doctor_id', $id)->get();
+        // return $appointments;
+        return view('admin.doctorIndex', compact('data', 'profiles', 'appointments'));
+    }
+
+    public function check(Request $request, $id){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->get();
+        $data=doctor::find($id);
+
+        $dates = $request->date;
+        $appointment  = AppointmentSet::where('date', $dates)
+            ->where('doctor_id', $id)->first();
+        if(!$appointment){
+            return redirect()->back()
+            ->with('message', 'No time set with this date.');
+            // return "fail";
+        }
+        $appointmentSetID= $appointment->id;
+        $Time= Time::where('appointmentSet_id', $appointmentSetID)->get();
+        return view('admin.doctorIndex', compact('Time', 'appointmentSetID', 'dates', 'data'));
+    }
+
+    public function update(Request $request, $id){
+        $appointmentId = $request->appointmentSetID;
+        $appointment = Time::where('appointmentSet_id',$appointmentId)->delete();
+        foreach($request->time as $time){
+            Time::create([
+                'appointmentSet_id'=>$appointmentId,
+                'time'=>$time,
+                'status'=>0
+            ]);
+        }
+        return redirect()->route('Doctor-index', $id)->with('message','Appointment time updated!');
+    }
+
+    
 }

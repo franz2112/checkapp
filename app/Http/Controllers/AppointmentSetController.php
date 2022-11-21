@@ -8,6 +8,8 @@ use App\Models\AppointmentSet;
 
 use App\Models\Time;
 
+use Illuminate\Support\Facades\Validator;
+
 class AppointmentSetController extends Controller
 {
     /**
@@ -17,8 +19,7 @@ class AppointmentSetController extends Controller
      */
     public function index()
     {
-        return view('admin.create');
-
+        // return view('admin.doctorindex');
     }
 
     /**
@@ -38,18 +39,22 @@ class AppointmentSetController extends Controller
      */
     public function store(Request $request, $id)
     {   
-        $setAppoint = AppointmentSet::create([
-            'doctor_id' => $id,
-            'date' => $request->date 
-        ]);
-        foreach($request->time as $time){
-            Time::create([
-                'appointmentSet_id' => $setAppoint->id,
-                'time' => $time,
-                // 'status' => 0,
-            ]);
-        }
-        return redirect()->back()->with('message', 'Appointment created for'. $request->date);
+        // $this->validate($request,[
+        //     'date'=>'required|unique:appointment_sets,date,NULL,id,doctor_id,'.$id,
+        //     'time' =>'required'
+        // ]);
+        // $setAppoint = AppointmentSet::create([
+        //     'doctor_id' => $id,
+        //     'date' => $request->date 
+        // ]);
+        // foreach($request->time as $time){
+        //     Time::create([
+        //         'appointmentSet_id' => $setAppoint->id,
+        //         'time' => $time,
+        //         // 'status' => 0,
+        //     ]);
+        // }
+        // return redirect()->back()->with('message', 'Appointment created for '. $request->date);
     }
 
     /**
@@ -95,5 +100,20 @@ class AppointmentSetController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check(Request $request, $id)
+    {
+        // $dates = $request->date;
+        // $appointment  = AppointmentSet::where('date', $dates)
+        //     ->where('doctor_id', $id)->first();
+        // if(!$appointment){
+        //     // return redirect()->to('/Doctor-check/{id}')
+        //     // ->with('errmessage', 'Appointment Time is not Available for this date.');
+        // }
+        // $appointmentSetID= $appointmentSet->id;
+        // $Time= $Time::where('appointmentSet_id', $appointmentSetID)->get();
+        // return $time;
+        // return view('admin.appointment.index', compact('times', 'appointmentSetID', 'date'));
     }
 }

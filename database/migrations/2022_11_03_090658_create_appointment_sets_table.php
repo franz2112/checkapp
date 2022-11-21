@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('appointment_sets', function (Blueprint $table) {
             $table->id();
             $table->integer('doctor_id');
-            $table->string('date');            
+            $table->date('date');            
             $table->timestamps();
         });
     }

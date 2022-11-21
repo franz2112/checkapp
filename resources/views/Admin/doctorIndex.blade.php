@@ -3,7 +3,6 @@
   @include('Admin.Separated.header')
 
   <body class="g-sidenav-show bg-gray-100">
-
     <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3"
       id="sidenav-main"
@@ -27,7 +26,11 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="active" class="nav-link active" href="">
+            <a
+              id="active"
+              class="nav-link"
+              href="{{url('Doctor-details', $data->id)}}"
+            >
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -115,7 +118,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('Doctor-index', $data->id)}}">
+            <a class="nav-link active" href="">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -257,7 +260,7 @@
                 Doctors Details
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Doctors Information</h6>
+            <h6 class="font-weight-bolder mb-0">Doctor's Availability</h6>
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -435,152 +438,487 @@
       </nav>
       <!-- End Navbar -->
 
-      <div class="container position-sticky z-index-2 top-0">
+      <div class="container position-sticky z-index-2 top-0 mb-3">
         <div class="main-content position-relative border-radius-lg">
           <div class="card mt-3">
             <div class="page-header min-vh-75">
               <div class="container">
                 <div class="card-body pb-3 text-left bg-transparent">
-                </div>
-                <form
-                  class="form-style"
-                  action="{{url('/Doctor-details', $data->id)}}"
-                  method="POST"
-                  enctype="multipart/form-data"
-                >
-                  @csrf
-                  <div class="row">
-                    <div class="d-flex flex-column px-5">
-                      <img
-                        src="../assets/admin/img/doctorimage/{{ $data->file }}"
-                        class="w-15 mb-2"
-                      />
-                      <input
-                        class="form-control form-control-sm w-30 m-0"
-                        type="file"
-                        id="formFile"
-                        name="file"
-                        value="{{ $data->file }}"
-                      />
-                    </div>
-                    <div
-                      class="col-xl-6 col-lg-5 col-md-6 d-flex flex-column mx-auto"
-                    >
-                      <div class="card card-plain mt-3">
-                        <div class="card-body pt-0">
-                          <label>First Name</label>
-                          <div class="mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="First Name"
-                              aria-label="Dfname"
-                              aria-describedby="Dfname"
-                              name="Dfname"
-                              value="{{ $data->Dfname }}"
-                            />
-                          </div>
-                          <label>Last Name</label>
-                          <div class="mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Last Name"
-                              aria-label="Dlname"
-                              aria-describedby="Dlname"
-                              name="Dlname"
-                              value="{{ $data->Dlname }}"
-                            />
-                          </div>
-                          <label>Birthdate</label>
-                          <div class="mb-3">
-                            <input
-                              type="date"
-                              class="form-control"
-                              placeholder="Bdate"
-                              aria-label="Bdate"
-                              aria-describedby="Bdate"
-                              name="date"
-                              value="{{ $data->Bdate }}"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="col-xl-6 col-lg-5 col-md-6 d-flex flex-column mx-auto"
-                    >
-                      <div class="card card-plain mt-3">
-                        <div class="card-body pt-0">
-                          <label>Specialization</label>
-                          <div class="mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Specialization"
-                              aria-label="Specialization"
-                              aria-describedby="Specialization"
-                              name="Specialization"
-                              value="{{ $data->Specialization }}"
-                            />
-                          </div>
-                          <label>Email</label>
-                          <div class="mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Email"
-                              aria-label="Email"
-                              aria-describedby="Email"
-                              name="Demail"
-                              value="{{ $data->Demail }}"
-                            />
-                          </div>
-                          <label>Phone Number</label>
-                          <div class="mb-3">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Phone Number"
-                              aria-label="Dphone"
-                              aria-describedby="Dphone"
-                              name="Dphone"
-                              value="{{ $data->Dphone }}"
-                            />
-                          </div>
-                          <div class="text-center d-flex  gap-3">
-                            <a
-                              href="/Add-Doctor"
-                              class="btn btn-outline-primary w-100 mt-4 mb-0"
-                            >
-                              Cancel
-                            </a>
-                            <button
-                              type="success"
-                              class="btn btn-primary w-100 mt-4 mb-0"
-                            >
-                              Save
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  {{--
+                  <h3
+                    class="font-weight-bolder text-dark text-gradient pt-3"
+                  ></h3>
+                  --}}
+                  <div class="pb-0 text-left bg-transparent">
+                    <p class="fw-bold">
+                      Update Time and Date of the Doctor's Availability
+                    </p>
                   </div>
-                </form>
+                  <form
+                    class="form-style"
+                    action="{{url('Appointment-create', $data->id)}}"
+                    method="post"
+                  >
+                    @csrf
+                    <div class="pb-2">Choose date</div>
+                    <div class="">
+                      @if(isset($dates))
+                      <div class="pb-1">Your timetable for: {{$dates}}</div>
+                      @endif
+                      <input
+                        type="date"
+                        class="form-control datetimepicker-input"
+                        {{--
+                        id="datepicker"
+                        data-toggle="datetimepicker"
+                        data-target="#datepicker"
+                        --}}
+                        name="date"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">
+                      Check
+                    </button>
+                  </form>
+
+                  {{-- time part --}}
+                  @if(Route::is('Appointment-create'))
+                  <form
+                    class="form-style"
+                    action="{{url('Doctor-update', $data->id)}}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                  >
+                    @csrf
+                    <div class="mb-3">
+                      <div class="row pt-3">
+                        <div class="col-6">Choose AM time</div>
+                        <div class="col-6 text-end">
+                          <span class="">Mark/Unmark All</span>
+                          <input
+                            type="checkbox"
+                            onclick=" for(c in document.getElementsByName('time[]')) document.getElementsByName('time[]').item(c).checked=this.checked"
+                          />
+                        </div>
+                      </div>
+                      <div class="pt-2">
+                        <table class="table table-striped">
+                          <tbody>
+                            <input type="hidden" name="appointmentSetID" value="{{$appointmentSetID}}">
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value=" 6am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','6am')?'checked':''}}
+                                  @endif 
+                                  />
+                                6am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="6:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','6:30am')?'checked':''}}
+                                  @endif
+                                /> 6:30am
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="7am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','7am')?'checked':''}}
+                                  @endif />
+                                7am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="7:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','7:30am')?'checked':''}}
+                                  @endif
+                                /> 7:30am
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="8am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','8am')?'checked':''}}
+                                  @endif />
+                                8am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="8:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','8:30am')?'checked':''}}
+                                  @endif
+                                /> 8:30am
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">4</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="9am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','9am')?'checked':''}}
+                                  @endif />
+                                9am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="9:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','9:30am')?'checked':''}}
+                                  @endif
+                                /> 9:30am
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">5</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="10am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','10am')?'checked':''}}
+                                  @endif
+                                /> 10am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="10:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','10:30am')?'checked':''}}
+                                  @endif
+                                /> 10:30am
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">6</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="11am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','11am')?'checked':''}}
+                                  @endif
+                                /> 11am
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="11:30am"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','11:30am')?'checked':''}}
+                                  @endif
+                                /> 11:30am
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="pt-3">
+                      <div>Choose PM time</div>
+                      <div class="pt-2">
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr>
+                              <th scope="row">7</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="12pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','12pm')?'checked':''}}
+                                  @endif
+                                /> 12pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="12:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','12:30pm')?'checked':''}}
+                                  @endif
+                                /> 12:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">8</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="1pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','1pm')?'checked':''}}
+                                  @endif />
+                                1pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="1:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','1:30pm')?'checked':''}}
+                                  @endif
+                                /> 1:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">9</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="2pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','2pm')?'checked':''}}
+                                  @endif />
+                                2pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="2:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','2:30pm')?'checked':''}}
+                                  @endif
+                                /> 2:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">10</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="3pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','3pm')?'checked':''}}
+                                  @endif />
+                                3pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="3:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','3:30pm')?'checked':''}}
+                                  @endif
+                                /> 3:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">11</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="4pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','4pm')?'checked':''}}
+                                  @endif />
+                                4pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="4:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','4:30pm')?'checked':''}}
+                                  @endif
+                                /> 4:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">12</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="5pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','5pm')?'checked':''}}
+                                  @endif />
+                                5pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="5:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','5:30pm')?'checked':''}}
+                                  @endif
+                                /> 5:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">13</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="6pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','6pm')?'checked':''}}
+                                  @endif />
+                                6pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="6:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','6:30pm')?'checked':''}}
+                                  @endif
+                                /> 6:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">14</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="7pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','7pm')?'checked':''}}
+                                  @endif />
+                                7pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="7:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','7:30pm')?'checked':''}}
+                                  @endif
+                                /> 7:30pm
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">15</th>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="8pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','8pm')?'checked':''}}
+                                  @endif />
+                                8pm
+                              </td>
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  name="time[]"
+                                  value="8:30pm"
+                                  @if(isset($Time)){{$Time->
+                                  contains('time','8:30pm')?'checked':''}}
+                                  @endif
+                                /> 8:30pm
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </form>
+                  
+                  @else 
+                  <h6>Your appoinment time list: 
+                    {{$appointments->count()}}
+                  </h6>
+                  
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        {{-- <th scope="col">#</th> --}}
+                        {{-- <th scope="col">Creator</th> --}}
+                        <th scope="col">Date</th>
+                        <th scope="col">View/Update</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          
+                    @foreach($appointments as $appoinment)
+                    <tr>
+                      {{-- <th scope="row"></th> --}}
+                      {{-- <td>
+                        {{$appoinment->doctor->Dfname}}
+                      </td> --}}
+                      <td>{{$appoinment->date}}</td>
+                      <td>
+                        <form action="{{route('Appointment-create', $data->id)}}" method="post">
+                          @csrf
+                          <input type="hidden" name="date" value="{{$appoinment->date}}">
+                          <button type="submit" class="btn btn-primary">View/Update</button>
+                        </form>
+                      </td>
+                    </tr>
+                    @endforeach 
+                    </tbody>
+                  </table>
+                  @endif
+                </div>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
 
-      @include('Admin.Separated.afooter')
-
+      <div class="pb-3">
+        @include('Admin.Separated.afooter')
+      </div>
     </main>
 
     @if (session()->has('message'))
     <div
-      class="alert alert-success alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
+      class="alert alert-light lert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
       role="alert"
       id="dismiss"
     >
@@ -611,6 +949,41 @@
       </div>
     </div>
     @endif 
+    @foreach ($errors->all() as $error)
+    <div
+      class="alert alert-danger alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
+      role="alert"
+      id="dismiss"
+    >
+      <div class="p-3 rounded-0">
+        <div class="row">
+          <div class="col-10 d-flex justify-content-center align-item-center">
+            <div class="card-body">
+              <div
+                class="text-center text-light"
+                style="font-size: 13px; font-weight: 600"
+              >
+                {{$error}}
+              </div>
+              <div class="text-center" style="font-size: 12px">
+                {{session()->get('message')}}
+              </div>
+            </div>
+          </div>
+          <div class="col-2 d-flex justify-content-center align-item-center">
+            <button
+              type="button"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              class="btn py-0 px-2 mb-0 shadow-none"
+            >
+              <i class="fa-solid fa-xmark text-lg text-light"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
@@ -631,13 +1004,13 @@
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
     </script>
-        <script type="text/javascript">
-          $(document).ready(function () {
-            $("#datepicker").datetimepicker({
-              format: "YYYY-MM-DD",
-            });
-          });
-        </script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#datepicker").datetimepicker({
+          format: "YYYY-MM-DD",
+        });
+      });
+    </script>
     <script>
       window.setTimeout(function () {
         $("#dismiss")

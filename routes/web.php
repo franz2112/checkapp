@@ -58,10 +58,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Appointments')
     ->middleware('auth');
 
-    Route::get('/Add-Doctor', [AdminController::class, 'AddDoctor'])
-    ->name('Add-Doctor')
-    ->middleware('auth');
-
     Route::post('/upload-doctor', [AdminController::class, 'upload'])
     ->name('Add-Doctor')
     ->middleware('auth');
@@ -74,6 +70,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Appointment-Approval')
     ->middleware('auth');
 
+    
+    Route::get('/Add-Doctor', [AdminController::class, 'AddDoctor'])
+    ->name('Add-Doctor')
+    ->middleware('auth');
+
     Route::get('/Doctor-details/{id}', [AdminController::class,'DocD'])
     ->name('Doctor-details')
     ->middleware('auth');
@@ -81,12 +82,28 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::post('/Doctor-details/{id}', [AdminController::class,'editDoctor'])
     ->name('Doctor-details')
     ->middleware('auth');
-
-    // admin set appoint
-    Route::post('/Appointment-Set/{id}', [AppointmentSetController::class,'store'])
-    ->name('Appointment-Set')
+    
+    Route::get('/Appointment-create/{id}', [AdminController::class,'create'])
+    ->name('Appointment-create')
+    ->middleware('auth');
+    
+    Route::post('/Appointment-create/{id}', [AdminController::class,'check'])
+    ->name('Appointment-create')
     ->middleware('auth');
 
+    Route::get('/Doctor-index/{id}', [AdminController::class,'index'])
+    ->name('Doctor-index')
+    ->middleware('auth');
+
+
+    Route::post('/Doctor-update/{id}', [AdminController::class,'update'])
+    ->name('Doctor-update')
+    ->middleware('auth');
+
+    // admin set appoint
+    Route::post('/Appointment-Set/{id}', [AdminController::class,'store'])
+    ->name('Appointment-Set')
+    ->middleware('auth');
     
     // admin developers side
     Route::get('/clinic-request', [DeveloperController::class, 'clinicreq'])
