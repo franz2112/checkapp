@@ -26,6 +26,7 @@
         "moment": "^2.29.4",
         "sass": "^1.55.0",
         "vue": "^3.2.36",
-        "vue-loader": "^17.0.0"
+        "vue-loader": "^17.0.0",
+        "vue3-loading-overlay": "^0.0.0"
     }
 }

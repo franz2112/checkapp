@@ -10,6 +10,8 @@
         <link rel="shortcut icon" href="../assets/img/Checkapp logo 2.0.png" />
         
         <link rel="stylesheet" href="../assets/css/style.css"/>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     
@@ -18,7 +20,23 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         
+        <style>
+          .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover{
+            border: 1px solid #ffff;
+            background: #35bf53;
+            font-weight: normal;
+            color: #ffffff;
+          }
+          .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+            border: 1px solid #000000;
+            background: #ebffef;
+            color: #000000;
+          }
+        </style>
+
         @vite([
           'resources/js/app.js',
           
@@ -230,315 +248,8 @@
                             <h5 class="mb-0 px-3">Set an Appointment</h5>
                             <hr class="m-2" />
                             @foreach ($clinic as $clinics)
-                            <form  method="POST" action="{{ url('Request-Appointment', $clinics->id) }}" id="style-2" class="form py-0" " enctype="multipart/form-data">
-                              @csrf
-                              <!-- Progress bar -->
-                              <div class="progressbar mt-1">
-                                <div
-                                  class="progress progress-bar progress-bar-striped progress-bar-animated"
-                                  id="progress"
-                                ></div>
-
-                                <div class="progress-step p-active"></div>
-                                <div class="progress-step"></div>
-                                <div class="progress-step"></div>
-                                <div class="progress-step"></div>
-                              </div>
-
-                              <!-- Steps -->
-                              <div class="form-step f-active">
-                                {{-- error --}}
-                                <p id="output" class="my-2 text-danger"></p>
-
-                                {{-- date --}}
-                                <div class="row mb-1">
-                                <div class="col-md-6">
-                                  <h6 class="mt-2">Select Date</h6>
-                                  {{-- <div class="container-cl">
-                                    <div class="calendar">
-                                      <div class="month">
-                                        <span class="prev">
-                                          <i
-                                            class="fa-solid fa-angle-left"
-                                          ></i>
-                                        </span>
-                                        <div class="date">
-                                          <h1></h1>
-                                          <p class="mb-0"></p>
-                                        </div>
-                                        <span class="next">
-                                          <i
-                                            class="fa-solid fa-angle-right"
-                                          ></i>
-                                        </span>
-                                      </div>
-                                      <div class="weekdays">
-                                        <div>Sun</div>
-                                        <div>Mon</div>
-                                        <div>Tue</div>
-                                        <div>Wed</div>
-                                        <div>Thu</div>
-                                        <div>Fri</div>
-                                        <div>Sat</div>
-                                      </div>
-                                      <div class="days"></div>
-                                    </div>
-                                  </div> --}}
-                                  {{-- <input type="date" name="date"  class="form-select form-select-sm mb-3" required="required"> --}}
-                                 {{-- <div id="app">
-                                 </div> --}}
-                                 
-                                </div>
-                                <div class="col-md-6">
-                                  <h6 class="mt-2">Select Time</h6>
-                                  <select
-                                    class="form-select form-select-sm mb-3"
-                                    aria-label=".form-select-lg example"
-                                    name="time"
-                                  >
-                                    <option selected>8:00 AM</option>
-                                    <option value="10:00 AM">10:00 AM</option>
-                                    <option value="11:00 AM">11:00 AM</option>
-                                    <option value="12:00 PM">12:00 PM</option>
-                                    <option value="01:00 PM">01:00 PM</option>
-                                    <option value="02:00 PM">02:00 PM</option>
-                                    <option value="03:00 PM">03:00 PM</option>
-                                  </select>
-                                </div>
-                              </div>
-                              
-
-                                <div class="ms-4">
-                                  <a
-                                    id="btn"
-                                    type="submit"
-                                    class="btn btn-next width-50 ml-auto"
-                                  >
-                                    Next
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div class="form-step">
-
-                                {{-- error --}}
-                                <p id="output" class="my-2 text-danger"></p>
-
- 
-                                
-                                <h6 class="mt-2" for="doctor">Select Doctor</h6>
-                                <div class="input-group">
-                                  <div class="row m-0">
-                                    @foreach ($dataDoctors as $doctors)
-                                      <div class="col-sm-6 p-0">
-                                        <div class="option m-1">
-                                          <input
-                                            type="radio"
-                                            name="doctor"
-                                            id="Doctor{{ $doctors->Dlname }}"
-                                            value="Doctor{{ $doctors->Dlname }}"
-                                          />
-                                          <label
-                                            class="label-d" 
-                                            for="Doctor{{ $doctors->Dlname }}"
-                                            aria-label="Doctor{{ $doctors->Dlname }}"
-                                          >
-                                            <span></span>
-                                            <div class="row">
-                                              <div class="d-block text-truncate"
-                                              style="min-width: 150px;">
-                                                Doc {{ $doctors->Dlname }}
-                                              </div>
-                                              <div class="d-block text-truncate"
-                                              style="min-width: 150px;">
-                                                {{ $doctors->Specialization }}
-                                              </div>
-                                            </div>
-
-                                            <div
-                                              class="card card--white card--sm"
-                                            >
-                                              <img
-                                                src="/assets/admin/img/doctorimage/{{ $doctors->file }}"
-                                                alt=""
-                                              />
-                                            </div>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    @endforeach
-                                    {{-- suggest --}}
-                                    <div class="col-sm-6 p-0">
-                                      <div class="option m-1">
-                                        <input
-                                          type="radio"
-                                          name="doctor"
-                                          id="suggest"
-                                          value="suggest"
-                                        />
-                                        <label
-                                          class="label-d" 
-                                          for="suggest"
-                                          aria-label="suggest"
-                                        >
-                                          <span></span>
-                                            <div class="d-block text-truncate"
-                                            style="min-width: 150px;">
-                                              Suggest Doctor
-                                            </div>
-                                          <div
-                                            class="card card--white card--sm"
-                                          >
-                                            <img
-                                              src="/assets/admin/img/blmkl.png"
-                                              alt=""
-                                            />
-                                          </div>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <h6 for="consultation" class="mt-2">
-                                  Select Consultation Type
-                                </h6>
-                                <div class="input-group">
-                                  <div class="row m-0">
-                                    <div class="col-sm-6 p-0">
-                                      <div class="option m-1">
-                                        <input
-                                          type="radio"
-                                          name="consultation"
-                                          id="ol"
-                                          value="Online"
-                                          required
-                                        />
-                                        <label
-                                          class="label-d"
-                                          for="ol"
-                                          aria-label="ol"
-                                        >
-                                          <span></span>
-
-                                          Online Consultation
-
-                                          <div
-                                            class="card card--white card--sm"
-                                          >
-                                            <img
-                                              src="/assets/img/noun-medical-check-up-2583365.png"
-                                              alt=""
-                                            />
-                                          </div>
-                                        </label>
-                                      </div>
-                                    </div>
-
-                                    <div class="col-sm-6 p-0">
-                                      <div class="option m-1">
-                                        <input
-                                          type="radio"
-                                          name="consultation"
-                                          id="f2f"
-                                          value="Face-to-Face"
-                                        />
-                                        <label
-                                          class="label-d"
-                                          for="f2f"
-                                          aria-label="f2f"
-                                        >
-                                          <span></span>
-                                          <p>Face-to-Face Consultation</p>
-                                          <div
-                                            class="card card--white card--sm"
-                                          >
-                                            <img
-                                              src="/assets/img/noun-face-to-face-4877515.png"
-                                              alt=""
-                                            />
-                                          </div>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                                <div class="btns-group">
-                                  <a href="#" class="btn btn-prev">Back</a>
-                                  <a href="#" class="btn btn-next">Next</a>
-                                </div>
-                              </div>
-
-                              <div class="form-step">
-                                <div class="row">
-                                  <div class="col-12">
-                                    <h6 class="my-4">Reason/Complaints</h6>
-                                    <textarea
-                                      class="form-control my-3"
-                                      rows="8"
-                                      id="comment"
-                                      name="reason"
-                                      placeholder="Add message here"
-                                      style="font-size: 13px"
-                                    ></textarea>
-                                  </div>
-                                </div>
-                                <div class="btns-group">
-                                  <a href="#" class="btn btn-prev">Back</a>
-                                  <a href="#" class="btn btn-next">Next</a>
-                                </div>
-                              </div>
-
-                              <div class="form-step">
-                                <div class="input-group">
-                                  <div class="row">
-                                    <div class="col-12">
-                                      <h6 class="my-3">Attach ID</h6>
-                                      <p>
-                                        Upload special ID for special rate.
-                                        (Senior Citizen, PWD, etc. e.g)
-                                      </p>
-
-                                      <input
-                                        class="form-control"
-                                        type="file"
-                                        id="formFile"
-                                        name="specialId"
-                                      />
-                                    </div>
-                                    <div class="col-12">
-                                      <h6 class="my-3">Terms and Condition</h6>
-                                      <div class="d-flex">
-                                        <input id="checkbox" type="checkbox" />
-                                        <label for="checkbox">
-                                          <p class="mx-3 my-0">
-                                            I have read, understood, and
-                                            accepted the
-                                            <a href="#" style="color: #35bf53"
-                                              >Terms & Conditions</a
-                                            >
-                                            and
-                                            <a href="#" style="color: #35bf53"
-                                              >Privacy Policy</a
-                                            >
-                                          </p>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="btns-group mt-3">
-                                  <a href="#" class="btn btn-prev">Back</a>
-                                  <input
-                                    type="submit"
-                                    value="Submit"
-                                    class="btn"
-                                  />
-                                </div>
-                              </div>
-                            </form>
+                            <div id="app">
+                            </div>
                             @endforeach
                           </div>
                         </div>
@@ -728,6 +439,17 @@
                   $(this).remove();
               });
         }, 2000);
+    </script>
+    <script>
+    var dateToday = new Date();
+        $( function() {
+          $("#datepicker").datepicker({
+              dateFormat:"yy-mm-dd",
+              showButtonPanel:false,
+              numberOfMonths:1,
+              minDate:dateToday,
+          });
+      });
     </script>
   </body>
 

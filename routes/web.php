@@ -52,6 +52,18 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Notifications')
     ->middleware('auth');
 
+    Route::get('/TimeSelect/{id}', [HomeController::class, 'SelectTime'])
+    ->name('TimeSelect')
+    ->middleware('auth');
+
+    Route::post('/findDoctors/{id}', [HomeController::class, 'findDoctors'])
+    ->name('findDoctors')
+    ->middleware('auth');
+
+    Route::get('/Availables/{id}', [HomeController::class, 'show'])
+    ->name('Availables')
+    ->middleware('auth');
+
     
     // admin clinic part   
     Route::get('/Appointments', [AdminController::class, 'Appointments'])

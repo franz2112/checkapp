@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\User;
-
 use App\Models\Doctor;
-
 use App\Models\Clinic;
-
 use App\Models\Appointment;
-
+use App\Models\AppointmentSet;
+use App\Models\Time;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
@@ -59,15 +55,10 @@ class HomeController extends Controller
     public function selectedClinic($id){
         $dataDoctors = doctor::where('clinic_id', $id)->get();
         $clinic = clinic::where('id', $id)->get();
+
         return view('user.clinic-menu', compact('clinic', 'dataDoctors' ));
     }
-
-    public function CnclAppnt(Request $request, $id){
-        $appoint = appointment::where('id', $id)
-            ->update(['status' => 'Declined']);
-            return redirect()->back()->with('message', 'Appointment has been declined!');
-    }
-        
+      
     public function rqstAppoint(Request $request, $id){
         $appoint=new appointment;
         $ids = Auth::id();
@@ -94,8 +85,56 @@ class HomeController extends Controller
 
     }
 
+    public function CnclAppnt(Request $request, $id){
+        $appoint = appointment::where('id', $id)
+            ->update(['status' => 'Declined']);
+            return redirect()->back()->with('message', 'Appointment has been declined!');
+    }
+        
+
     public function notif(){
         return view('user.notification');
     }
+
+    public function SelectTime($id){
+        $dataDoctors = doctor::where('clinic_id', $id)->get('id');
+        $doctors = AppointmentSet::with('doctor')
+        ->whereIn('doctor_id', $dataDoctors)
+        ->whereDate('date',date('2022-11-30'))->get();
+    
+        // $doctors = AppointmentSet::with('doctor')
+        // ->whereDate('date',date('Y-m-d'))->get();
+
+        return $doctors;
+    }
+
+    public function findDoctors(Request $request, $id){
+        
+        $doctors = AppointmentSet::with('doctor')->whereDate('date',$request->date)->get();
+        return $doctors;
+    }
+
+
+    public function show($id){       
+         $clinic = clinic::where('id', $id)->get();
+         $dataDoctors = doctor::where('clinic_id', $id)->get();
+
+    	// date_default_timezone_set('Australia/Melbourne');
+        if(request('date')){
+            $doctors = $this->findDoctorsBasedOnDate(request('date'));
+            return $doctors;
+        }
+        $doctors = AppointmentSet::
+        whereIn('doctor_id', $dataDoctors)
+        ->where('date',date('Y-m-d'))->get();
+    	return $doctors;
+    }
+
+    public function findDoctorsBasedOnDate($date){
+        $doctors = AppointmentSet::where('date',$date)->get();
+        return $doctors;
+
+    }
+
 
 }
