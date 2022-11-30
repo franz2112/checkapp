@@ -43,8 +43,13 @@ class HomeController extends Controller
         $id = Auth::id();
         $dataAppoints = appointment::where('user_id', $id)
         ->with('clinic')->get();
-        // return $dataAppoints;
-        return view('user.appoints', compact('dataAppoints')); 
+
+        $docData = appointment::where('user_id', $id)
+        ->with('clinic')->pluck('doctor');
+        $doctorNames = doctor::whereIn('id', $docData)->get();
+
+        return $dataAppoints;
+        // return view('user.appoints', compact('dataAppoints', 'doctorNames')); 
     }
 
     public function clinics(){
@@ -79,9 +84,11 @@ class HomeController extends Controller
         $appoint->clinic_id=$id;
         $appoint->user_id=$ids;
 
-        // $appoint->save();
+        $appoint->save();
+
+        // dd($appoint);
         // return redirect()->back()->with('message', 'Appointment Request Successful!');
-        return $appoint;
+        // return $appoint;
 
     }
 
@@ -96,11 +103,11 @@ class HomeController extends Controller
         return view('user.notification');
     }
 
-    public function SelectTime($id){
+    public function SelectDoc($id){
         $dataDoctors = doctor::where('clinic_id', $id)->get('id');
         $doctors = AppointmentSet::with('doctor')
         ->whereIn('doctor_id', $dataDoctors)
-        ->whereDate('date',date('2022-11-30'))->get();
+        ->whereDate('date',date('Y-m-d'))->get();
     
         // $doctors = AppointmentSet::with('doctor')
         // ->whereDate('date',date('Y-m-d'))->get();
@@ -108,33 +115,41 @@ class HomeController extends Controller
         return $doctors;
     }
 
+    public function SelectTime($id){
+        $dataDoctors = doctor::where('clinic_id', $id)->get('id');
+        $date = AppointmentSet::
+        whereDate('date',date('Y-m-d'))->pluck('date')->first();
+    
+        $appointment = AppointmentSet::whereIn('doctor_id', $dataDoctors)->where('date',$date)->first();
+        $time = Time::where('appointmentSet_id',$appointment->id)->where('status', 0)->get();
+
+        return $time;
+    }
+
     public function findDoctors(Request $request, $id){
-        
-        $doctors = AppointmentSet::with('doctor')->whereDate('date',$request->date)->get();
+        $dataDoctors = doctor::where('clinic_id', $id)->get('id');
+        $doctors = AppointmentSet::with('doctor')
+        ->whereIn('doctor_id', $dataDoctors)
+        ->whereDate('date',$request->date)->get();
+
         return $doctors;
     }
 
+    public function findTimes(Request $request, $id){
 
-    public function show($id){       
-         $clinic = clinic::where('id', $id)->get();
-         $dataDoctors = doctor::where('clinic_id', $id)->get();
+        // $message = $request->doctor('doctor_id')->pluck{'id'}; 
+        // $name = ($request->doctor);
+        $showAllDoc = doctor::where('clinic_id', $id)->get('id');
+        $date = AppointmentSet::
+        whereIn('doctor_id', $showAllDoc)
+        ->whereDate('date',date($request->date))->get();
+        $select = $date->where('doctor_id', $request->doctor)->pluck('id');
 
-    	// date_default_timezone_set('Australia/Melbourne');
-        if(request('date')){
-            $doctors = $this->findDoctorsBasedOnDate(request('date'));
-            return $doctors;
-        }
-        $doctors = AppointmentSet::
-        whereIn('doctor_id', $dataDoctors)
-        ->where('date',date('Y-m-d'))->get();
-    	return $doctors;
+        $times = Time::whereIn('appointmentSet_id', $select)->where('status',0)->get();
+
+        // $appointment = AppointmentSet::whereIn('doctor_id', $request->doctor)->where('date',$date)->pluck('id')->all();
+        // $time = Time::where('appointmentSet_id',$appointment)->where('status', 0)->get();
+        return $times;
     }
-
-    public function findDoctorsBasedOnDate($date){
-        $doctors = AppointmentSet::where('date',$date)->get();
-        return $doctors;
-
-    }
-
 
 }

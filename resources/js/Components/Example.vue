@@ -1,7 +1,7 @@
 <template>
     <form
         method="post"
-        @submit.prevent="submit"
+        @submit.prevent="submit()"
         class="form py-0"
         enctype="multipart/form-data"
     >
@@ -23,37 +23,19 @@
             <p id="output" class="my-2 text-danger"></p>
 
             <div class="row mb-1">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h6 class="mt-2">Select Date</h6>
                     <Datepicker
+                        class="d-flex flex-column"
                         v-model="fields.date"
                         inline
                         autoApply
                         :enableTimePicker="false"
                         :minDate="new Date()"
                         :format="customDate"
-                        :value="date"
+                        :value="date.date"
                         name="date"
                     ></Datepicker>
-                </div>
-
-                <div class="col-md-6">
-                    <h6 class="mt-2">Select Time</h6>
-                    <select
-                        class="form-select form-select-sm mb-3"
-                        aria-label=".form-select-lg example"
-                        name="time"
-                        v-model="fields.time"
-                    >
-                        <option selected>8:00 AM</option>
-
-                        <option value="10:00 AM">10:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="12:00 PM">12:00 PM</option>
-                        <option value="01:00 PM">01:00 PM</option>
-                        <option value="02:00 PM">02:00 PM</option>
-                        <option value="03:00 PM">03:00 PM</option>
-                    </select>
                 </div>
             </div>
             <div class="ms-4">
@@ -64,13 +46,13 @@
         </div>
         <div class="form-step">
             <p id="output" class="my-2 text-danger"></p>
-
+            <!-- {{ fields.doctor }} -->
             <h6 class="mt-2" for="doctor">Select Doctor</h6>
             <div class="input-group">
                 <div class="row m-0">
                     <div
                         class="col-sm-6 p-0"
-                        v-for="(d, index) in doctors"
+                        v-for="(d, doctor) in doctors"
                         :key="d.id"
                     >
                         <div class="option m-1">
@@ -78,13 +60,14 @@
                                 type="radio"
                                 name="doctor"
                                 v-model="fields.doctor"
-                                :id="d.doctor.id"
-                                :value="d.doctor.Dlname"
+                                :id="d.doctor.Dlname"
+                                :value="d.doctor.id"
+                                @change="customTime()"
                             />
                             <label
                                 class="label-d"
-                                :for="d.doctor.id"
-                                aria-label="Doctor{{ d.doctor.Dlname }}"
+                                :for="d.doctor.Dlname"
+                                aria-label="Doctor{{ d.Dlname }}"
                             >
                                 <span></span>
                                 <div class="row">
@@ -114,12 +97,14 @@
                             </label>
                         </div>
                     </div>
+
                     <div class="col-sm-6 p-0">
                         <div class="option m-1">
                             <input
                                 type="radio"
                                 name="doctor"
                                 id="suggest"
+                                v-model="fields.doctor"
                                 value="suggest"
                             />
                             <label
@@ -205,18 +190,50 @@
         </div>
 
         <div class="form-step">
-            <div class="row">
-                <div class="col-12">
-                    <h6 class="my-4">Reason/Complaints</h6>
-                    <textarea
-                        class="form-control my-3"
-                        rows="8"
-                        id="comment"
-                        name="reason"
-                        v-model="fields.reason"
-                        placeholder="Add message here"
-                        style="font-size: 13px"
-                    ></textarea>
+            <div class="col-md-12">
+                <h6 class="mt-2">Select Time</h6>
+                <!-- <select
+                    class="form-select form-select-sm mb-3"
+                    aria-label=".form-select-lg example"
+                    name="time"
+                    v-model="fields.time"
+                >
+                    <option
+                        v-for="(t, index) in time"
+                        :key="index"
+                        :value="time"
+                    >
+                        {{ t.time }}
+                    </option>
+                </select> -->
+                <div class="input-group">
+                    <div class="row m-0">
+                        <div
+                            class="col-sm-4 p-0"
+                            v-for="(t, index) in times"
+                            :key="index"
+                            :value="times"
+                        >
+                            <div class="option m-1">
+                                <input
+                                    type="radio"
+                                    name="time"
+                                    v-model="fields.time"
+                                    :id="t.time"
+                                    :value="t.time"
+                                    required
+                                />
+                                <label
+                                    class="label-d"
+                                    :for="t.time"
+                                    aria-label="ol"
+                                >
+                                    <span></span>
+                                    <div>{{ t.time }}</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="btns-group">
@@ -229,7 +246,23 @@
             <div class="input-group">
                 <div class="row">
                     <div class="col-12">
-                        <h6 class="my-3">Attach ID</h6>
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="my-4">Reason/Complaints</h6>
+                                <textarea
+                                    class="form-control my-3"
+                                    rows="8"
+                                    id="comment"
+                                    name="reason"
+                                    v-model="fields.reason"
+                                    placeholder="Add message here"
+                                    style="font-size: 13px"
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="my-0">Attach ID</h6>
                         <p>
                             Upload special ID for special rate. (Senior Citizen,
                             PWD, etc. e.g)
@@ -241,24 +274,6 @@
                             id="formFile"
                             name="specialId"
                         />
-                    </div>
-                    <div class="col-12">
-                        <h6 class="my-3">Terms and Condition</h6>
-                        <div class="d-flex">
-                            <input id="checkbox" type="checkbox" />
-                            <label for="checkbox">
-                                <p class="mx-3 my-0">
-                                    I have read, understood, and accepted the
-                                    <a href="#" style="color: #35bf53"
-                                        >Terms & Conditions</a
-                                    >
-                                    and
-                                    <a href="#" style="color: #35bf53"
-                                        >Privacy Policy</a
-                                    >
-                                </p>
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -284,7 +299,15 @@ export default {
         return {
             date: "",
             doctors: [],
-            fields: {},
+            times: [],
+            fields: {
+                doctor: "",
+                consultation: "",
+                date: "",
+                time: "",
+                reason: "",
+                specialId: "",
+            },
         };
     },
     setup() {
@@ -301,22 +324,50 @@ export default {
     methods: {
         customDate(date) {
             this.date = moment(date).format("YYYY-MM-DD");
+            var id = window.location.href.split("/").pop();
             axios
-                .post("/findDoctors/{id}", { date: this.date })
+                .post("/api/findDoctors/" + id, { date: this.date })
                 .then((response) => {
+                    console.log(response);
                     this.doctors = response.data;
                 });
             // .catch((error) => {
             //     alert("error");
             // });
         },
-        submit() {
+        customTime(date, doctor) {
+            this.dates = moment(date).format("YYYY-MM-DD");
+            var id = window.location.href.split("/").pop();
             axios
-                .post("/Request-Appointment/{id}", this.fields)
+                .post("/api/findTimes/" + id, {
+                    date: this.date,
+                    doctor: this.fields.doctor,
+                })
                 .then((response) => {
-                    // this.fields = {}; //Clear input fields.
-                    // this.loaded = true;
-                    // this.success = true;
+                    console.log((this.times = response.data));
+                    // this.times = response.data;
+                });
+            // .catch((error) => {
+            //     alert("error");
+            // });
+        },
+        submit(date) {
+            var id = window.location.href.split("/").pop();
+            this.dates = moment(date).format("YYYY-MM-DD");
+            axios
+                .post("/Request-Appointment/" + id, {
+                    doctor: this.fields.doctor,
+                    consultation: this.fields.consultation,
+                    time: this.fields.time,
+                    specialId: this.fields.specialId,
+                    reason: this.fields.reason,
+                    date: this.date,
+                })
+                .then((response) => {
+                    this.fields = {};
+                    // window.location.reload(); //Clear input fields.
+                    this.loaded = true;
+                    this.success = true;
                     console.log(response);
                 })
                 .catch((error) => {
@@ -326,17 +377,26 @@ export default {
                     }
                 });
         },
-        doctorAvailable() {
-            var id = 1;
-            axios.get("/TimeSelect/" + id).then((response) => {
-                this.doctors = response.data;
-                this.loading = false;
-                console.log(response);
-            });
-        },
+        // doctorAvailable() {
+        //     var id = window.location.href.split("/").pop();
+        //     axios.get("/DocSelect/" + id).then((response) => {
+        //         this.doctors = response.data;
+        //         this.loading = false;
+        //         console.log(response);
+        //         console.log(id);
+        //     });
+        // },
+        // TimeAvailable() {
+        //     var id = window.location.href.split("/").pop();
+        //     axios.get("/findDoctors/" + id).then((response) => {
+        //         this.time = response.data;
+        //         this.loading = false;
+        //         console.log(response);
+        //     });
+        // },
     },
     created() {
-        this.customDate(), this.doctorAvailable();
+        this.customDate(), this.customTime();
     },
 };
 </script>

@@ -159,7 +159,7 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$appoints->doctor}}</p>
+                            <p>{{$doctorNames->Dfname}}</p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>

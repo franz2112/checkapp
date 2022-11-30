@@ -52,13 +52,15 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     ->name('Notifications')
     ->middleware('auth');
 
+    Route::get('/DocSelect/{id}', [HomeController::class, 'SelectDoc'])
+    ->name('DocSelect')
+    ->middleware('auth');
+
     Route::get('/TimeSelect/{id}', [HomeController::class, 'SelectTime'])
     ->name('TimeSelect')
     ->middleware('auth');
 
-    Route::post('/findDoctors/{id}', [HomeController::class, 'findDoctors'])
-    ->name('findDoctors')
-    ->middleware('auth');
+
 
     Route::get('/Availables/{id}', [HomeController::class, 'show'])
     ->name('Availables')
