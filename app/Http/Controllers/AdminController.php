@@ -2,27 +2,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\Doctor;
-
 use App\Models\Clinic;
-
 use App\Models\Appointment;
-
 use App\Models\AppointmentSet;
-
 use App\Models\Time;
-
 use App\Models\User;
-
+use App\Mail\AppointmentMail;
 use Carbon\Carbon;
  
 class AdminController extends Controller
 {
     // doctor side
-    public function Appointments(){
+    public function ShowAppointments(){
         
         $id = Auth::id(); 
         $ClinicInfo = clinic::where('user_id', $id)->get();
@@ -39,14 +33,54 @@ class AdminController extends Controller
         $allAppoints = appointment::where('clinic_id', $ClinicId)
         ->get();
 
-        // return $dataAppoints;
-        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints')); 
+        $getSelectDoc = appointment::where('clinic_id', $ClinicId)->pluck('doctor');
+        $docData = doctor::whereIn('id', $getSelectDoc)
+        ->get();
+
+        // $doctorNames = doctor::whereIn('id', $docData)->get();
+
+        // return $allAppoints;
+        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
     }
+    
     public function AppRoval(Request $request, $id){
-        $appoint = appointment::where('id', $id)
-            ->update(['status' => 'Approved']);  
-            return redirect()->back()->with('message', 'Appointment has been Approved!');
-        }
+        appointment::where('id', $id)
+        ->update(['status' => 'Approved']);
+        
+        $getSelectDoc = appointment::where('id', $id)->pluck('doctor');
+        $docData = doctor::where('id', $getSelectDoc)
+        ->first();
+   
+        $userId = appointment::where('id', $id)->pluck('user_id');
+        $userInfo = user::where('id', $userId)->first();
+
+        $clinicId = appointment::where('id', $id)->pluck('clinic_id');
+        $clinicInfo = clinic::where('id', $clinicId)->first();
+
+        $appoint = appointment::where('id', $id)->first();
+
+         $mailData = [
+            'fname'=>$userInfo->fname,
+            'mname'=>$userInfo->mname,
+            'lname'=>$userInfo->lname,
+            'time'=>$appoint->time,
+            'date'=>$appoint->date,
+            'consultation'=>$appoint->consultation,
+            'reason'=>$appoint->reason,
+            'Dfname' => $docData->Dfname,
+            'Dlname' => $docData->Dlname,
+            'clinicname' => $clinicInfo->clinicname,
+            'caddress' => $clinicInfo->caddress,
+            'cemail' => $clinicInfo->cemail,
+            'Ccontact' => $clinicInfo->Ccontact
+        ];
+        
+        Mail::to($userInfo->email)
+            ->send(new AppointmentMail($mailData));
+        // return $clinicInfo;
+        return redirect()->back()->with('message', 'Appointment has been Approved!');
+    }
+
     public function AppCel(Request $request, $id){
         $appoint = appointment::where('id', $id)
             ->update(['status' => 'Declined']);
@@ -117,6 +151,32 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Doctor Edited Successfully');
     }
 
+    public function updateClinic(Request $request){
+        $profile = Auth::id();
+        $clinic = clinic::where('user_id', $profile)->first();
+
+        $image=$request->profile;
+        $qrimages=$request->qrimage;
+        if($image){
+            $imagename = time().'.'.$image->getClientoriginalExtension();
+            $request->profile->move('assets/admin/img/clinicimage', $imagename);
+            $clinic->profile=$imagename;
+        }
+        elseif($qrimages){
+            $qrimagename = time().'.'.$qrimages->getClientoriginalExtension();
+            $request->qrimage->move('assets/admin/img/clinicimage', $qrimagename);
+            $clinic->qrimage=$qrimagename;
+        }
+        $clinic->clinicname=$request->clinicname;
+        $clinic->caddress=$request->caddress;
+        $clinic->Ccontact=$request->Ccontact;
+        
+        $clinic->save();
+        // return $clinic;
+        return redirect()->back()->with('message', 'Clinic Update Successfully');
+                    
+    }
+
     public function create($id){
         $profile = Auth::id();
         $profiles = clinic::where('user_id', $profile)
@@ -145,14 +205,14 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Appointment created for '. $request->date);
     }
 
-    public function index($id){
+    public function indexs($id){
         $profile = Auth::id();
         $profiles = clinic::where('user_id', $profile)
         ->get();
 
         $data=doctor::find($id);
         $appointments=AppointmentSet::latest()->where('doctor_id', $id)->get();
-        // return $appointments;
+
         return view('admin.doctorIndex', compact('data', 'profiles', 'appointments'));
     }
 
@@ -172,6 +232,7 @@ class AdminController extends Controller
         }
         $appointmentSetID= $appointment->id;
         $Time= Time::where('appointmentSet_id', $appointmentSetID)->get();
+
         return view('admin.doctorIndex', compact('Time', 'appointmentSetID', 'dates', 'data'));
     }
 
@@ -185,7 +246,20 @@ class AdminController extends Controller
                 'status'=>0
             ]);
         }
-        return redirect()->route('Doctor-index', $id)->with('message','Appointment time updated!');
+        return redirect()->route('clinics.doctor-index', $id)->with('message','Appointment time updated!');
+    }
+
+    public function clinicProfile(){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->first();
+        
+        return view('admin.ClinicProfile', compact('profiles'));
+    }
+
+    public function SetEmail(){
+      
+        return view('admin.SetEmail');
     }
 
     

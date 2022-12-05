@@ -16,4 +16,8 @@ class Appointment extends Model
     public function User(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function Doctor(){
+        return $this->hasMany('App\Models\Doctor');
+    }
 }

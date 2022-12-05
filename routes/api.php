@@ -19,5 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::post('/findDoctors/{id}', [HomeController::class, 'findDoctors']);
 Route::post('/findTimes/{id}', [HomeController::class, 'findTimes']);
+Route::get('/findDates/{id}', [HomeController::class, 'findDates']);

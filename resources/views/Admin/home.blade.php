@@ -75,7 +75,7 @@
           </li>
           {{-- appointments --}}
           <li class="nav-item">
-            <a class="nav-link" href="/Appointments">
+            <a class="nav-link" href="/clinics/appointment-request">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -168,7 +168,7 @@
           </li>
           {{-- add doctor --}}
           <li class="nav-item">
-            <a class="nav-link" href="/Add-Doctor">
+            <a class="nav-link" href="clinics/doctors-information">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -212,7 +212,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Add Doctor</span>
+              <span class="nav-link-text ms-1">Doctor's Information</span>
             </a>
           </li>
 
@@ -225,8 +225,10 @@
               My Account
             </h6>
           </li>
+
+          
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('profile.show') }}">
+            <a class="nav-link" href="clinics/clinic-profile">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -274,7 +276,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('profile.show') }}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -556,7 +558,7 @@
                 </div>
                 <h6 class="ms-2 mt-4 mb-0">Active Users</h6>
                 <p class="text-sm ms-2">
-                  (<span class="font-weight-bolder">+23%</span>) than last week
+                  <span class="font-weight-bolder">+23%</span> than last week
                 </p>
                 <div class="container border-radius-lg">
                   <div class="row">

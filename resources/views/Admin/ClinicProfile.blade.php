@@ -2,7 +2,8 @@
 <html lang="en">
   @include('Admin.Separated.header')
 
-  <body class="g-sidenav-show bg-gray-100 ">
+  <body class="g-sidenav-show bg-gray-100">
+
     <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3"
       id="sidenav-main"
@@ -26,7 +27,7 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/">
+            <a id="active" class="nav-link" href="/">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -70,7 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="">
+            <a class="nav-link" href="appointment-request">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -161,7 +162,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/clinics/doctors-information">
+            <a class="nav-link" href="doctors-information">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -217,10 +218,8 @@
               My Account
             </h6>
           </li>
-
-
           <li class="nav-item">
-            <a class="nav-link" href="/clinics/clinic-profile">
+            <a class="nav-link active" href="">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -341,7 +340,7 @@
       <!-- Navbar -->
       <nav
         class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-        {{-- id="navbarBlur" --}}
+        id="navbarBlur"
         navbar-scroll="true"
       >
         <div class="container-fluid py-1 px-3">
@@ -356,10 +355,10 @@
                 class="breadcrumb-item text-sm text-dark active"
                 aria-current="page"
               >
-                Appointment
+                Profile
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Appointment</h6>
+            <h6 class="font-weight-bolder mb-0">Profile Set Up</h6>
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -537,10 +536,13 @@
                   data-bs-display="static"
                   class=""
                 >
-                  @foreach ($ClinicInfo as $info)
-                  <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
-                  {{ $info->clinicname}}
-                  @endforeach
+                  {{-- @foreach ($clinicInfo as $info)
+                  <img
+                    class="rounded-full"
+                    src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000"
+                    alt=""
+                  />
+                  {{ $info->clinicname}} @endforeach --}}
                 </div>
               </li>
             </ul>
@@ -548,420 +550,431 @@
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="container-fluid py-4">
-        <div class="card shadow-lg bg-light p-3 mb-3" style="height: 537px;">
-        @foreach ($dataAppoints as $AppointsInfo)
-        @if ($AppointsInfo->status=='pending')
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="row">
-                <div class="col-md-12 mb-2">
-                  <div class="card rounded-0 rounded-top">
-                    <div
-                      class="overflow-hidden position-relative border-radius-xl"
-                    >
-                      <div class="card-body position-relative z-index-1 p-3">
-                        <div class="row">
-                          <div class="col">
-                            <div
-                              class="position-relative d-flex justify-content-center"
-                            >
-                              <img class="w-100 position-relative z-index-2" style="height: 88px;" src="https://ui-avatars.com/api/?name={{ urlencode($AppointsInfo->user->fname) }}&background=random&length=1&size=100%&color=ff000" alt="">
-                            </div>
-                          </div>
-                          <div class="col-10">
-                            <div class="me-4">
-                              <p class="text-sm opacity-8 mb-0"> 021{{$AppointsInfo->user->id}} </p>
-                              <h6 class="mb-0 text-sm col-lg text-truncate">
-                                {{$AppointsInfo->user->fname}} {{$AppointsInfo->user->mname}}  {{$AppointsInfo->user->lname}}
-                             </h6>
-                              <p class="mb-0 text-sm col-lg text-truncate">
-                                {{$AppointsInfo->user->address}} 
-                              </p>
-                              <p class="text-sm opacity-8 mb-0">
-                                {{$AppointsInfo->user->phone}} 
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        {{-- modal for clinic profile--}}
+        <div
+            class="modal fade"
+            id="profile"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addDoctorTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white" id="exampleModalLabel">
+                    Edit Clinic Profile
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
                 </div>
-                <div class="col-xl-12 mb-2">
-                  <div class="row">
-                    <div class="col-lg-4 mt-md-0 pe-lg-0">
-                      <div
-                        class="card shadow-none rounded-0"
-                        style="min-height: 230px"
-                      >
-                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                          >Physician
-                        </span>
-                        <hr class="horizontal dark mb-0" />
-                        <div class="card-header mx-4 px-3 py-2 mb-0 text-center">
-                          <div
-                          class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
-                          >
-                            @foreach ($docData as $doc)
-                              @if ($AppointsInfo->doctor==$doc->id)
-                              <img
-                              src="/assets/admin/img/doctorimage/{{$doc->file}}"
-                              class="w-100 rounded"
-                              alt="..."
-                              style="height: 64px;
-                              object-fit: cover;
-                              background-repeat: no-repeat;
-                              background-position: center;
-                              "
-                              />
-                              @endif
-                            @endforeach
-                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
-                          </div>
-                        </div>
-                        <div class="card-body pt-0 mt-0 p-2 pb-0 text-center">
-                          @if ($AppointsInfo->doctor !='suggest')
-                            @foreach ($docData as $doc)
-                              @if ($AppointsInfo->doctor==$doc->id)
-                                <span class="text-xs">Doctor</span>
-                                  <h6 class="mb-0 text-truncate">  
-                                    {{$doc->Dfname }} {{$doc->Dlname }}
-                                  </h6>
-                                  <h6 class="text-sm fw-light">Specialization</h6>
-                                @endif
-                              @endforeach
-                          @else
-                          <h6 class="text-sm py-2">Suggest Doctor </h6>
-                          <button class="btn btn-outline-primary btn-sm py-1">
-                            Select
-                          </button>
-                          @endif
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 mt-md-0 mt-2 px-lg-2">
-                      <div
-                        class="card shadow-none rounded-0"
-                        style="min-height: 230px"
-                      >
-                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                          >Consultation Type
-                        </span>
-                        <hr class="horizontal dark mb-0" />
-                        <div class="card-header mx-4 px-3 py-2 text-center">
-                          <div
-                            class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
-                          >
-                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
-                          </div>
-                        </div>
-                        <div class="card-body pt-0 pb-1 text-center">
-                          <h6 class="text-center mb-0">{{$AppointsInfo->consultation}} </h6>
-                          <span class="text-xs">Consultation</span>
-                            @if ($AppointsInfo->consultation=='Online')
-                              <div class="input-group m-0">
-                                <input type="text" name="OnlineConsultation" class="form-control" placeholder="Online consultation link" aria-label="Username" aria-describedby="basic-addon1">
-                              </div>
-                            @endif
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 mt-md-0 mt-2 ps-lg-0">
-                      <div
-                        class="card shadow-none rounded-0"
-                        style="min-height: 230px"
-                      >
-                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                          >Schedule
-                        </span>
-                        <div class="card-body pt-0 p-3 text-center">
-                          <hr class="horizontal dark mb-2" />
-                          <span class="text-xs">Date</span>
-                          <h6 class="text-center mb-0">
-                            {{date('m-d-Y', strtotime($AppointsInfo->date))}}
-                          </h6>
-                          <span class="text-xs">Time</span>
-                          <h6 class="text-center mb-0">{{$AppointsInfo->time}}</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-12 mb-lg-0 mb-2">
-                  <div class="card rounded-0 rounded-bottom">
-                    <div class="card-body p-3">
-                      <div class="col-6 d-flex align-items-center">
-                        <h6 class="mb-3">Other Option</h6>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 mb-md-0 mb-4">
-                          <div
-                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
-                          >
-                            <h6 class="mb-0">Reschedule Appointment</h6>
-                            <i
-                              class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Edit Card"
-                            ></i>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div
-                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
-                          >
-                            <h6 class="mb-0">
-                              Message Patient
-                            </h6>
-                            <i
-                              class="fas fa-message ms-auto text-dark cursor-pointer"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Edit Card"
-                            ></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 ps-lg-0">
-              <div class="card" style="height: 382px">
-                <div class="card-header pb-0 pt-4">
-                  <div class="row">
-                    <div class="col-6 d-flex align-items-center">
-                      <h6 class="mb-0">Complaints</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body  p-3 py-0">
-                  <div
-                    class="border-radius-lg p-2 text-xs text-justify overflow-auto
-                     border "
-                    style="height: 250px"
-                  >
-                  {{$AppointsInfo->reason}}
-                  </div>
-                  <h6 class="my-2 px-2 ">Special ID's</h6>
-                  <div class="px-2">
-                    <button class="btn btn-outline-primary btn-sm mb-4 py-1">
-                      View special ID
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-2 p-3">
-                  <h6 class="">Confirmation</h6>
-                <div class="row">
-                  <div class="col-6">
-                    <a
-                      class="btn bg-gradient-danger w-100"
-                      href="{{ url('/clinics/appointments-cancel', $AppointsInfo->id) }}"
-                      ><i class="fas fa-times"></i>&nbsp;&nbsp;Decline</a
-                    >
-                  </div>
-                  <div class="col-6">
-                    <a
-                    class="btn bg-gradient-success w-100"
-                    href="{{ url('/clinics/appointments-approval', $AppointsInfo->id) }}"
-                    ><i class="fas fa-check"></i>&nbsp;&nbsp;Approve</a
-                    >
-                  </div>
-                </div>
-             
-              </div>
-            </div>
-          </div>
-        @else
-        @endif
-        @endforeach
-        </div>
-        {{-- <div class="row">{{ $dataAppoints->links() }}</div> --}}
-
-      <div class="row">
-        <div class="col-md-6 mt-4">
-          <div class="card mb-4" style="height: 576px">
-            <div class="card-header pb-0 px-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <h6 class="mb-0">Upcoming Request</h6>
-                </div>
-                <div
-                  class="col-md-6 d-flex justify-content-end align-items-center"
+                <div class="modal-body">
+                <form
+                    action="{{ url('clinics/clinic-update') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="row g-3"
                 >
-                  <i class="far fa-calendar-alt me-2"></i>
-                  <small> 
-                    <script>
-                      document.write(new Date().toISOString().slice(0, 10))
-                    </script>
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="card-body pt-4 p-3 overflow-auto">
-              <h6
-                class="text-uppercase text-body text-xs font-weight-bolder mb-3"
-              >
-                Newest Pending
-              </h6>
-              <div class="list-group">
-                @foreach ($allAppoints as $appointInfo)
-                  @if ($appointInfo->status=='pending')
-                    <a id="appointInfo" 
-                      class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
-                    >
-                      <div class="d-flex align-items-center">
-                        {{-- <button
-                          class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                        >
-                          o
-                        </button> --}}
-                        <div class="d-flex flex-column">
-                          <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
-                          <span class="text-xs">{{$appointInfo->date}} , at {{$appointInfo->time}} </span>
+                    @csrf
+                    <div class="col-md-12">
+                    <label for="Dfname" class="form-label">Clinic Name: </label>
+                    <input
+                        type="text"
+                        name="clinicname"
+                        class="form-control"
+                        id="clinicname"
+                        Value="{{ $profiles->clinicname }}"
+                        required
+                    />
+                    </div>
+                    <div class="col-12 mt-0">
+                    <label for="Specialization" class="form-label"
+                        >Clinic Address:
+                    </label>
+                    <input
+                        type="text"
+                        name="caddress"
+                        class="form-control"
+                        id="inputAddress"
+                        value="{{ $profiles->caddress }}"
+                        required
+                    />
+                    </div>
+                    <div class="col-md-6 mt-0">
+                        <label for="Demail" class="form-label">
+                            Clinic Email:
+                        </label>
+                        <input
+                            type="email"
+                            name="cemail"
+                            class="form-control"
+                            id="cemail"
+                            Value="{{ $profiles->cemail }}"
+                            disabled
+                        />
+                    </div>
+                    <div class="col-md-6 mt-0">
+                        <label for="Dphone" class="form-label">
+                            Clinic Phone Number:
+                        </label>
+                        <input
+                            type="text"
+                            name="Ccontact"
+                            class="form-control"
+                            id="Ccontact"
+                            Value="{{ $profiles->Ccontact }}"
+                        />
+                    </div>
+                    <div class="col-md-3 mt-0">
+                        <label for="file" class="form-label">Upload Profile: </label>
+                        <div>
+                            <img class="" src="../assets/admin/img/clinicimage/{{ $profiles->Profile }}" alt="rocket" style="
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            height: 100px;
+                            ">
                         </div>
-                      </div>
-                      <div
-                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                      >
-                      {{$appointInfo->consultation}} Consultation
-                      </div>
-                    </a>
-                  @endif
-                @endforeach
+                    </div>
+                    <div class="col-md-9">
+                        <label for="file" class="form-label"></label>          
+                        <p class="ps-2 rounded bg-light mb-2" style="font-size: 12px">{{ $profiles->Profile }}</p>
+                        <input
+                            type="file"
+                            name="Profile"
+                            class="form-control"
+                            id="Profile"
+                            value="{{ $profiles->Profile }}"
+                        />
+                    </div>
+
+                    <div class="col-md-12 mt-0">
+                        <label for="file" class="form-label">Upload Image QR for payments: </label>
+                    </div>
+                    <div class="col-md-3 mt-0">                      
+                        <img class="" src="../assets/admin/img/clinicimage/{{ $profiles->qrimage }}" alt="qr code" style="
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        height: 100px;
+                        ">
+                    </div>
+                    <div class="col-md-9">
+                        <p class="ps-2 rounded bg-light mb-2" style="font-size: 12px">{{ $profiles->qrimage }}</p>
+                        <input
+                            type="file"
+                            name="qrimage"
+                            class="form-control"
+                            id="qrimage"
+                            value="{{ $profiles->qrimage }}"
+                        />
+                    </div>
+                    <div class="col-12">
+                        <div class="modal-footer border-top-0 py-0">
+                            <button
+                            type="button"
+                            class="btn bg-gradient-secondary"
+                            data-bs-dismiss="modal"
+                            >
+                            Close
+                            </button>
+                            <button type="submit" class="btn bg-gradient-primary">
+                            submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="container-fluid py-4 overflow-hidden">
+            <div class="row">
+                
+                <div class="col-lg-4 mb-lg-2">
+                    <div
+                    class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profile"
+                    >
+                        <div class="card p-3"">
+                            <div
+                                class="overflow-hidden position-relative border-radius-lg h-100"
+                            >
+                                <span class="mask bg-gradient-success"></span>
+                                    <div
+                                    class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
+                                    >
+                                        <h5 class="text-dark font-weight-bolder mb-4 pt-2">
+                                            Clinic Profile
+                                        </h5>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Clinic information --}}
+                <div
+                class="modal fade"
+                id="information"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="addDoctorTitle"
+                aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">
+                            Clinic Information
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                        </div>
+                        <div class="modal-body">
+                        <form
+                            action="{{ url('upload-doctor-info') }}"
+                            method="POST"
+                            enctype="multipart/form-data"
+                            class="row g-3"
+                        >
+                            @csrf
+                            <div class="col-md-12">
+                            <label for="Dfname" class="form-label">About your clinic: </label>
+                                <textarea
+                                    class="form-control my-3"
+                                    rows="5"
+                                    id="comment"
+                                    name="about"
+                                    placeholder="Clinic About Us"
+                                    style="font-size: 14px"
+                                    required>
+                                </textarea>
+                            </div>
+                            <div class="col-md-12 mt-0">
+                            <label for="Dfname" class="form-label">Update Clinic Information: </label>
+                                <textarea
+                                    class="form-control my-3"
+                                    rows="5"
+                                    id="comment"
+                                    name="about"
+                                    placeholder="Clinic About Us"
+                                    style="font-size: 14px"
+                                    required>
+                                </textarea>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="modal-footer border-top-0 py-0">
+                                    <button
+                                    type="button"
+                                    class="btn bg-gradient-secondary"
+                                    data-bs-dismiss="modal"
+                                    >
+                                    Close
+                                    </button>
+                                    <button type="submit" class="btn bg-gradient-primary">
+                                    submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-lg-2">
+                    <div class="card p-3" 
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#information">
+                        <div
+                            class="overflow-hidden position-relative border-radius-lg h-100"
+                        >
+                            <span class="mask bg-gradient-success"></span>
+                            <div
+                            class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
+                            >
+                            <h5 class="text-dark font-weight-bolder mb-4 pt-2">
+                                Clinic Information
+                            </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Clinic service --}}
+                <div
+                class="modal fade"
+                id="sched"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="addDoctorTitle"
+                aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">
+                            Clinic Information
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                        </div>
+                        <div class="modal-body">
+                        <form
+                            action="{{ url('upload-doctor-info') }}"
+                            method="POST"
+                            enctype="multipart/form-data"
+                            class="row g-3"
+                        >
+                            @csrf
+                            <div class="col-md-12">
+                            <label for="Dfname" class="form-label">Clinic Schedules: </label>
+                                <textarea
+                                    class="form-control my-3"
+                                    rows="5"
+                                    id="comment"
+                                    name="about"
+                                    placeholder="Clinic About Us"
+                                    style="font-size: 14px"
+                                    required>
+                                </textarea>
+                            </div>
+                            <div class="col-md-12 mt-0">
+                            <label for="Dfname" class="form-label">Add Service: </label>
+                                <textarea
+                                    class="form-control my-3"
+                                    rows="5"
+                                    id="comment"
+                                    name="about"
+                                    placeholder="Clinic About Us"
+                                    style="font-size: 14px"
+                                    required>
+                                </textarea>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="modal-footer border-top-0 py-0">
+                                    <button
+                                    type="button"
+                                    class="btn bg-gradient-secondary"
+                                    data-bs-dismiss="modal"
+                                    >
+                                    Close
+                                    </button>
+                                    <button type="submit" class="btn bg-gradient-primary">
+                                    submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-lg-2">
+                    <div class="card p-3" 
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#sched">
+                        <div
+                            class="overflow-hidden position-relative border-radius-lg h-100"
+                        >
+                            <span class="mask bg-gradient-success"></span>
+                            <div
+                            class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
+                            >
+                            <h5 class="text-dark font-weight-bolder mb-4 pt-2">
+                                Services and Schedules
+                            </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- @include('Admin.Separated.afooter') --}}
+            </div>
+        </div>
+    </main>
+
+    @if (session()->has('message'))
+    <div
+      class="alert alert-success alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
+      role="alert"
+      id="dismiss"
+    >
+      <div class="p-3 rounded-0">
+        <div class="row">
+          <div class="col-10 d-flex justify-content-center align-item-center">
+            <div class="card-body">
+              <div
+                class="text-center"
+                style="font-size: 13px; font-weight: 600"
+              ></div>
+              <div class="text-center" style="font-size: 12px">
+                {{session()->get('message')}}
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 my-4">
-          <div class="card" style="height: 576px">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Appointment History</h6>
-            </div>
-            <div class="card-body pt-4 p-3 overflow-auto">
-              <ul class="list-group">
-                @foreach ($allAppoints as $historyAppoints)
-                  @if ($historyAppoints->status != 'pending')
-                  <li
-                  class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
-                  >
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-3 text-sm">{{$historyAppoints->user->fname}}  {{$historyAppoints->user->mname}} {{$historyAppoints->user->lname}} </h6>
-                      <span class="mb-1 text-xs"
-                        >Doctor:
-                        <span class="text-dark font-weight-bold ms-sm-2"
-                          > {{$historyAppoints->doctor}}</span
-                        ></span
-                      >
-                      <span class="mb-1 text-xs"
-                        >Consultation Type:
-                        <span class="text-dark ms-sm-2 font-weight-bold"
-                          >{{$historyAppoints->consultation}}</span
-                        ></span
-                      >
-                      <span class="mb-1 text-xs"
-                        >Date and Time:
-                        <span class="text-dark ms-sm-2 font-weight-bold"
-                          >{{$historyAppoints->date}} | {{$historyAppoints->time}}</span
-                        ></span
-                      >
-                      <span class="mb-1 text-xs"
-                        >Appintment Status:
-                        <span class="text-dark ms-sm-2 font-weight-bold"
-                          >{{$historyAppoints->status}}</span
-                        ></span
-                      >
-                    </div>
-                    <div class="ms-auto text-end">
-                      <a
-                        class="btn btn-link text-danger text-gradient px-3 mb-0"
-                        href="javascript:;"
-                        ><i class="far fa-trash-alt me-2"></i>Delete</a
-                      >
-                      <a
-                        class="btn btn-link text-dark px-3 mb-0"
-                        href="javascript:;"
-                        ><i
-                          class="fas fa-arrow-up text-dark me-2"
-                          aria-hidden="true"
-                        ></i
-                        >View</a
-                      >
-                    </div>
-                  </li>
-                  @endif
-                @endforeach
-              </ul>
-            </div>
+          <div class="col-2 d-flex justify-content-center align-item-center">
+            <button
+              type="button"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              class="btn py-0 px-2 mb-0 shadow-none"
+            >
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-      @if (session()->has('message'))
-      <div class="alert
-      alert-dissmissible 
-      fade show 
-      position-fixed
-      z-index-2  
-      bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
-      "
-      style="
-      background-color: #D1E7DD;
-      border-color: #add1a4;
-      color: #2E5724;
-      "
-      role="alert"
-      id="dismiss">
-        <div class="p-3  rounded-0">
-          <div class="row">
-            <div class="col-10 d-flex justify-content-center align-item-center">
-              <div class="card-body">
-                <div class="text-center" style="font-size: 13px; font-weight: 600">
-                    {{session()->get('message')}}
-                </div>
-                <div class="text-center" style="font-size: 12px">
-                  Information sent!
-                </div>
-              </div>
-            </div>
-            <div class="col-2 d-flex justify-content-center align-item-center">
-              <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none">
-                <i class="fa-solid fa-xmark text-lg"></i>
-              </button>      
-            </div>
-          </div>
-        </div>
-      </div>
-      @endif
-      
-      @include('Admin.Separated.afooter')
-    </main>
-    <script>
-      window.setTimeout(function () {
-          $("#dismiss")
-              .fadeIn(3000, 1)
-              .fadeOut(5000, function () {
-                  $(this).remove();
-              });
-        }, 2000);
-    </script>
+    @endif 
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
+    <script src="../assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../assets/admin/js/plugins/chartjs.min.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 
-    {{-- <script type="text/javascript">
-      $(document).ready(function(){
-        $('#appointInfo').click(function(){
-          var appointId = $(this).data('id');
-          alert(appointId);
-        });
-      });
-    </script> --}}
+    <script>
+      var win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        var options = {
+          damping: "0.5",
+        };
+
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
+    </script>
+    <script>
+        window.setTimeout(function () {
+            $("#dismiss")
+            .fadeIn(3000, 1)
+            .fadeOut(5000, function () {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
   </body>
+  @stack('modals') @livewireScripts
 </html>

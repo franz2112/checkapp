@@ -1,9 +1,12 @@
 <template>
+    <loader v-if="loading"></loader>
+
     <form
         method="post"
         @submit.prevent="submit()"
-        class="form py-0"
+        class="form py-0 vld-parent"
         enctype="multipart/form-data"
+        ref="formContainer"
     >
         <!-- Progress bar -->
         <div class="progressbar mt-1">
@@ -40,7 +43,10 @@
             </div>
             <div class="ms-4">
                 <a id="btn" type="submit" class="btn btn-next width-50 ml-auto">
-                    Next
+                    <div v-if="loads">
+                        <miniLoader></miniLoader>
+                    </div>
+                    <div v-else>Next</div>
                 </a>
             </div>
         </div>
@@ -98,7 +104,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 p-0">
+                    <!-- <div class="col-sm-6 p-0">
                         <div class="option m-1">
                             <input
                                 type="radio"
@@ -127,7 +133,7 @@
                                 </div>
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -185,27 +191,18 @@
 
             <div class="btns-group">
                 <a href="#" class="btn btn-prev">Back</a>
-                <a href="#" class="btn btn-next">Next</a>
+                <a href="#" class="btn btn-next">
+                    <div v-if="loads">
+                        <miniLoader></miniLoader>
+                    </div>
+                    <div v-else>Next</div>
+                </a>
             </div>
         </div>
 
         <div class="form-step">
             <div class="col-md-12">
                 <h6 class="mt-2">Select Time</h6>
-                <!-- <select
-                    class="form-select form-select-sm mb-3"
-                    aria-label=".form-select-lg example"
-                    name="time"
-                    v-model="fields.time"
-                >
-                    <option
-                        v-for="(t, index) in time"
-                        :key="index"
-                        :value="time"
-                    >
-                        {{ t.time }}
-                    </option>
-                </select> -->
                 <div class="input-group">
                     <div class="row m-0">
                         <div
@@ -289,14 +286,15 @@
 <script>
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import "vue3-loading-overlay/dist/vue3-loading-overlay.css";
 import axios from "axios";
 import moment from "moment";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export default {
     data() {
         return {
+            loading: false,
+            loads: false,
             date: "",
             doctors: [],
             times: [],
@@ -312,30 +310,42 @@ export default {
     },
     setup() {
         const date = ref(new Date());
+        // var id = window.location.href.split("/").pop();
+        // const allDates = axios.get("/api/findDates/" + id).then((response) => {
+        //     console.log(response.data);
+        //     response.data;
+        // });
+        // const allowedDates = computed(() => {
+        //     return [new Date("2022-12-08")];
+        // });
+        // console.log(allDates);
 
         return {
+            // allDates,
+            // allowedDates,
             date,
         };
     },
-    // components:{
-    // 		PulseLoader
-
-    // },
     methods: {
         customDate(date) {
+            this.loads = true;
             this.date = moment(date).format("YYYY-MM-DD");
             var id = window.location.href.split("/").pop();
             axios
                 .post("/api/findDoctors/" + id, { date: this.date })
                 .then((response) => {
-                    console.log(response);
-                    this.doctors = response.data;
+                    // console.log(response);
+                    setTimeout(() => {
+                        this.doctors = response.data;
+                        this.loads = false;
+                    }, 1000);
                 });
             // .catch((error) => {
             //     alert("error");
             // });
         },
         customTime(date, doctor) {
+            this.loads = true;
             this.dates = moment(date).format("YYYY-MM-DD");
             var id = window.location.href.split("/").pop();
             axios
@@ -344,18 +354,22 @@ export default {
                     doctor: this.fields.doctor,
                 })
                 .then((response) => {
-                    console.log((this.times = response.data));
-                    // this.times = response.data;
+                    // console.log((this.times = response.data));
+                    setTimeout(() => {
+                        this.times = response.data;
+                        this.loads = false;
+                    }, 1000);
                 });
             // .catch((error) => {
             //     alert("error");
             // });
         },
         submit(date) {
+            this.loading = true;
             var id = window.location.href.split("/").pop();
             this.dates = moment(date).format("YYYY-MM-DD");
             axios
-                .post("/Request-Appointment/" + id, {
+                .post("/user/Request-Appointment/" + id, {
                     doctor: this.fields.doctor,
                     consultation: this.fields.consultation,
                     time: this.fields.time,
@@ -364,14 +378,17 @@ export default {
                     date: this.date,
                 })
                 .then((response) => {
-                    this.fields = {};
+                    this.$toast.success("Appointment Request Successful!");
+                    setTimeout(() => {
+                        this.fields = {};
+                        console.log(response);
+                        this.loading = false;
+                        // window.location.reload(); //Clear input fields.
+                    }, 300);
                     // window.location.reload(); //Clear input fields.
-                    this.loaded = true;
-                    this.success = true;
-                    console.log(response);
+                    // console.log(response);
                 })
                 .catch((error) => {
-                    this.loaded = true;
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors || {};
                     }

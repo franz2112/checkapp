@@ -1,34 +1,45 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  
   @include('Admin.Separated.header')
 
-
   <body class="g-sidenav-show bg-gray-100">
-  
     @if (session()->has('message'))
-        <div class="alert alert-dismissible fade show" role="alert">
-          <div class="card z-index-2 position-fixed bottom-0 end-0 p-0 m-3 shadow-lg">
-              <div class="card-header bg-primary py-3">
-                  <div class="row">
-                      <div class="col-7 d-flex align-item-center">
-                          <img src="../assets/admin/img/CheckApplogosm.png" class="rounded" alt="logo">
-                          <span class="me-5 fw-bolder pt-1">CheckApp</span>
-                      </div>
-                      <div class="col-5 d-flex justify-content-end align-item-center">
-                          <span class="text-white py-2 fst-italic pe-2" style="font-size: 12px">Just Now</span>
-                          <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-2 px-2 mb-0 shadow-none"><i class="fa-solid fa-xmark text-lg text-white"></i></button>      
-                      </div>
-                  </div>
-              </div>
-              <div class="card-body">
-              <div class="text-sm text-center">
-                {{session()->get('message')}}
-              </div>
+    <div class="alert alert-dismissible fade show" role="alert">
+      <div
+        class="card z-index-2 position-fixed bottom-0 end-0 p-0 m-3 shadow-lg"
+      >
+        <div class="card-header bg-primary py-3">
+          <div class="row">
+            <div class="col-7 d-flex align-item-center">
+              <img
+                src="../assets/admin/img/CheckApplogosm.png"
+                class="rounded"
+                alt="logo"
+              />
+              <span class="me-5 fw-bolder pt-1">CheckApp</span>
+            </div>
+            <div class="col-5 d-flex justify-content-end align-item-center">
+              <span
+                class="text-white py-2 fst-italic pe-2"
+                style="font-size: 12px"
+                >Just Now</span
+              >
+              <button
+                type="button"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                class="btn py-2 px-2 mb-0 shadow-none"
+              >
+                <i class="fa-solid fa-xmark text-lg text-white"></i>
+              </button>
             </div>
           </div>
+        </div>
+        <div class="card-body">
+          <div class="text-sm text-center">{{session()->get('message')}}</div>
+        </div>
       </div>
+    </div>
     @endif
 
     <aside
@@ -54,7 +65,7 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="active"class="nav-link" href="/">
+            <a id="active" class="nav-link" href="/">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -98,7 +109,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Appointments">
+            <a class="nav-link" href="appointment-request">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -188,8 +199,8 @@
               <span class="nav-link-text ms-1">Tables</span>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link active" href="/Add-Doctor">
+          <li class="nav-item">
+            <a class="nav-link active" href="">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -233,7 +244,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Add Doctor</span>
+              <span class="nav-link-text ms-1">Doctor's Information</span>
             </a>
           </li>
 
@@ -246,7 +257,7 @@
             </h6>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/profile.html">
+            <a class="nav-link" href="clinic-profile">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -294,7 +305,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/sign-in.html">
+            <a class="nav-link" href="{{ route('profile.show') }}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -340,20 +351,23 @@
           <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}" x-data>
               @csrf
-                <a class="nav-link text-danger" href="{{ route('logout') }}" @click.prevent="$root.submit();" >
-                  <div
-                    class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center "
-                  >
+              <a
+                class="nav-link text-danger"
+                href="{{ route('logout') }}"
+                @click.prevent="$root.submit();"
+              >
+                <div
+                  class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
+                >
                   <i
                     class="icons fa-solid fa-arrow-right-from-bracket text-danger"
                     data-fa-transform="flip-h"
-                    ></i>
-                  </div>
-                  <span class="nav-link-text ms-1">Log out</span>
-                </a>
+                  ></i>
+                </div>
+                <span class="nav-link-text ms-1">Log out</span>
+              </a>
             </form>
           </li>
-
         </ul>
       </div>
     </aside>
@@ -373,7 +387,7 @@
               class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5"
             >
               <li class="breadcrumb-item text-sm">
-                <a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                <a class="opacity-5 text-dark" href="">Pages</a>
               </li>
               <li
                 class="breadcrumb-item text-sm text-dark active"
@@ -389,7 +403,8 @@
             id="navbar"
           >
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-              {{-- <div class="input-group">
+              {{--
+              <div class="input-group">
                 <span class="input-group-text text-body"
                   ><i class="fas fa-search" aria-hidden="true"></i
                 ></span>
@@ -398,10 +413,10 @@
                   class="form-control"
                   placeholder="Type here..."
                 />
-              </div> --}}
+              </div>
+              --}}
             </div>
             <ul class="navbar-nav justify-content-end">
-   
               <li class="nav-item dropdown pe-2 d-flex align-items-center">
                 <a
                   href="javascript:;"
@@ -553,11 +568,19 @@
                 </a>
               </li>
               <li class="nav-item ps-1 d-flex align-items-center">
-                <div href="#" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
+                <div
+                  href="#"
+                  data-bs-toggle="dropdown"
+                  data-bs-display="static"
+                  class=""
+                >
                   @foreach ($clinicInfo as $info)
-                  <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
-                  {{ $info->clinicname}}
-                  @endforeach
+                  <img
+                    class="rounded-full"
+                    src="https://ui-avatars.com/api/?name={{ urlencode($info->clinicname) }}&rounded=true&background=random&length=1&size=32px&color=ff000"
+                    alt=""
+                  />
+                  {{ $info->clinicname}} @endforeach
                 </div>
               </li>
             </ul>
@@ -565,46 +588,96 @@
         </div>
       </nav>
       <!-- End Navbar -->
-       {{-- modal --}}
-       <div class="modal fade" id="addDoctor" tabindex="-1" role="dialog" aria-labelledby="addDoctorTitle" aria-hidden="true" >
+      {{-- modal --}}
+      <div
+        class="modal fade"
+        id="addDoctor"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="addDoctorTitle"
+        aria-hidden="true"
+      >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header bg-primary ">
-              <h5 class="modal-title text-white" id="exampleModalLabel">Add New Doctor</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              </button>
+            <div class="modal-header bg-primary">
+              <h5 class="modal-title text-white" id="exampleModalLabel">
+                Add New Doctor
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div class="modal-body">
-              <form action="{{ url('upload-doctor') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+              <form
+                action="{{ url('clinics/upload-doctor') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="row g-3"
+              >
                 @csrf
                 <div class="col-md-6">
-                  <label for="Dfname"  class="form-label">First Name: </label>
-                  <input type="text" name="Dfname" class="form-control" id="" placeholder="Enter First Name" required>
+                  <label for="Dfname" class="form-label">First Name: </label>
+                  <input
+                    type="text"
+                    name="Dfname"
+                    class="form-control"
+                    id=""
+                    placeholder="Enter First Name"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
                   <label for="Dlname" class="form-label">Last Name: </label>
-                  <input type="text" name="Dlname" class="form-control" id="inputPassword4" placeholder="Enter Last Name" required>
+                  <input
+                    type="text"
+                    name="Dlname"
+                    class="form-control"
+                    id="inputPassword4"
+                    placeholder="Enter Last Name"
+                    required
+                  />
                 </div>
                 <div class="col-6">
-                  <div class="row ">
-                    <div class="col-3">                  
+                  <div class="row">
+                    <div class="col-3">
                       <label for="GenderName">Gender: </label>
                     </div>
                     <div class="col-9">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Gender" id="Male" value="Male">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="Gender"
+                          id="Male"
+                          value="Male"
+                        />
                         <label class="form-check-label" for="Male">
                           Male
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Gender" id="Female" value="FeMale">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="Gender"
+                          id="Female"
+                          value="FeMale"
+                        />
                         <label class="form-check-label" for="Female">
                           Female
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Gender" id="Rns" value="Rather Not Say">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="Gender"
+                          id="Rns"
+                          value="Rather Not Say"
+                        />
                         <label class="form-check-label" for="Rns">
                           Rather Not Say
                         </label>
@@ -615,29 +688,73 @@
                 <div class="col-6">
                   <div class="form-check ps-0">
                     <label for="date" class="form-label">Birthdate: </label>
-                    <input type="date" name="date"  class="form-control"  placeholder="Enter Birthdate" required>
+                    <input
+                      type="date"
+                      name="date"
+                      class="form-control"
+                      placeholder="Enter Birthdate"
+                      required
+                    />
                   </div>
                 </div>
                 <div class="col-12 mt-0">
-                  <label for="Specialization" class="form-label">Specialization: </label>
-                  <input type="text" name="Specialization" class="form-control" id="inputAddress" placeholder="Enter Specialization" required>
+                  <label for="Specialization" class="form-label"
+                    >Specialization:
+                  </label>
+                  <input
+                    type="text"
+                    name="Specialization"
+                    class="form-control"
+                    id="inputAddress"
+                    placeholder="Enter Specialization"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
-                  <label for="Demail" class="form-label">Doctor's Email: </label>
-                  <input type="email" name="Demail" class="form-control" id="Demail" placeholder="Enter Email">
+                  <label for="Demail" class="form-label"
+                    >Doctor's Email:
+                  </label>
+                  <input
+                    type="email"
+                    name="Demail"
+                    class="form-control"
+                    id="Demail"
+                    placeholder="Enter Email"
+                  />
                 </div>
                 <div class="col-md-6">
-                  <label for="Dphone" class="form-label">Doctor's Phone: </label>
-                  <input type="text" name="Dphone" class="form-control" id="Dphone" placeholder="Enter Contact Number">
+                  <label for="Dphone" class="form-label"
+                    >Doctor's Phone:
+                  </label>
+                  <input
+                    type="text"
+                    name="Dphone"
+                    class="form-control"
+                    id="Dphone"
+                    placeholder="Enter Contact Number"
+                  />
                 </div>
                 <div class="col-12">
                   <label for="file" class="form-label">Add Image: </label>
-                  <input type="file" name="file" class="form-control" id="file">
+                  <input
+                    type="file"
+                    name="file"
+                    class="form-control"
+                    id="file"
+                  />
                 </div>
                 <div class="col-12">
                   <div class="modal-footer border-top-0 py-0">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn bg-gradient-primary">submit</button>
+                    <button
+                      type="button"
+                      class="btn bg-gradient-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="submit" class="btn bg-gradient-primary">
+                      submit
+                    </button>
                   </div>
                 </div>
               </form>
@@ -648,87 +765,86 @@
 
       <div class="container-fluid py-4 overflow-hidden">
         <div class="row">
-            <div class="col-lg-3 mb-lg-2">
+          <div class="col-lg-3 mb-lg-2">
+            <div
+              class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#addDoctor"
+            >
+              <div class="card p-3" style="height: 359px">
                 <div
-                class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto"
-                type="button"
-                data-bs-toggle="modal" 
-                data-bs-target="#addDoctor"
+                  class="overflow-hidden position-relative border-radius-lg h-100"
+                  style="
+                    background-image: url('../assets/img/plus.png');
+                    background-size: 300px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                  "
                 >
-                    <div class="card p-3" style="height: 359px">
-                        <div
-                            class="overflow-hidden position-relative border-radius-lg h-100"
-                            style="
-                              background-image: url('../assets/img/plus.png');
-                              background-size: 300px;
-                              background-repeat: no-repeat; 
-                              background-position: center; 
-                            "
-                        >
-                            <span class="mask bg-gradient-success"></span>
-                            <div
-                            class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
-                            >
-                            <h5 class="text-dark font-weight-bolder mb-4 pt-2">
-                                Add Physician
-                            </h5>       
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-            @foreach ($datadoctor as $doctor)
-              <div class="col-lg-3 mb-lg-2">
-                <div class="card">
-                    <div class="card-header p-3">
-                        <div class="bg-gradient-primary border-radius-lg h-100">
-                            <div
-                                class="position-relative d-flex align-items-center justify-content-center h-100"
-                            >
-                                <img
-                                class="w-100 position-relative "
-                                src="../assets/admin/img/doctorimage//{{ $doctor->file }}""
-                                alt="rocket"
-                                style="
-                                background-repeat: no-repeat; 
-                                background-position: center;  
-                                height: 170px"
-                                />
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="card-body pt-0 p-3">
-                        <div class="row">
-                            <div class="d-flex flex-column h-20">
-                                <h5 class="font-weight-bolder">{{ $doctor->Dfname }}&nbsp;{{ $doctor->Dlname }}</h5>
-                                <p class="mb-1 text-bold">{{ $doctor->Specialization }}</p>
-                                <p class="text-sm mb-1"> {{ $doctor->Demail }} </p>
-                                <p class="text-sm"> {{ $doctor->Dphone }} </p>
-                                <a
-                                    class="text-sm font-weight-bold"
-                                    href="{{ url('Doctor-details', $doctor->id) }}""
-                                >
-                                    Edit Information
-                                    <i
-                                    class="fas fa-arrow-right text-sm ms-1"
-                                    aria-hidden="true"
-                                    ></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                  <span class="mask bg-gradient-success"></span>
+                  <div
+                    class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
+                  >
+                    <h5 class="text-dark font-weight-bolder mb-4 pt-2">
+                      Add Physician
+                    </h5>
+                  </div>
                 </div>
               </div>
-            @endforeach
+            </div>
+          </div>
+          @foreach ($datadoctor as $doctor)
+          <div class="col-lg-3 mb-lg-2">
+            <div class="card">
+              <div class="card-header p-3">
+                <div class="bg-gradient-primary border-radius-lg h-100">
+                  <div
+                    class="position-relative d-flex align-items-center justify-content-center h-100"
+                  >
+                    <img
+                      class="w-100 position-relative"
+                      src="../assets/admin/img/doctorimage/{{ $doctor->file }}"
+                      alt="rocket"
+                      style="
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        object-fit: cover;
+                        height: 140px;
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body pt-0 p-3">
+                <div class="row">
+                  <div class="d-flex flex-column h-20">
+                    <h5 class="font-weight-bolder">
+                      {{ $doctor->Dfname }}&nbsp;{{ $doctor->Dlname }}
+                    </h5>
+                    <p class="mb-1 text-bold">{{ $doctor->Specialization }}</p>
+                    <p class="text-sm mb-1">{{ $doctor->Demail }}</p>
+                    <p class="text-sm">{{ $doctor->Dphone }}</p>
+                    <a
+                      class="btn btn-success text-dark text-sm font-weight-bold"
+                      href="{{ url('clinics/doctors-details', $doctor->id) }}"
+                    >
+                      Edit Information
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
         </div>
-        <div class="row mt-4">
-        </div>
-
+        <div class="row mt-4"></div>
 
         @include('Admin.Separated.afooter')
       </div>
     </main>
-    {{-- <div class="fixed-plugin">
+    {{--
+    <div class="fixed-plugin">
       <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
       </a>
@@ -863,14 +979,12 @@
           </div>
         </div> -->
       </div>
-    </div> --}}
-    
+    </div>
+    --}}
+
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
-    <script src="../assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/chartjs.min.js"></script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
@@ -881,12 +995,10 @@
         var options = {
           damping: "0.5",
         };
-  
+
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
     </script>
   </body>
-  @stack('modals')
-
-  @livewireScripts
+  @stack('modals') @livewireScripts
 </html>

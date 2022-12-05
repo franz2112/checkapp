@@ -19,122 +19,137 @@ Route::get('/welcome', function () {
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 
-    // user side auth
     Route::get('/', [HomeController::class, 'redirect'])
     ->name('Home')
     ->middleware('auth');
 
-    Route::get('/clinics', [HomeController::class, 'clinics'])
-    ->name('clinics')
-    ->middleware('auth');
+     // user side auth
+    Route::group(['middleware' => 'UserType:user', 'prefix' => 'user', 'as' => 'user.'],function(){
+        
+        Route::get('/clinics', [HomeController::class, 'clinics'])
+        ->name('clinics')
+        ->middleware('auth');
     
-    Route::get('/clinics', [HomeController::class, 'clinics'])
-    ->name('clinics')
-    ->middleware('auth');
+        Route::get('/appointment', [HomeController::class, 'appoints'])
+        ->name('appoints')
+        ->middleware('auth');
+    
+        Route::get('/clinic-menu/{id}', [HomeController::class, 'selectedClinic'])
+        ->name('clinic-menu')
+        ->middleware('auth');
+    
+        Route::get('/Cancel-appoint/{id}', [HomeController::class, 'CnclAppnt'])
+        ->name('Cancel-Appointment')
+        ->middleware('auth');
+    
+        Route::post('/Request-Appointment/{id}', [HomeController::class, 'rqstAppoint'])
+        ->name('Request-Appointment')
+        ->middleware('auth');
+    
+        Route::get('/notifications', [HomeController::class, 'notif'])
+        ->name('Notifications')
+        ->middleware('auth');
+    
+        Route::get('/DocSelect/{id}', [HomeController::class, 'SelectDoc'])
+        ->name('DocSelect')
+        ->middleware('auth');
+    
+        Route::get('/TimeSelect/{id}', [HomeController::class, 'SelectTime'])
+        ->name('TimeSelect')
+        ->middleware('auth');
+    });
 
-    Route::get('/Appointment', [HomeController::class, 'appoints'])
-    ->name('appoints')
-    ->middleware('auth');
+   
+    // clinics clinic part   
+    Route::group(['middleware' => 'UserType:clinics', 'prefix' => 'clinics', 'as' => 'clinics.'],function(){
 
-    Route::get('/clinic-menu/{id}', [HomeController::class, 'selectedClinic'])
-    ->name('clinic-menu')
-    ->middleware('auth');
+        Route::get('/appointment-request', [AdminController::class, 'ShowAppointments'])
+        ->name('appointment-request')
+        ->middleware('auth');
 
-    Route::get('/Cancel-appoint/{id}', [HomeController::class, 'CnclAppnt'])
-    ->name('Cancel-Appointment')
-    ->middleware('auth');
+        Route::post('/upload-doctor', [AdminController::class, 'upload'])
+        ->name('upload-doctor')
+        ->middleware('auth');
 
-    Route::post('/Request-Appointment/{id}', [HomeController::class, 'rqstAppoint'])
-    ->name('Request-Appointment')
-    ->middleware('auth');
+        Route::get('/appointments-approval/{id}', [AdminController::class, 'AppRoval'])
+        ->name('appointments-approval')
+        ->middleware('auth');
 
-    Route::get('/Notifications', [HomeController::class, 'notif'])
-    ->name('Notifications')
-    ->middleware('auth');
+        Route::get('/appointments-cancel/{id}', [AdminController::class, 'AppCel'])
+        ->name('appointments-cancel')
+        ->middleware('auth');
+        
+        Route::get('/doctors-information', [AdminController::class, 'AddDoctor'])
+        ->name('doctors-information')
+        ->middleware('auth');
 
-    Route::get('/DocSelect/{id}', [HomeController::class, 'SelectDoc'])
-    ->name('DocSelect')
-    ->middleware('auth');
+        Route::get('/doctors-details/{id}', [AdminController::class,'DocD'])
+        ->name('doctors-details')
+        ->middleware('auth');
+        
+        Route::post('/doctors-details/{id}', [AdminController::class,'editDoctor'])
+        ->name('doctors-details')
+        ->middleware('auth');
+        
+        Route::get('/appointments-create/{id}', [AdminController::class,'create'])
+        ->name('appointments-create')
+        ->middleware('auth');
+        
+        Route::post('/appointments-create/{id}', [AdminController::class,'check'])
+        ->name('appointments-create')
+        ->middleware('auth');
 
-    Route::get('/TimeSelect/{id}', [HomeController::class, 'SelectTime'])
-    ->name('TimeSelect')
-    ->middleware('auth');
+        Route::get('/doctor-index/{id}', [AdminController::class,'indexs'])
+        ->name('doctor-index')
+        ->middleware('auth');
+
+        Route::post('/doctor-update/{id}', [AdminController::class,'update'])
+        ->name('doctor-update')
+        ->middleware('auth');
+
+        Route::get('/clinic-profile', [AdminController::class,'clinicProfile'])
+        ->name('clinic-profile')
+        ->middleware('auth');
+
+        Route::post('/appointment-set/{id}', [AdminController::class,'store'])
+        ->name('appointment-set')
+        ->middleware('auth');
+        
+        Route::post('/clinic-update', [AdminController::class,'updateClinic'])
+        ->name('clinic-update')
+        ->middleware('auth');
+
+    });
 
 
-
-    Route::get('/Availables/{id}', [HomeController::class, 'show'])
-    ->name('Availables')
-    ->middleware('auth');
+    // Route::get('/Availables/{id}', [HomeController::class, 'show'])
+    // ->name('Availables')
+    // ->middleware('auth');
 
     
-    // admin clinic part   
-    Route::get('/Appointments', [AdminController::class, 'Appointments'])
-    ->name('Appointments')
-    ->middleware('auth');
+    // SuperAdmin or developers side
+    Route::group(['middleware' => 'UserType:superadmin', 'prefix' => 'superadmin', 'as' => 'superadmin.'],function(){
+        Route::get('/clinic-request', [DeveloperController::class, 'clinicreq'])
+        ->name('clinic-request')
+        ->middleware('auth');
 
-    Route::post('/upload-doctor', [AdminController::class, 'upload'])
-    ->name('Add-Doctor')
-    ->middleware('auth');
+        Route::get('/selected-clinic/{id}', [DeveloperController::class, 'clinicslct'])
+        ->name('selected-clinic')
+        ->middleware('auth');
 
-    Route::get('/Appointment-Approval/{id}', [AdminController::class, 'AppRoval'])
-    ->name('Appointment-Approval')
-    ->middleware('auth');
-
-    Route::get('/Appointment-Cancel/{id}', [AdminController::class, 'AppCel'])
-    ->name('Appointment-Approval')
-    ->middleware('auth');
-
-    
-    Route::get('/Add-Doctor', [AdminController::class, 'AddDoctor'])
-    ->name('Add-Doctor')
-    ->middleware('auth');
-
-    Route::get('/Doctor-details/{id}', [AdminController::class,'DocD'])
-    ->name('Doctor-details')
-    ->middleware('auth');
-    
-    Route::post('/Doctor-details/{id}', [AdminController::class,'editDoctor'])
-    ->name('Doctor-details')
-    ->middleware('auth');
-    
-    Route::get('/Appointment-create/{id}', [AdminController::class,'create'])
-    ->name('Appointment-create')
-    ->middleware('auth');
-    
-    Route::post('/Appointment-create/{id}', [AdminController::class,'check'])
-    ->name('Appointment-create')
-    ->middleware('auth');
-
-    Route::get('/Doctor-index/{id}', [AdminController::class,'index'])
-    ->name('Doctor-index')
-    ->middleware('auth');
+        Route::get('/selected-reject/{id}', [DeveloperController::class, 'clinicdecline'])
+        ->name('selected-clinic')
+        ->middleware('auth');
+    });
 
 
-    Route::post('/Doctor-update/{id}', [AdminController::class,'update'])
-    ->name('Doctor-update')
+ 
+
+
+// add ons
+    Route::get('/Email-set', [AdminController::class,'SetEmail'])
+    ->name('Email-set')
     ->middleware('auth');
-
-    // admin set appoint
-    Route::post('/Appointment-Set/{id}', [AdminController::class,'store'])
-    ->name('Appointment-Set')
-    ->middleware('auth');
-    
-    // admin developers side
-    Route::get('/clinic-request', [DeveloperController::class, 'clinicreq'])
-    ->name('clinic-request')
-    ->middleware('auth');
-
-    Route::get('/selected-clinic/{id}', [DeveloperController::class, 'clinicslct'])
-    ->name('selected-clinic')
-    ->middleware('auth');
-
-    Route::get('/selected-reject/{id}', [DeveloperController::class, 'clinicdecline'])
-    ->name('selected-clinic')
-    ->middleware('auth');
-
-
-
-
 
     // // clinic Registration...
     // if (Features::enabled(Features::registration())) {
@@ -169,4 +184,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
 });

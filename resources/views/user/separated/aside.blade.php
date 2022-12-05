@@ -2,7 +2,7 @@
     <ul class="navbar-nav ps-4">
       <div class="main-title-page py-4 px-3">
         <a href="" class="">
-          <img src="../assets/img/Checkapp logo 2.0.png" alt="logo" />
+          <img src="/../assets/img/Checkapp logo 2.0.png" alt="logo" />
           <span class="links-name text-black">Check</span>
           <span class="links-name">App</span>
         </a>
@@ -16,28 +16,28 @@
       </li>
       <li id="active-c" class="nav-item">
         <!-- "active - clinic" for active Clinic -->
-        <a href="/clinics" class="side-nav-clinic">
+        <a href="/user/clinics" class="side-nav-clinic">
           <i class="fa-brands fa-medrt px-3"></i>
           <span class="links-name">Clinics</span>
         </a>
       </li>
       <li id="active-a" class="nav-item">
         <!-- "active - appoint" for active Appointment -->
-        <a href="/Appointment" class="side-nav-appoint">
+        <a href="/user/appointment" class="side-nav-appoint">
           <i class="fa-solid fa-pen px-3"></i>
           <span class="links-name">Appointments</span>
         </a>
       </li>
       <li id="active-n"  class="nav-item">
         <!-- "active - notif" for active notification-->
-        <a href="/Notifications" class="side-nav-notif">
+        <a href="/user/notifications" class="side-nav-notif">
           <i class="fa-solid fa-message px-3"></i>
           <span class="links-name">Notifications</span>
         </a>
       </li>
       <li id="active-r" class="nav-item">
         <!-- "active - Rec" for active Records-->
-        <a href="/pages/records.html" class="side-nav-rec">
+        <a href="" class="side-nav-rec">
           <i class="fa-solid fa-file-prescription px-3"></i>
           <span class="links-name">Records</span>
         </a>

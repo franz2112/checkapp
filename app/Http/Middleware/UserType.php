@@ -2,31 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class UserType
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next, string $UserType)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+        if ($UserType == 'user' && auth()->user()->usertype !=-0){
+            abort(code:403);
         }
-
+        if ($UserType == 'clinics' && auth()->user()->usertype != 1){
+            abort(code:403);
+        }
+        if ($UserType == 'superadmin' && auth()->user()->usertype != 2){
+            abort(code:403);
+        }
         return $next($request);
     }
 }

@@ -48,8 +48,8 @@ class HomeController extends Controller
         ->with('clinic')->pluck('doctor');
         $doctorNames = doctor::whereIn('id', $docData)->get();
 
-        return $dataAppoints;
-        // return view('user.appoints', compact('dataAppoints', 'doctorNames')); 
+        // return $dataAppoints;
+        return view('user.appoints', compact('dataAppoints', 'doctorNames')); 
     }
 
     public function clinics(){
@@ -65,10 +65,11 @@ class HomeController extends Controller
     }
       
     public function rqstAppoint(Request $request, $id){
+        time::where('time', $request->time)
+        ->update(['status'=>1]);
         $appoint=new appointment;
         $ids = Auth::id();
         $image=$request->specialId;
-  
 
         if ($request->$image){
             $imagename=time().'.'.$image->getClientoriginalExtension();
@@ -86,9 +87,15 @@ class HomeController extends Controller
 
         $appoint->save();
 
+        // $mailData = [
+        //     'name'=>auth()->user()->name,
+        //     'time'=>$request->time,
+        //     'date'=>$request->date,
+        //     'doctorName' => $doctorName->name
+
+        // ];
         // dd($appoint);
         // return redirect()->back()->with('message', 'Appointment Request Successful!');
-        // return $appoint;
 
     }
 
@@ -123,6 +130,7 @@ class HomeController extends Controller
         $appointment = AppointmentSet::whereIn('doctor_id', $dataDoctors)->where('date',$date)->first();
         $time = Time::where('appointmentSet_id',$appointment->id)->where('status', 0)->get();
 
+
         return $time;
     }
 
@@ -151,5 +159,14 @@ class HomeController extends Controller
         // $time = Time::where('appointmentSet_id',$appointment)->where('status', 0)->get();
         return $times;
     }
+
+    public function findDates($id){
+        $dataDoctors = doctor::where('clinic_id', $id)->get('id');
+        $dates = AppointmentSet::
+        whereIn('doctor_id', $dataDoctors)->latest()->pluck('date')->first();
+        return $dates;
+    }
+
+
 
 }

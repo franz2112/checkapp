@@ -17,7 +17,7 @@
           >
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com"
+                href=""
                 class="nav-link text-muted"
                 target="_blank"
                 >CheckApp</a
@@ -25,7 +25,7 @@
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/presentation"
+                href=""
                 class="nav-link text-muted"
                 target="_blank"
                 >About Us</a
@@ -33,7 +33,7 @@
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/blog"
+                href=""
                 class="nav-link text-muted"
                 target="_blank"
                 >Blog</a
@@ -41,7 +41,7 @@
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/license"
+                href=""
                 class="nav-link pe-0 text-muted"
                 target="_blank"
                 >License</a

@@ -159,7 +159,13 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$doctorNames->Dfname}}</p>
+                            <p>
+                              @foreach ($doctorNames as $doc)
+                                @if ($appoints->doctor==$doc->id)
+                                  Doc {{$doc->Dfname }}
+                                @endif
+                              @endforeach
+                            </p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>

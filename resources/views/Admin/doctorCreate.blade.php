@@ -16,7 +16,7 @@
         ></i>
         <a class="navbar-brand m-0" href="/">
           <img
-            src="../assets/admin/img/CheckappLogo.png"
+            src="/../assets/admin/img/CheckappLogosm.png"
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
@@ -27,7 +27,7 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="active" class="nav-link " href="{{url('Doctor-details', $data->id)}}">
+            <a id="active" class="nav-link " href="{{url('clinics/doctors-details', $data->id)}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -115,7 +115,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('Doctor-index', $data->id)}}">
+            <a class="nav-link" href="{{url('clinics/doctor-index', $data->id)}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -243,10 +243,10 @@
               class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5"
             >
               <li class="breadcrumb-item text-sm">
-                <a class="opacity-5 text-dark" href="/Add-Doctor">Pages</a>
+                <a class="opacity-5 text-dark" href="../doctors-information">Pages</a>
               </li>
               <li class="breadcrumb-item text-sm">
-                <a class="opacity-5 text-dark" href="/Add-Doctor"
+                <a class="opacity-5 text-dark" href="../doctors-information"
                   >Add Doctors</a
                 >
               </li>
@@ -288,7 +288,7 @@
                       <div class="d-flex py-1">
                         <div class="my-auto">
                           <img
-                            src="../assets/admin/img/team-2.jpg"
+                            src="/../assets/admin/img/team-2.jpg"
                             class="avatar avatar-sm me-3"
                           />
                         </div>
@@ -313,7 +313,7 @@
                       <div class="d-flex py-1">
                         <div class="my-auto">
                           <img
-                            src="../assets/admin/img/small-logos/logo-spotify.svg"
+                            src="/../assets/admin/img/small-logos/logo-spotify.svg"
                             class="avatar avatar-sm bg-gradient-dark me-3"
                           />
                         </div>
@@ -449,7 +449,7 @@
                       </div>
                       <form
                         class="form-style"
-                        action="{{url('Appointment-Set', $data->id)}}"
+                        action="{{url('clinics/appointment-set', $data->id)}}"
                         method="post"
                       >
                         @csrf
@@ -458,11 +458,6 @@
                           <input
                             type="date"
                             class="form-control datetimepicker-input"
-                            {{--
-                            id="datepicker"
-                            data-toggle="datetimepicker"
-                            data-target="#datepicker"
-                            --}}
                             name="date"
                           />
                         </div>
@@ -862,15 +857,10 @@
     </div>
     @endforeach
     <!--   Core JS Files   -->
-    <script src="../assets/admin/js/core/popper.min.js"></script>
-    <script src="../assets/admin/js/core/bootstrap.min.js"></script>
-    <script src="../assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/chartjs.min.js"></script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-
+    <script src="/../assets/admin/js/core/popper.min.js"></script>
+    <script src="/../assets/admin/js/core/bootstrap.min.js"></script>
+    <script src="/../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
+  
     <script>
       var win = navigator.platform.indexOf("Win") > -1;
       if (win && document.querySelector("#sidenav-scrollbar")) {
@@ -881,14 +871,7 @@
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
     </script>
-        <script type="text/javascript">
-          $(document).ready(function () {
-            $("#datepicker").datetimepicker({
-              format: "YYYY-MM-DD",
-            });
-          });
-        </script>
-    <script>
+      <script>
       window.setTimeout(function () {
         $("#dismiss")
           .fadeIn(3000, 1)

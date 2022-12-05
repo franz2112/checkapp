@@ -7,9 +7,9 @@
         
         <title>{{ config('app.name', 'CheckApp') }}</title>
         
-        <link rel="shortcut icon" href="../assets/img/Checkapp logo 2.0.png" />
+        <link rel="shortcut icon" href="/../assets/img/Checkapp logo 2.0.png" />
         
-        <link rel="stylesheet" href="../assets/css/style.css"/>
+        <link rel="stylesheet" href="/../assets/css/style.css"/>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     
@@ -98,7 +98,7 @@
               <div class="col-6 d-flex align-items-center p-lg-0">
                 <div class="main-title-page">
                   <a href="/" class="">
-                    <img src="../assets/img/CheckappLogo.png" alt="logo" />
+                    <img src="/../assets/img/CheckappLogo.png" alt="logo" />
                     <span class="links-name text-black">Check</span>
                     <span class="links-name">App</span>
                   </a>
@@ -178,8 +178,8 @@
                         <!-- our doctors -->
                         <div class="col-lg-12">
                           <div class="row">
-                            <h6 class="mb-0">Doctors and Staff</h6>
-                            <div class="doctor-p">
+                            {{-- <h6 class="mb-0">Doctors and Staff</h6> --}}
+                            {{-- <div class="doctor-p">
                               <span class="mx-1">
                                 <img
                                   src="../assets/img/3efdbd.jpeg"
@@ -208,7 +208,7 @@
                                   alt="..."
                                 />
                               </span>
-                            </div>
+                            </div> --}}
                           </div>
                         </div>
                       </div>
@@ -240,7 +240,7 @@
                     </div>
                   @endforeach
                   {{-- set appointment --}}
-                  <div class="col-lg-12 mb-3">
+                  <div class="col-lg-12 mb-2">
                     <div class="card set-appoint">
                       <div class="card-body">
                         <div class="row">
@@ -266,7 +266,7 @@
                 <div class="row">
                   <div class="r-sidebar">
                     <div class="col-12 mb-2">
-                      <a href="/Appointment">
+                      <a href="/user/appointment">
                         <div class="find-new-btn">My Appointments</div>
                       </a>
                     </div>
@@ -349,7 +349,7 @@
                                 class="d-flex align-items-center align-self-start"
                               >
                                 <span class="S-design px-3 py-1">
-                                  THE DOCTOR IS IN
+                                  We Are Open
                                 </span>
                               </div>
                             </div>

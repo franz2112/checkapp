@@ -46,10 +46,6 @@
                           >New Clinics</a
                         >
                       </li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                      </li>
                     </ul>
                   </div>
                   <div class="col align-items-center">
@@ -78,7 +74,7 @@
                   @if ($clinics->status=='registered')
                       <div class="col-md-6 col-lg-3 pt-4 wow zoomIn">
                         <div class="card-doctor">
-                          <a href="{{ url('clinic-menu', $clinics->id) }}">
+                          <a href="{{ url('user/clinic-menu', $clinics->id) }}">
                             <div class="header">
                               <img src="../assets/admin/img/clinicimage/{{ $clinics->Profile }}" alt="" class="bg-white"/>
                             </div>
