@@ -252,6 +252,9 @@ $("document").ready(function () {
     } else if (document.location.pathname == "/user/notifications") {
         $(".nav-item").removeClass("active");
         $("#active-n").addClass("active-notif");
+    } else if (document.location.pathname == "/user/my-records") {
+        $(".nav-item").removeClass("active");
+        $("#active-r").addClass("active-rec");
     }
 });
 
