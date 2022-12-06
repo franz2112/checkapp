@@ -22,17 +22,21 @@ class DeveloperController extends Controller
 {
     //
     public function Cupload(Request $request){
-        $this->validateCupload($request);
+        // $this->validateCupload($request);
 
         $clinic=new clinic;
         $profile=$request->Profile;
+        if($profile){
+            $profilename=time().'.'.$profile->getClientoriginalExtension();
+            $request->Profile->move('assets/admin/img/clinicimage',$profilename);
+            $clinic->Profile=$profilename;
+        }
         $proof=$request->Proof;
-        $profilename=time().'.'.$profile->getClientoriginalExtension();
-        $proofname=time().'.'.$proof->getClientoriginalExtension();
-        $request->Profile->move('assets/admin/img/clinicimage',$profilename);
-        $request->Proof->move('assets/admin/img/clinicimage',$proofname);
-        $clinic->Profile=$profilename;
-        $clinic->Proof=$proofname;
+        if($proof){
+            $proofname=time().'.'.$proof->getClientoriginalExtension();
+            $request->Proof->move('assets/admin/img/clinicimage',$proofname);
+            $clinic->Proof=$proofname;
+        }
         $clinic->clinicname=$request->clinicname;
         $clinic->ofname=$request->ofname;
         $clinic->olname=$request->olname;
