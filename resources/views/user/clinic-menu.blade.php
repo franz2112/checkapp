@@ -215,6 +215,29 @@
                     </div>
                   </div>
                 </div>
+                
+                <!-- Status -->
+                <div class="col-12 mb-2">
+                  <div class="card right-d">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <h6 class="mb-1">Status</h6>
+                        </div>
+                        <div class="col-12 mb-1">
+                          <div
+                            class="d-flex align-items-center align-self-start"
+                          >
+                            <span class="S-design px-3 py-1">
+                              We Are Open
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Status -->
               </div>
               @endforeach
 
@@ -277,27 +300,14 @@
                         <div class="card-body">
                           <div class="row">
                             <div class="col-12">
-                              <h6 class="mb-0">Schedules</h6>
+                              <div class="mb-0">Clinic Schedules</div>
                             </div>
                             <!-- custom schedule -->
                             <div class="col-12">
-                              <div class="sched-set">
-                                <p class="fw-semibold mb-0">
+                              <div class="">
+                                <div class="fw-semibold">
                                   Monday - Saturday
-                                </p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
-                                <p class="mb-0">8:00 AM - 6:00 PM</p>
+                                </div>
                                 <p class="mb-0">8:00 AM - 6:00 PM</p>
                               </div>
                             </div>
@@ -336,28 +346,6 @@
                       </div>
                     </div>
 
-                    <!-- Status -->
-                    <div class="col-12 mb-2">
-                      <div class="card right-d">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-12">
-                              <h6 class="mb-1">Status</h6>
-                            </div>
-                            <div class="col-12 mb-1">
-                              <div
-                                class="d-flex align-items-center align-self-start"
-                              >
-                                <span class="S-design px-3 py-1">
-                                  We Are Open
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Status -->
                     <!-- updates -->
                     <div class="col-12 mb-3">
                       <div class="card right-d">
