@@ -94,10 +94,10 @@
                 p {
                     overflow: auto;
                     text-align: justify;
-                    height: 173px;
+                    height: 250px;
                     // max-height: 500px;
                     @media screen and (max-width: 1366px) {
-                        max-height: 191px;
+                        max-height: 173px;
                     }
                 }
                 .doctor-p {

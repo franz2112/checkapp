@@ -19389,11 +19389,11 @@ p {
 .body-part .content-wrapper .details .card-body p {
   overflow: auto;
   text-align: justify;
-  height: 173px;
+  height: 250px;
 }
 @media screen and (max-width: 1366px) {
   .body-part .content-wrapper .details .card-body p {
-    max-height: 191px;
+    max-height: 173px;
   }
 }
 .body-part .content-wrapper .details .card-body .doctor-p {
