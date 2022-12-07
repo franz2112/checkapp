@@ -4,7 +4,7 @@
           {{-- responsive --}}
           <div class="d-lg-none">
             <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px;">
+              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px; object-fit: cover;">
             </button>
             <div id="navbarCollapse" class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav me-auto">
