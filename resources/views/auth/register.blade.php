@@ -1,7 +1,7 @@
 <x-guest-layout>        
     <section class="h-full sm:h-screen ">
-        <div class="container px-6 mx-auto">
-          <div class="flex justify-center items-center text-gray-800">
+        <div class="container px-6 mx-auto flex items-center h-full ">
+          <div class="flex justify-center my-auto text-gray-800 w-full">
             <div class="lg:w-10/12 py-8">
               <div class="block bg-white shadow-lg rounded-lg">
                 <div class="flex flex-wrap items-center justify-center p-4">
@@ -32,11 +32,11 @@
                                 @csrf
                                 <div class="mb-3">User's Information</div>
                                 <div class="mb-3">
-                                    <x-jet-label for="fname" value="{{ __('First Name *') }}" />
+                                    <x-jet-label for="fname" value="{{ __('First Name *') }} "/>
                                     <x-jet-input id="fname" class="block mt-1 w-full" type="text" name="fname" :value="old('fname')" required autofocus autocomplete="fname" />
                                 </div>
                                 <div class="mb-3">
-                                    <x-jet-label for="mname" value="{{ __('Middle Name *') }}" />
+                                    <x-jet-label for="mname" value="{{ __('Middle Name') }}" />
                                     <x-jet-input id="mname" class="block mt-1 w-full" type="text" name="mname" :value="old('mname')" required autofocus autocomplete="mname" />
                                 </div>
                                 <div class="mb-3">
@@ -62,7 +62,7 @@
                                 
                                 <div class="mb-3">
                                     <x-jet-label for="phone" value="{{ __('Phone *') }}" />
-                                    <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+                                    <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" maxlength="11"/>
                                 </div>
 
                                 <div class="mb-3">
