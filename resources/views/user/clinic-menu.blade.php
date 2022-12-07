@@ -98,9 +98,9 @@
               <div class="col-6 d-flex align-items-center p-lg-0">
                 <div class="main-title-page">
                   <a href="/" class="">
-                    <img src="/../assets/img/CheckappLogo.png" alt="logo" />
-                    <span class="links-name text-black">Check</span>
-                    <span class="links-name">App</span>
+                    <img src="/../assets/img/logo-section2.png" alt="logo" />
+                    {{-- <span class="links-name text-black">Check</span>
+                    <span class="links-name">App</span> --}}
                   </a>
                 </div>
               </div>
@@ -110,7 +110,7 @@
                 <ul class="m-0">
                   <li class="dropdown"> 
                     <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
-                      <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                      <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px; object-fit: cover;">
                       <span class="ps-1">
                         {{ Auth::user()->fname}} 
                         {{ Auth::user()->mname}}

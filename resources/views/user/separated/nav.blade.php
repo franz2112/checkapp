@@ -4,7 +4,7 @@
           {{-- responsive --}}
           <div class="d-lg-none">
             <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px;">
             </button>
             <div id="navbarCollapse" class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav me-auto">
@@ -26,7 +26,7 @@
               <ul class="navbar-nav navbar-right d-flex justify-content-end ">
                 <li class="dropdown"> 
                   <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
-                    <img class="rounded-circle img-thumbnail" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                    <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px; object-fit: cover;">
                     <span>{{ Auth::user()->fname}} {{ Auth::user()->mname}} {{ Auth::user()->lname}}</span>
                   </div>
                   <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">

@@ -2,9 +2,9 @@
     <ul class="navbar-nav ps-4">
       <div class="main-title-page py-4 px-3">
         <a href="" class="">
-          <img src="/../assets/img/Checkapp logo 2.0.png" alt="logo" />
-          <span class="links-name text-black">Check</span>
-          <span class="links-name">App</span>
+          <img src="/../assets/img/logo-section2.png" alt="logo" />
+          {{-- <span class="links-name text-black">Check</span>
+          <span class="links-name">App</span> --}}
         </a>
       </div>
       <li class="nav-item active">
@@ -37,21 +37,21 @@
       </li>
       <li id="active-r" class="nav-item">
         <!-- "active - Rec" for active Records-->
-        <a href="" class="side-nav-rec">
+        <a href="my-records" class="side-nav-rec">
           <i class="fa-solid fa-file-prescription px-3"></i>
           <span class="links-name">Records</span>
         </a>
       </li>
 
       <!-- All navlower, the active is "active-lower" -->
-      <li class="pt-5 nav-lower">
-        <a href="#" class="side-nav-lower">
+      <li class="pt-5 nav-lower" >
+        <a href="#" class="side-nav-lower" >
           <i class="icons fa-solid fa-gear px-3"></i>
           <span class="links-name">Settings</span>
         </a>
       </li>
       <li class="nav-lower">
-        <a href="#" class="side-nav-lower">
+        <a href="#" class="side-nav-lower" disabled>
           <i class="icons fa-solid fa-circle-question px-3"></i>
           <span class="links-name">Help</span>
         </a>

@@ -19159,9 +19159,6 @@ p {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-.main-title-page img {
-  width: 40px;
-}
 .main-title-page span {
   color: #35bf53;
 }
@@ -19194,7 +19191,7 @@ p {
   opacity: 0;
 }
 .sidebar-part ul li a {
-  font-weight: 500;
+  font-weight: 400;
 }
 .sidebar-part ul li a:hover {
   color: #35bf53;

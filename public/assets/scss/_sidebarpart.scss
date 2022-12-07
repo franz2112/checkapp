@@ -1,153 +1,154 @@
 @use "clinic-title";
 .sidebar-part {
-  background-color: rgb(255, 255, 255);
-  top: 0;
-  left: 0;
-  min-height: 100vh;
-  min-width: 245px;
-  padding: 0;
-
-  ul {
-    position: sticky;
+    background-color: rgb(255, 255, 255);
     top: 0;
-    li {
-      padding-top: 17px;
-      padding-bottom: 17px;
-      display: list-item;
-      width: 100%;
-
-      .home-nav {
-        font-size: 18pt;
-        .icons {
-          opacity: 0;
-        }
-      }
-      a {
-        font-weight: 500;
-        &:hover {
-          color: #35bf53;
-        }
-      }
-      .side-nav-clinic {
-        &:hover {
-          color: #c8cc0d;
-        }
-      }
-      .side-nav-appoint {
-        &:hover {
-          color: #4dcaa5;
-        }
-      }
-      .side-nav-notif {
-        &:hover {
-          color: #ffc700;
-        }
-      }
-      .side-nav-rec {
-        &:hover {
-          color: #1f9dc5;
-        }
-      }
-      .side-nav-lower {
-        &:hover {
-          color: #9e7546;
-        }
-      }
-      .side-nav-out {
-        display: inline-block;
-        &:hover {
-          color: #ff2e13;
-          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-          transform: translate3d(0, 0, 0);
-          perspective: 1000px;
-        }
-      }
-      // Active part
-      &.active {
-        position: relative;
-        border: 0;
-        border-right: 6px solid #35bf53;
-        a {
-          color: #35bf53;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-      &.active-clinic {
-        position: relative;
-        border: 0;
-        border-right: 6px solid #c8cc0d;
-        a {
-          color: #c8cc0d;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-      &.active-appoint {
-        position: relative;
-        border: 0;
-        border-right: 6px solid #4dcaa5;
-        a {
-          color: #4dcaa5;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-      &.active-notif {
-        position: relative;
-        border: 0;
-        border-right: 6px solid #ffc700;
-        a {
-          color: #ffc700;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-      &.active-rec {
-        position: relative;
-        border: 0;
-        border-right: 6px solid #1f9dc5;
-        a {
-          color: #1f9dc5;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-      &.active-lower {
-        a {
-          color: #9e7546;
-          display: inline-block;
-          animation: breathing 5s ease-out infinite;
-        }
-      }
-    }
-  }
-
-  .nav-lower {
-    .icons {
-      opacity: 0;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
+    left: 0;
     min-height: 100vh;
-    min-width: 104px;
-    -webkit-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
+    min-width: 245px;
+    padding: 0;
+
     ul {
-      // position: absolute;
-      // left: -14px;
-      img {
-        position: relative;
-        left: -10px;
-      }
+        position: sticky;
+        top: 0;
+        li {
+            padding-top: 17px;
+            padding-bottom: 17px;
+            display: list-item;
+            width: 100%;
+
+            .home-nav {
+                font-size: 18pt;
+                .icons {
+                    opacity: 0;
+                }
+            }
+            a {
+                font-weight: 400;
+                &:hover {
+                    color: #35bf53;
+                }
+            }
+            .side-nav-clinic {
+                &:hover {
+                    color: #c8cc0d;
+                }
+            }
+            .side-nav-appoint {
+                &:hover {
+                    color: #4dcaa5;
+                }
+            }
+            .side-nav-notif {
+                &:hover {
+                    color: #ffc700;
+                }
+            }
+            .side-nav-rec {
+                &:hover {
+                    color: #1f9dc5;
+                }
+            }
+            .side-nav-lower {
+                &:hover {
+                    color: #9e7546;
+                }
+            }
+            .side-nav-out {
+                display: inline-block;
+                &:hover {
+                    color: #ff2e13;
+                    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97)
+                        both;
+                    transform: translate3d(0, 0, 0);
+                    perspective: 1000px;
+                }
+            }
+            // Active part
+            &.active {
+                position: relative;
+                border: 0;
+                border-right: 6px solid #35bf53;
+                a {
+                    color: #35bf53;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+            &.active-clinic {
+                position: relative;
+                border: 0;
+                border-right: 6px solid #c8cc0d;
+                a {
+                    color: #c8cc0d;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+            &.active-appoint {
+                position: relative;
+                border: 0;
+                border-right: 6px solid #4dcaa5;
+                a {
+                    color: #4dcaa5;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+            &.active-notif {
+                position: relative;
+                border: 0;
+                border-right: 6px solid #ffc700;
+                a {
+                    color: #ffc700;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+            &.active-rec {
+                position: relative;
+                border: 0;
+                border-right: 6px solid #1f9dc5;
+                a {
+                    color: #1f9dc5;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+            &.active-lower {
+                a {
+                    color: #9e7546;
+                    display: inline-block;
+                    animation: breathing 5s ease-out infinite;
+                }
+            }
+        }
     }
-    .icons {
-      opacity: 1 !important;
+
+    .nav-lower {
+        .icons {
+            opacity: 0;
+        }
     }
-    .links-name {
-      display: none;
+
+    @media screen and (max-width: 768px) {
+        min-height: 100vh;
+        min-width: 104px;
+        -webkit-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        ul {
+            // position: absolute;
+            // left: -14px;
+            img {
+                position: relative;
+                left: -10px;
+            }
+        }
+        .icons {
+            opacity: 1 !important;
+        }
+        .links-name {
+            display: none;
+        }
     }
-  }
 }
