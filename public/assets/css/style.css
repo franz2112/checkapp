@@ -19278,6 +19278,19 @@ p {
 .sidebar-part .nav-lower .icons {
   opacity: 0;
 }
+@media screen and (min-width: 768px) {
+  .sidebar-part .withname-logo img {
+    position: relative;
+    left: -10px;
+  }
+  .sidebar-part .plain-logo {
+    display: none;
+  }
+  .sidebar-part .plain-logo img {
+    position: relative;
+    left: -20px;
+  }
+}
 @media screen and (max-width: 768px) {
   .sidebar-part {
     min-height: 100vh;
@@ -19286,9 +19299,16 @@ p {
     -o-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
   }
-  .sidebar-part ul img {
+  .sidebar-part ul .withname-logo {
+    display: none;
+  }
+  .sidebar-part ul .withname-logo img {
     position: relative;
     left: -10px;
+  }
+  .sidebar-part ul .plain-logo img {
+    position: relative;
+    left: -20px;
   }
   .sidebar-part .icons {
     opacity: 1 !important;

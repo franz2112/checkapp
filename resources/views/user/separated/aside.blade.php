@@ -2,7 +2,20 @@
     <ul class="navbar-nav ps-4">
       <div class="main-title-page py-4 px-3">
         <a href="" class="">
-          <img src="/../assets/img/logo-section2.png" alt="logo" />
+          <div class="plain-logo">
+            <img
+            src="../assets/img/logo-sectionsm.png"
+            class="navbar-brand-img "
+            alt="main_logo"
+            />
+          </div>
+          <div class="withname-logo">
+            <img
+            src="../assets/img/logo-section2.png"
+            class="navbar-brand-img"
+            alt="main_logo"
+            />
+          </div>
           {{-- <span class="links-name text-black">Check</span>
           <span class="links-name">App</span> --}}
         </a>
