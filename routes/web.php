@@ -57,6 +57,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('/TimeSelect/{id}', [HomeController::class, 'SelectTime'])
         ->name('TimeSelect')
         ->middleware('auth');
+        
+        Route::get('/my-records', [HomeController::class, 'records'])
+        ->name('/my-records')
+        ->middleware('auth');
     });
 
    
@@ -140,11 +144,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('/selected-reject/{id}', [DeveloperController::class, 'clinicdecline'])
         ->name('selected-clinic')
         ->middleware('auth');
+    
     });
 
-
- 
-
+    Route::post('/upload-clinics', [DeveloperController::class, 'Cupload'])
+    ->name('upload-clinic');
+        
 
 // add ons
     Route::get('/Email-set', [AdminController::class,'SetEmail'])
@@ -165,8 +170,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 });
 
 
-
-Route::post('/upload-clinics', [DeveloperController::class, 'Cupload']);
 
 // Route::post('/clinic-request', [DeveloperController::class, 'clinicreq']);
 

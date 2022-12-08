@@ -1,6 +1,7 @@
 import "./bootstrap";
 import Alpine from "alpinejs";
-import { createApp } from "vue/dist/vue.esm-bundler";
+// import { createApp } from "vue/dist/vue.esm-bundler";
+import { createApp } from "vue";
 import Example from "./Components/Example.vue";
 import loader from "./Components/loader.vue";
 import miniLoader from "./Components/miniLoader.vue";

@@ -16,7 +16,7 @@
                             wire:model="photo"
                             x-ref="photo"
                             x-on:change="
-                                    photoName = $refs.photo.files[0].name;
+                                    photoName = $refs.photo.files[0].fname;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
                                         photoPreview = e.target.result;
@@ -28,8 +28,8 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    {{-- <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->fname }}" class="rounded-full h-20 w-20 object-cover"> --}}
-                    <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt="">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->fname }}" class="rounded-full h-20 w-20 object-cover">
+                    {{-- <img class="rounded-full" src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->fname) }}&rounded=true&background=random&length=1&size=32px&color=ff000" alt=""> --}}
                 </div>
 
                 <!-- New Profile Photo Preview -->

@@ -1,9 +1,7 @@
 <template>
     <loader v-if="loading"></loader>
 
-    <form
-        method="post"
-        @submit.prevent="submit()"
+    <div
         class="form py-0 vld-parent"
         enctype="multipart/form-data"
         ref="formContainer"
@@ -33,6 +31,7 @@
                         v-model="fields.date"
                         inline
                         autoApply
+                        required
                         :enableTimePicker="false"
                         :minDate="new Date()"
                         :format="customDate"
@@ -63,6 +62,7 @@
                     >
                         <div class="option m-1">
                             <input
+                                v-on:click="isHidden = false"
                                 type="radio"
                                 name="doctor"
                                 v-model="fields.doctor"
@@ -98,6 +98,8 @@
                                             d.doctor.file
                                         "
                                         width="180"
+                                        height="180"
+                                        style="object-fit: cover"
                                     />
                                 </div>
                             </label>
@@ -143,6 +145,7 @@
                     <div class="col-sm-6 p-0">
                         <div class="option m-1">
                             <input
+                                v-on:click="isHidden = false"
                                 type="radio"
                                 name="consultation"
                                 id="ol"
@@ -159,6 +162,7 @@
                                     <img
                                         src="/assets/img/noun-medical-check-up-2583365.png"
                                         alt=""
+                                        style="object-fit: cover"
                                     />
                                 </div>
                             </label>
@@ -168,6 +172,7 @@
                     <div class="col-sm-6 p-0">
                         <div class="option m-1">
                             <input
+                                v-on:click="isHidden = false"
                                 type="radio"
                                 name="consultation"
                                 v-model="fields.consultation"
@@ -181,6 +186,7 @@
                                     <img
                                         src="/assets/img/noun-face-to-face-4877515.png"
                                         alt=""
+                                        style="object-fit: cover"
                                     />
                                 </div>
                             </label>
@@ -188,15 +194,29 @@
                     </div>
                 </div>
             </div>
-
+            <div class="d-flex justify-content-end">
+                <button
+                    v-if="!isHidden"
+                    type="button"
+                    class="btn btn-secondary p-1"
+                    v-on:click="uncheckAll"
+                    style="
+                        font-size: 11px;
+                        background-color: gainsboro;
+                        color: #171717;
+                    "
+                >
+                    Clear
+                </button>
+            </div>
             <div class="btns-group">
                 <a href="#" class="btn btn-prev">Back</a>
-                <a href="#" class="btn btn-next">
+                <button href="#" class="btn btn-next">
                     <div v-if="loads">
                         <miniLoader></miniLoader>
                     </div>
                     <div v-else>Next</div>
-                </a>
+                </button>
             </div>
         </div>
 
@@ -213,6 +233,7 @@
                         >
                             <div class="option m-1">
                                 <input
+                                    v-on:click="isHiddens = false"
                                     type="radio"
                                     name="time"
                                     v-model="fields.time"
@@ -233,6 +254,21 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex justify-content-end">
+                <button
+                    v-if="!isHiddens"
+                    type="submit"
+                    class="btn btn-secondary p-1"
+                    v-on:click="uncheckAll"
+                    style="
+                        font-size: 11px;
+                        background-color: gainsboro;
+                        color: #171717;
+                    "
+                >
+                    Clear
+                </button>
+            </div>
             <div class="btns-group">
                 <a href="#" class="btn btn-prev">Back</a>
                 <a href="#" class="btn btn-next">Next</a>
@@ -248,7 +284,7 @@
                                 <h6 class="my-4">Reason/Complaints</h6>
                                 <textarea
                                     class="form-control my-3"
-                                    rows="8"
+                                    rows="3"
                                     id="comment"
                                     name="reason"
                                     v-model="fields.reason"
@@ -277,10 +313,15 @@
 
             <div class="btns-group mt-3">
                 <a href="#" class="btn btn-prev">Back</a>
-                <input type="submit" value="submit" class="btn" />
+                <input
+                    type="submit"
+                    value="submit"
+                    class="btn"
+                    v-on:click="submit()"
+                />
             </div>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>
@@ -293,6 +334,8 @@ import { ref, computed } from "vue";
 export default {
     data() {
         return {
+            isHidden: true,
+            isHiddens: true,
             loading: false,
             loads: false,
             date: "",
@@ -310,23 +353,24 @@ export default {
     },
     setup() {
         const date = ref(new Date());
-        // var id = window.location.href.split("/").pop();
-        // const allDates = axios.get("/api/findDates/" + id).then((response) => {
-        //     console.log(response.data);
-        //     response.data;
-        // });
-        // const allowedDates = computed(() => {
-        //     return [new Date("2022-12-08")];
-        // });
-        // console.log(allDates);
+        const allowedDates = computed(() => {
+            return [new Date("2022-12-08")];
+        });
 
         return {
-            // allDates,
-            // allowedDates,
+            allowedDates,
             date,
         };
     },
     methods: {
+        uncheckAll: function () {
+            this.fields.doctor = "";
+            this.fields.consultation = "";
+            this.fields.time = "";
+        },
+        add(event) {
+            event.target.className += " disabled";
+        },
         customDate(date) {
             this.loads = true;
             this.date = moment(date).format("YYYY-MM-DD");
@@ -338,7 +382,7 @@ export default {
                     setTimeout(() => {
                         this.doctors = response.data;
                         this.loads = false;
-                    }, 1000);
+                    }, this.loading);
                 });
             // .catch((error) => {
             //     alert("error");
@@ -358,7 +402,7 @@ export default {
                     setTimeout(() => {
                         this.times = response.data;
                         this.loads = false;
-                    }, 1000);
+                    }, this.loading);
                 });
             // .catch((error) => {
             //     alert("error");
@@ -378,14 +422,18 @@ export default {
                     date: this.date,
                 })
                 .then((response) => {
-                    this.$toast.success("Appointment Request Successful!");
                     setTimeout(() => {
                         this.fields = {};
-                        console.log(response);
                         this.loading = false;
-                        // window.location.reload(); //Clear input fields.
-                    }, 300);
-                    // window.location.reload(); //Clear input fields.
+                        // console.log(response);
+                    }, this.loading);
+                    // window.location.reload();
+                    this.$toast.open({
+                        message: "Appointment Request Successful!",
+                        type: "success",
+                        duration: 20000,
+                        dismissible: true,
+                    });
                     // console.log(response);
                 })
                 .catch((error) => {
@@ -394,23 +442,6 @@ export default {
                     }
                 });
         },
-        // doctorAvailable() {
-        //     var id = window.location.href.split("/").pop();
-        //     axios.get("/DocSelect/" + id).then((response) => {
-        //         this.doctors = response.data;
-        //         this.loading = false;
-        //         console.log(response);
-        //         console.log(id);
-        //     });
-        // },
-        // TimeAvailable() {
-        //     var id = window.location.href.split("/").pop();
-        //     axios.get("/findDoctors/" + id).then((response) => {
-        //         this.time = response.data;
-        //         this.loading = false;
-        //         console.log(response);
-        //     });
-        // },
     },
     created() {
         this.customDate(), this.customTime();

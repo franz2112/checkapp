@@ -50,7 +50,7 @@
       </li>
       <li id="active-r" class="nav-item">
         <!-- "active - Rec" for active Records-->
-        <a href="my-records" class="side-nav-rec">
+        <a href="/user/my-records" class="side-nav-rec">
           <i class="fa-solid fa-file-prescription px-3"></i>
           <span class="links-name">Records</span>
         </a>

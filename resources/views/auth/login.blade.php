@@ -8,9 +8,9 @@
     
     <section class="h-full sm:h-screen ">
         <div class="container sm:px-4 mx-auto" >
-          <div class="flex justify-center items-center text-gray-800">
-            <div class="lg:w-10/12 py-16 min-h-screen">
-              <div class="block bg-white shadow-lg rounded-lg">
+          <div class="flex justify-center text-gray-800">
+            <div class="lg:w-10/12 py-16 min-h-screen flex  items-center">
+              <div class="block bg-white shadow-lg rounded-lg w-full">
                 <div class="lg:flex lg:flex-wrap">
                   <div class="lg:w-6/12 p-4 md:px-0">
                     <div class="p-3 xl:p-7 md:mx-6">

@@ -65,7 +65,7 @@ class HomeController extends Controller
     }
       
     public function rqstAppoint(Request $request, $id){
-        time::where('time', $request->time)
+        time::where('id', $request->id)
         ->update(['status'=>1]);
         $appoint=new appointment;
         $ids = Auth::id();
@@ -152,11 +152,8 @@ class HomeController extends Controller
         whereIn('doctor_id', $showAllDoc)
         ->whereDate('date',date($request->date))->get();
         $select = $date->where('doctor_id', $request->doctor)->pluck('id');
-
         $times = Time::whereIn('appointmentSet_id', $select)->where('status',0)->get();
 
-        // $appointment = AppointmentSet::whereIn('doctor_id', $request->doctor)->where('date',$date)->pluck('id')->all();
-        // $time = Time::where('appointmentSet_id',$appointment)->where('status', 0)->get();
         return $times;
     }
 
@@ -165,6 +162,19 @@ class HomeController extends Controller
         $dates = AppointmentSet::
         whereIn('doctor_id', $dataDoctors)->latest()->pluck('date')->first();
         return $dates;
+    }
+
+    public function records(){
+       $userId = Auth::id();
+       $clinicId = appointment::where('user_id', $userId)->pluck('clinic_id');
+       $clinicDetails = clinic::where('id', $clinicId)->get();
+       
+       $doctorId = appointment::where('user_id', $userId)->pluck('doctor');
+       $doctorDetails = doctor::where('id', $doctorId)->get();
+
+       $appointmentDetails = appointment::where('user_id', $userId)->get(); 
+        // return $allDocs;
+       return view('user.records', compact('clinicDetails', 'doctorDetails', 'appointmentDetails'));
     }
 
 

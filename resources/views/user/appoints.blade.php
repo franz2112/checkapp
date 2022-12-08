@@ -178,7 +178,7 @@
                             <a href="#" class="btn view">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
-                              href="{{ url('Cancel-appoint', $appoints->id) }}"
+                              href="{{ url('user/Cancel-appoint', $appoints->id) }}"
                               class="btn cancel"
                             >
                               Cancel Appointment
@@ -244,7 +244,13 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$appoints->doctor}}</p>
+                            <p>
+                              @foreach ($doctorNames as $doc)
+                                @if ($appoints->doctor==$doc->id)
+                                  Doc {{$doc->Dfname }}
+                                @endif
+                              @endforeach
+                            </p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>
@@ -266,6 +272,16 @@
                             <a href="#" class="btn view">View Details</a>
                             @endif
                           </span>
+                        </div>
+                      </div>
+                    </div>
+                    @else
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no approved appointments.
                         </div>
                       </div>
                     </div>
@@ -323,7 +339,13 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$appoints->doctor}}</p>
+                            <p>
+                              @foreach ($doctorNames as $doc)
+                                @if ($appoints->doctor==$doc->id)
+                                  Doc {{$doc->Dfname }}
+                                @endif
+                              @endforeach
+                            </p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>
@@ -345,6 +367,16 @@
                             <a href="#" class="btn view">View Details</a>
                             @endif
                           </span>
+                        </div>
+                      </div>
+                    </div>
+                    @else
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no pending appointments.
                         </div>
                       </div>
                     </div>
@@ -402,7 +434,13 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$appoints->doctor}}</p>
+                            <p>
+                              @foreach ($doctorNames as $doc)
+                                @if ($appoints->doctor==$doc->id)
+                                  Doc {{$doc->Dfname }}
+                                @endif
+                              @endforeach
+                            </p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>
@@ -424,6 +462,16 @@
                             <a href="#" class="btn view">View Details</a>
                             @endif
                           </span>
+                        </div>
+                      </div>
+                    </div>
+                    @else
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no cancelled appointments.
                         </div>
                       </div>
                     </div>
@@ -482,7 +530,13 @@
                             {{$appoints->clinic->clinicname}}
                           </h6>
                           <span>
-                            <p>{{$appoints->doctor}}</p>
+                            <p>
+                              @foreach ($doctorNames as $doc)
+                                @if ($appoints->doctor==$doc->id)
+                                  Doc {{$doc->Dfname }}
+                                @endif
+                              @endforeach
+                            </p>
                           </span>
                           <span>
                             <p>{{$appoints->Consultatio}}</p>
@@ -504,6 +558,16 @@
                             <a href="#" class="btn view">View Details</a>
                             @endif
                           </span>
+                        </div>
+                      </div>
+                    </div>
+                    @else
+                    <div class="col-12 m-2 p-lg-5">
+                      <div
+                        class="d-flex align-item-center justify-content-center"
+                      >
+                        <div class="p-5 m-5">
+                          There are no history appointments.
                         </div>
                       </div>
                     </div>
