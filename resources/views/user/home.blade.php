@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  @section('title') 
+  Home |  
+  @endsection
+
   @include('user.separated.header')
 
   <body>

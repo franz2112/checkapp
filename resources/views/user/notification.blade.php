@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+  @section('title') 
+   Notifications |  
+  @endsection
+
   @include('user.separated.header')
 
 

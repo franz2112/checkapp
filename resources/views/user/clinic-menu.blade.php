@@ -5,7 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
-        <title>{{ config('app.name', 'CheckApp') }}</title>
+        <title>
+          @foreach ($clinic as $clinics)
+              {{$clinics->clinicname}}
+          @endforeach
+          
+          | {{ config('app.name', 'CheckApp') }}
+          
+          </title>
         
         <link rel="shortcut icon" href="/../assets/img/Checkapp logo 2.0.png" />
         

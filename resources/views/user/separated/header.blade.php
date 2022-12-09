@@ -3,7 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>{{ config('app.name', 'CheckApp') }}</title>
+    <title>@yield('title') {{ config('app.name', 'CheckApp') }} </title>
     
     <link rel="shortcut icon" href="/../assets/img/Checkapp logo 2.0.png" />
     
@@ -22,7 +22,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    @vite([
+   
+   @vite([
     
     'resources/js/app.js',
           

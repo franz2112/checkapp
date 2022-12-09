@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  @section('title') 
+  Clinics |  
+  @endsection
+
   @include('user.separated.header')
   <body>
     <!-- Back to top button -->
