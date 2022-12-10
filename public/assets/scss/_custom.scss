@@ -141,6 +141,11 @@ p {
 .master-part {
     display: flex;
     position: relative;
+    .offcanvas-lg {
+        @media (max-width: 991.98px) {
+            max-width: 104px;
+        }
+    }
 }
 
 //card boarder radius
