@@ -1,4 +1,5 @@
-<aside  x-data="{ open: false }"  class="sidebar-part">
+<div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvasCheck" aria-labelledby="offcanvasCheckLabel">
+  <aside  x-data="{ open: false }"  class="sidebar-part">
     <ul class="navbar-nav ps-4">
       <div class="main-title-page py-4 px-3">
         <a href="" class="">
@@ -84,3 +85,4 @@
       </form>
     </ul>
   </aside>
+</div>

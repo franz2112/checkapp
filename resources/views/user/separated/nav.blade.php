@@ -3,6 +3,14 @@
           
           {{-- responsive --}}
           <div class="d-lg-none">
+            <button
+                class="navbar-toggler mt-2"
+                type="button"
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#offcanvasCheck"
+            >          
+              <span class="fa-solid fa-bars"></span>
+            </button>
             <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border border-dark" style="width: 35px; height:35px; object-fit: cover;">
             </button>
