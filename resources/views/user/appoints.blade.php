@@ -172,10 +172,10 @@
                             </p>
                           </span>
                           <span>
-                            <p>{{$appoints->Consultatio}}</p>
+                            <p>{{$appoints->consultation}} Consultation</p>
                           </span>
                           <span>
-                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                            <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
@@ -257,10 +257,10 @@
                             </p>
                           </span>
                           <span>
-                            <p>{{$appoints->Consultatio}}</p>
+                            <p>{{$appoints->consultation}} Consultation</p>
                           </span>
                           <span>
-                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                            <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
@@ -352,10 +352,10 @@
                             </p>
                           </span>
                           <span>
-                            <p>{{$appoints->Consultatio}}</p>
+                            <p>{{$appoints->consultation}} Consultation</p>
                           </span>
                           <span>
-                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                            <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
@@ -447,10 +447,10 @@
                             </p>
                           </span>
                           <span>
-                            <p>{{$appoints->Consultatio}}</p>
+                            <p>{{$appoints->consultation}} Consultation</p>
                           </span>
                           <span>
-                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                            <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
@@ -543,10 +543,10 @@
                             </p>
                           </span>
                           <span>
-                            <p>{{$appoints->Consultatio}}</p>
+                            <p>{{$appoints->consultation}}</p>
                           </span>
                           <span>
-                            <p>{{$appoints->date}} | {{$appoints->time}}</p>
+                            <p>{{ date('F d, Y', strtotime($appoints->date)) }} | {{$appoints->time}}</p>
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
