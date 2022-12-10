@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+  @section('title') 
+  Clinic Information |  
+  @endsection
+
   @include('Admin.Separated.header')
 
   <body class="g-sidenav-show bg-gray-100">

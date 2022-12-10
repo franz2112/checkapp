@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+  @section('title') 
+  Setup Doctor's Date and Time |  
+  @endsection
   @include('Admin.Separated.header')
 
   <body class="g-sidenav-show bg-gray-100">

@@ -6,7 +6,7 @@
     />
 
     <link sizes="76x76" rel="icon" type="image/png" href="/../assets/admin/img/CheckappLogo.png" />
-    <title>{{ config('app.name', 'CheckApp') }}</title>
+    <title>@yield('title') {{ config('app.name', 'CheckApp') }}</title>
       
     
     <!--     Fonts and icons     -->
