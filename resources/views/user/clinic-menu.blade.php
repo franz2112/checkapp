@@ -82,13 +82,13 @@
               </div>
 
               <!-- Modal body -->
-              <div class="modal-body">Modal body..</div>
+              <div class="modal-body">Consultation Fee - P500</div>
 
               <!-- Modal footer -->
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
                   Close
@@ -117,7 +117,7 @@
                 <ul class="m-0">
                   <li class="dropdown"> 
                     <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
-                      <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle" style="width: 35px; height:35px; object-fit: cover;">
+                      <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border" style="width: 35px; height:35px; object-fit: cover;">
                       <span class="ps-1">
                         {{ Auth::user()->fname}} 
                         {{ Auth::user()->mname}}

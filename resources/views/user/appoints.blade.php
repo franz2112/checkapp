@@ -30,13 +30,13 @@
               <div class="nav-search">
                 <div class="nav-appoint">
                   <ul
-                    class="nav-own nav-pills mb-3"
+                    class="nav-own nav-tabs nav-pills mb-3"
                     id="pills-tab"
                     role="tablist"
                   >
                     <li class="nav-item" role="presentation">
                       <button
-                        class="nav-link active me-5"
+                        class="nav-link active me-4"
                         id="pills-latest-tab"
                         data-bs-toggle="pill"
                         data-bs-target="#pills-latest"
@@ -51,7 +51,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                       <button
-                        class="nav-link me-5"
+                        class="nav-link me-4"
                         id="pills-Approved-tab"
                         data-bs-toggle="pill"
                         data-bs-target="#pills-Approved"
@@ -66,7 +66,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                       <button
-                        class="nav-link me-5"
+                        class="nav-link me-4"
                         id="pills-Pending-tab"
                         data-bs-toggle="pill"
                         data-bs-target="#pills-Pending"
@@ -81,7 +81,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                       <button
-                        class="nav-link me-5"
+                        class="nav-link me-4"
                         id="pills-cancelled-tab"
                         data-bs-toggle="pill"
                         data-bs-target="#pills-cancelled"
@@ -96,7 +96,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                       <button
-                        class="nav-link me-5"
+                        class="nav-link me-4"
                         id="pills-history-tab"
                         data-bs-toggle="pill"
                         data-bs-target="#pills-history"

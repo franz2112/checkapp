@@ -12,7 +12,7 @@
               <span class="fa-solid fa-bars"></span>
             </button>
             <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border border-dark" style="width: 35px; height:35px; object-fit: cover;">
+              <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border" style="width: 35px; height:35px; object-fit: cover;">
             </button>
             <div id="navbarCollapse" class="collapse navbar-collapse ">
                 <ul class="nav navbar-nav me-auto">
@@ -34,7 +34,7 @@
               <ul class="navbar-nav navbar-right d-flex justify-content-end ">
                 <li class="dropdown"> 
                   <div href="#" role="button" data-bs-toggle="dropdown"  data-bs-display="static"  class="">
-                    <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border border-dark" style="width: 35px; height:35px; object-fit: cover;">
+                    <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fname }}"  class="rounded-circle border" style="width: 35px; height:35px; object-fit: cover;">
                     <span>{{ Auth::user()->fname}} {{ Auth::user()->mname}} {{ Auth::user()->lname}}</span>
                   </div>
                   <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 225px">
