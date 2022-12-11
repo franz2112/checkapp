@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   @section('title') 
-  Edit Doctor's Information |  
+  {{ $data->Dfname }} {{ $data->Dlname }} - Update Profile |  
   @endsection
   @include('Admin.Separated.header')
 

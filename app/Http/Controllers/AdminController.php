@@ -123,12 +123,12 @@ class AdminController extends Controller
         $profiles = clinic::where('user_id', $profile)
         ->get();
 
-        $data=doctor::find($id);
+        $data=doctor::where('id', $id)->first();
         
         // $dates = doctor::where('id', $id)->pluck('bdate')->first();
 
         // $newformat = date('Y-m-d',$dates);
-        // return $profiles;
+        // return $data;
         return view('admin.doctorDetails', compact('data', 'profiles'));
     }
 

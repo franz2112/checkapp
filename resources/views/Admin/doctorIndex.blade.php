@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   @section('title') 
-  Update Doctor's Sets Time and Date |  
+  {{ $data->Dfname }} {{ $data->Dlname }} - Update Sets Date and Time |  
   @endsection
   @include('Admin.Separated.header')
 

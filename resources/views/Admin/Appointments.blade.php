@@ -394,7 +394,16 @@
                             <div
                               class="position-relative d-flex justify-content-center"
                             >
-                              <img class="w-100 position-relative z-index-2" style="height: 88px;" src="https://ui-avatars.com/api/?name={{ urlencode($AppointsInfo->user->fname) }}&background=random&length=1&size=100%&color=ff000" alt="">
+                              <img
+                                src="/storage/{{$AppointsInfo->user->profile_photo_path}} "
+                                class="w-100 rounded"
+                                alt="..."
+                                style="height: 88px;
+                                object-fit: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                "
+                              />                            
                             </div>
                           </div>
                           <div class="col-10">
@@ -479,9 +488,31 @@
                         <hr class="horizontal dark mb-0" />
                         <div class="card-header mx-4 px-3 py-2 text-center">
                           <div
-                            class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
+                            class="icon icon-shape icon-lg bg-gradient-light shadow text-center border-radius-lg"
                           >
-                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
+                          @if ($AppointsInfo->consultation=='Online')
+                              <img
+                              src="/assets/img/noun-medical-check-up-2583365.png"
+                              class="w-100 rounded"
+                              alt="..."
+                              style="height: 64px;
+                              object-fit: cover;
+                              background-repeat: no-repeat;
+                              background-position: center;
+                              "
+                              />
+                          @else
+                              <img
+                              src="/assets/img/noun-face-to-face-4877515.png"
+                              class="w-100 rounded"
+                              alt="..."
+                              style="height: 64px;
+                              object-fit: cover;
+                              background-repeat: no-repeat;
+                              background-position: center;
+                              "
+                              />
+                          @endif
                           </div>
                         </div>
                         <div class="card-body pt-0 pb-1 text-center">
