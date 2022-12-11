@@ -375,7 +375,9 @@
             style="width: 40px"
             alt="profile"
           />
-          {{ $info->clinicname}} 
+          <div class="d-none d-lg-inline-block">
+            {{ $info->clinicname}} 
+          </div>
         @endforeach 
       @endsection
       @include('Admin.Separated.navbar')
