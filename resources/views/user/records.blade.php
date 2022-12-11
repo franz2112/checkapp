@@ -53,7 +53,7 @@
                                 @foreach ($doctorDetails as $doc)
                                   @if ($appointDetail->doctor==$doc->id)
                                     <div>
-                                      <img src="/../assets/admin/img/doctorimage/{{ $doc->file  }}" class="avatar avatar-sm me-3 rounded" alt="user1" style="width: 50px">
+                                      <img src="/../assets/admin/img/doctorimage/{{ $doc->file  }}" class="avatar avatar-sm me-3 rounded" alt="user1" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center">
                                       <h6 class="mb-0 text-sm">
