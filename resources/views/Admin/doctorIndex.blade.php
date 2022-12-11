@@ -987,36 +987,8 @@
       </div>
     </div>
     @endforeach
-    <!--   Core JS Files   -->
-    <script src="/../assets/admin/js/core/popper.min.js"></script>
-    <script src="/../assets/admin/js/core/bootstrap.min.js"></script>
-
-    <script>
-      var win = navigator.platform.indexOf("Win") > -1;
-      if (win && document.querySelector("#sidenav-scrollbar")) {
-        var options = {
-          damping: "0.5",
-        };
-
-        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
-      }
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#datepicker").datetimepicker({
-          format: "YYYY-MM-DD",
-        });
-      });
-    </script>
-    <script>
-      window.setTimeout(function () {
-        $("#dismiss")
-          .fadeIn(3000, 1)
-          .fadeOut(5000, function () {
-            $(this).remove();
-          });
-      }, 2000);
-    </script>
+    
+    @include('Admin.Separated.script')
   </body>
   @stack('modals') @livewireScripts
 </html>
