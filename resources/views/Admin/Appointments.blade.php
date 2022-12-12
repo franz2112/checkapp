@@ -403,38 +403,47 @@
             <div class="card-body pt-4 p-3 overflow-auto">
             
               <div class="list-group">
-                @if (count($allAppoints) >= 1)
-                  @foreach ($allAppoints as $appointInfo)
-                    @if ($appointInfo->status=='pending')
-                      <a href="{{ url('clinics/appointment-request', $appointInfo->id)}}"
-                        id="appointInfo"
-                        class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
-                        >
-                        <div class="d-flex align-items-center">
-                          {{-- <button
-                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                          >
-                            o
-                          </button> --}}
-                          <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
-                            <span class="text-xs">
-                              {{date('D, F d, Y', strtotime($appointInfo->date))}} | {{ $appointInfo->time }} 
-                            </span>
-                          </div>
-                        </div>
-                        <div
-                          class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                        >
-                        {{$appointInfo->consultation}} Consultation
-                        </div>
-                      </a>
-                    @endif
-                  @endforeach
-                @else
+                @if ($dataAppoints->count()<=0 )
                   <div class="text-center p-5">No Upcoming Request</div>
                 @endif
-                
+                @foreach ($allAppoints as $appointInfo)
+                @if ($appointInfo->status=='pending')
+                  <a href="{{ url('clinics/appointments-request', $appointInfo->id)}}"
+                    id="appointInfo"
+                    class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
+                    >
+                    <div class="d-flex align-items-center">
+                      {{-- <button
+                        class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
+                      >
+                        o
+                      </button> --}}
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm text-truncate text-capitalize">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
+                        <span class="text-xs mb-1">
+                          {{date('D, F d, Y', strtotime($appointInfo->date))}} | {{ $appointInfo->time }} 
+                        </span>
+                        <span class="text-xs">
+                        @foreach ($docData as $doc)
+                          @if ($appointInfo->doctor==$doc->id)
+                            <span class=" fw-bold">Doctor</span>
+                              <span class="mb-0 text-truncate fw-bold">  
+                                {{$doc->Dfname }} {{$doc->Dlname }}
+                              </span>
+                          @endif
+                        @endforeach                            
+                      </span>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
+                    >
+                    {{$appointInfo->consultation}} Consultation
+                    </div>
+                  </a>
+                  <hr class="horizontal dark mt-0">
+                @endif
+              @endforeach
               </div>
             </div>
           </div>
@@ -446,12 +455,15 @@
         <div class="col-md-6">
           <div class="card" style="height: 576px">
             <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Approved Status</h6>
+              <h6 class="mb-0">Approved Appointment Status</h6>
             </div>
             <div class="card-body pt-4 p-3 overflow-auto">
               <ul class="list-group">
+                @if ($dataAppoints1->count()<=0 )
+                  <div class="text-center p-5 fw-light">No Upcoming Approved Appointment</div>
+                @endif
                 @foreach ($allAppoints as $historyAppoints)
-                  @if ($historyAppoints->status != 'pending')
+                  @if ($historyAppoints->state == 'Waiting')
                   <li
                   class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg"
                   >
@@ -460,7 +472,16 @@
                       <span class="mb-1 text-xs"
                         >Doctor:
                         <span class="text-dark font-weight-bold ms-sm-2"
-                          > {{$historyAppoints->doctor}}</span
+                          > 
+                          @foreach ($docData as $doc)
+                          @if ($historyAppoints->doctor==$doc->id)
+                            <span class=" fw-light">Doctor</span>
+                              <span class="mb-0 text-truncate fw-bold">  
+                                {{$doc->Dfname }} {{$doc->Dlname }}
+                              </span>
+                          @endif
+                        @endforeach  
+                          </span
                         ></span
                       >
                       <span class="mb-1 text-xs"
@@ -472,13 +493,14 @@
                       <span class="mb-1 text-xs"
                         >Date and Time:
                         <span class="text-dark ms-sm-2 font-weight-bold"
-                          >{{$historyAppoints->date}} | {{$historyAppoints->time}}</span
-                        ></span
-                      >
+                          >                              
+                          {{date('F d, Y', strtotime($historyAppoints->date))}}
+                          | {{$historyAppoints->time}}</span>
+                      </span>
                       <span class="mb-1 text-xs"
-                        >Appintment Status:
+                        >Status:
                         <span class="text-dark ms-sm-2 font-weight-bold"
-                          >{{$historyAppoints->status}}</span
+                          >{{$historyAppoints->state}}</span
                         ></span
                       >
                     </div>

@@ -71,16 +71,16 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ->name('appointment-request')
         ->middleware('auth');
 
-        Route::get('/appointment-request/{id}', [AdminController::class, 'selectedAppointment'])
+        Route::get('/appointments-request/{id}', [AdminController::class, 'approvalview'])
         ->name('appointment-request-{id}')
+        ->middleware('auth');
+
+        Route::post('/appointments-approval/{id}', [AdminController::class, 'AppRoval'])
+        ->name('appointments-approval')
         ->middleware('auth');
 
         Route::post('/upload-doctor', [AdminController::class, 'upload'])
         ->name('upload-doctor')
-        ->middleware('auth');
-
-        Route::get('/appointments-approval/{id}', [AdminController::class, 'AppRoval'])
-        ->name('appointments-approval')
         ->middleware('auth');
 
         Route::get('/appointments-cancel/{id}', [AdminController::class, 'AppCel'])

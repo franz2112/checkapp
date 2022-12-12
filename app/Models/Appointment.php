@@ -20,4 +20,8 @@ class Appointment extends Model
     public function Doctor(){
         return $this->hasMany('App\Models\Doctor');
     }
+
+    protected $fillable = [
+        'meetingLink',
+    ];
 }
