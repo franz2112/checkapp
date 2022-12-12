@@ -65,7 +65,7 @@ class HomeController extends Controller
     }
       
     public function rqstAppoint(Request $request, $id){
-        time::where('id', $request->id)
+        time::where('time', $request->time)
         ->update(['status'=>1]);
         $appoint=new appointment;
         $ids = Auth::id();

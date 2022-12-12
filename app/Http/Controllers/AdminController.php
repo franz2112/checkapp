@@ -11,6 +11,7 @@ use App\Models\AppointmentSet;
 use App\Models\Time;
 use App\Models\User;
 use App\Mail\AppointmentMail;
+use App\Mail\OnlineMail;
 use Carbon\Carbon;
  
 class AdminController extends Controller
@@ -27,8 +28,10 @@ class AdminController extends Controller
         // get who have appointment in this clinic
         $dataAppoints = appointment::where('clinic_id', $ClinicId)
         ->where('status', 'pending')
-        // ->with('User')
-        ->paginate(1);
+        ->get();
+        $dataAppoints1 = appointment::where('clinic_id', $ClinicId)
+        ->where('state', 'Waiting')
+        ->get();
         
         $allAppoints = appointment::where('clinic_id', $ClinicId)
         ->get();
@@ -40,13 +43,61 @@ class AdminController extends Controller
         // $doctorNames = doctor::whereIn('id', $docData)->get();
 
         // return $allAppoints;
-        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
+        return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData', 'dataAppoints1')); 
+    }
+
+    public function selectedAppointment($id){
+        $idUser = Auth::id(); 
+        // get clinic info
+        $ClinicInfo = clinic::where('user_id', $idUser)->get();
+        
+        // get who have appointment in this clinic
+        $ClinicId = clinic::where('user_id', $idUser)->pluck('id')->first();    
+        $dataAppoints = appointment::where('clinic_id', $ClinicId)
+        ->where('status', 'pending')->where('id', $id)
+        // ->with('User')
+        ->get();
+        
+        $allAppoints = appointment::where('clinic_id', $ClinicId)
+        ->get();
+
+        $getSelectDoc = appointment::where('clinic_id', $ClinicId)->pluck('doctor');
+        $docData = doctor::whereIn('id', $getSelectDoc)
+        ->get();
+
+            
+        return view('admin.AppointmentChose', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
+    }
+    public function approvalview(Request $request, $id){
+        $idUser = Auth::id(); 
+        // get clinic info
+        $ClinicInfo = clinic::where('user_id', $idUser)->get();
+        
+        // get who have appointment in this clinic
+        $ClinicId = clinic::where('user_id', $idUser)->pluck('id')->first();    
+        $dataAppoints = appointment::where('clinic_id', $ClinicId)
+        ->where('status', 'pending')->where('id', $id)
+        // ->with('User')
+        ->get();
+        
+        $allAppoints = appointment::where('clinic_id', $ClinicId)
+        ->get();
+
+        $getSelectDoc = appointment::where('clinic_id', $ClinicId)->pluck('doctor');
+        $docData = doctor::whereIn('id', $getSelectDoc)
+        ->get();
+
+            
+        return view('admin.AppointmentChose', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
     }
     
     public function AppRoval(Request $request, $id){
         appointment::where('id', $id)
-        ->update(['status' => 'Approved']);
-        
+        ->update([
+            'status' => 'Approved',
+            'state' => 'Waiting',
+        ]);
+                 
         $getSelectDoc = appointment::where('id', $id)->pluck('doctor');
         $docData = doctor::where('id', $getSelectDoc)
         ->first();
@@ -58,6 +109,7 @@ class AdminController extends Controller
         $clinicInfo = clinic::where('id', $clinicId)->first();
 
         $appoint = appointment::where('id', $id)->first();
+  
 
          $mailData = [
             'fname'=>$userInfo->fname,
@@ -67,6 +119,7 @@ class AdminController extends Controller
             'date'=>$appoint->date,
             'consultation'=>$appoint->consultation,
             'reason'=>$appoint->reason,
+            'meetingLink'=>$request->meetingLink,
             'Dfname' => $docData->Dfname,
             'Dlname' => $docData->Dlname,
             'clinicname' => $clinicInfo->clinicname,
@@ -75,10 +128,18 @@ class AdminController extends Controller
             'Ccontact' => $clinicInfo->Ccontact
         ];
         
-        Mail::to($userInfo->email)
+        if($appoint->consultation =='Face-to-Face'){
+            Mail::to($userInfo->email)
             ->send(new AppointmentMail($mailData));
-        // return $clinicInfo;
+            // return $clinicInfo;
+        }
+        else{
+            Mail::to($userInfo->email)
+            ->send(new OnlineMail($mailData));
+            // return $clinicInfo;
+        }
         return redirect()->back()->with('message', 'Appointment has been Approved!');
+
     }
 
     public function AppCel(Request $request, $id){

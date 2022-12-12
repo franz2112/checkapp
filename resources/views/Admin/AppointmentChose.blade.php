@@ -20,7 +20,7 @@
         ></i>
         <a class="navbar-brand m-0" href="/">
           <img
-            src="../assets/admin/img/CheckappLogo.png"
+            src="/../assets/admin/img/CheckappLogo.png"
             class="navbar-brand-img h-100"
             alt="main_logo"
           />
@@ -365,25 +365,290 @@
       @section('profilepic')
         @foreach ($ClinicInfo as $info)
         <img
-            src="../assets/admin/img/clinicimage/{{ $info->Profile }}"
+            src="/../assets/admin/img/clinicimage/{{ $info->Profile }}"
             class="rounded-full"
             style="width: 40px"
             alt="profile"
           />
           <div class="d-none d-lg-inline-block">
             {{ $info->clinicname}} 
-          </div>
+          </div> 
         @endforeach 
       @endsection
       @include('Admin.Separated.navbar')
       {{-- End Navbar --}}
 
-    <div class="container-fluid py-4">
-      
+      <div class="container-fluid py-4">
+        <div class="card shadow-lg bg-light p-3 pt-2 mb-3" style="height: 580px;">
+            <div class="pb-2 pt-0 px-1 text-end">
+                <a type="button" class="" href="{{ url('clinics/appointment-request')}}" style="font-size: 25px"><i class="fa-solid fa-circle-xmark"></i></a>
+            </div> 
+        @foreach ($dataAppoints as $AppointsInfo)
+        @if ($AppointsInfo->status=='pending')
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-md-12 mb-2">
+                  <div class="card rounded-0 rounded-top">
+                    <div
+                      class="overflow-hidden position-relative border-radius-xl"
+                    >
+                      <div class="card-body position-relative z-index-1 p-3">
+                        <div class="row">
+                          <div class="col">
+                            <div
+                              class="position-relative d-flex justify-content-center"
+                            >
+                              <img
+                                src="/storage/{{$AppointsInfo->user->profile_photo_path}} "
+                                class="w-100 rounded"
+                                alt="..."
+                                style="height: 88px;
+                                object-fit: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                "
+                              />                            
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <div class="me-4">
+                              <p class="text-sm opacity-8 mb-0"> 021{{$AppointsInfo->user->id}} </p>
+                              <h6 class="mb-0 text-sm col-lg text-truncate">
+                                {{$AppointsInfo->user->fname}} {{$AppointsInfo->user->mname}}  {{$AppointsInfo->user->lname}}
+                             </h6>
+                              <p class="mb-0 text-sm col-lg text-truncate">
+                                {{$AppointsInfo->user->address}} 
+                              </p>
+                              <p class="text-sm opacity-8 mb-0">
+                                {{$AppointsInfo->user->phone}} 
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-12 mb-2">
+                  <div class="row">
+                    <div class="col-lg-4 mt-md-0 pe-lg-0">
+                      <div
+                        class="card shadow-none rounded-0"
+                        style="min-height: 230px"
+                      >
+                        <span class="card-header pb-0 pt-3 text-xs text-center"
+                          >Physician
+                        </span>
+                        <hr class="horizontal dark mb-0" />
+                        <div class="card-header mx-4 px-3 py-2 mb-0 text-center">
+                          <div
+                          class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
+                          >
+                            @foreach ($docData as $doc)
+                              @if ($AppointsInfo->doctor==$doc->id)
+                              <img
+                              src="/assets/admin/img/doctorimage/{{$doc->file}}"
+                              class="w-100 rounded"
+                              alt="..."
+                              style="height: 64px;
+                              object-fit: cover;
+                              background-repeat: no-repeat;
+                              background-position: center;
+                              "
+                              />
+                              @endif
+                            @endforeach
+                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
+                          </div>
+                        </div>
+                        <div class="card-body pt-0 mt-0 p-2 pb-0 text-center">
+                          @if ($AppointsInfo->doctor !='suggest')
+                            @foreach ($docData as $doc)
+                              @if ($AppointsInfo->doctor==$doc->id)
+                                <span class="text-xs">Doctor</span>
+                                  <h6 class="mb-0 text-truncate">  
+                                    {{$doc->Dfname }} {{$doc->Dlname }}
+                                  </h6>
+                                  <h6 class="text-sm fw-light">Specialization</h6>
+                                @endif
+                              @endforeach
+                          @else
+                          <h6 class="text-sm py-2">Suggest Doctor </h6>
+                          <button class="btn btn-outline-primary btn-sm py-1">
+                            Select
+                          </button>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 mt-md-0 mt-2 px-lg-2">
+                      <div
+                        class="card shadow-none rounded-0"
+                        style="min-height: 230px"
+                      >
+                        <span class="card-header pb-0 pt-3 text-xs text-center"
+                          >Consultation Type
+                        </span>
+                        <hr class="horizontal dark mb-0" />
+                        <div class="card-header mx-4 px-3 py-2 text-center">
+                          <div
+                            class="icon icon-shape icon-lg bg-gradient-light shadow text-center border-radius-lg"
+                          >
+                          @if ($AppointsInfo->consultation=='Online')
+                              <img
+                              src="/assets/img/noun-medical-check-up-2583365.png"
+                              class="w-100 rounded"
+                              alt="..."
+                              style="height: 64px;
+                              object-fit: cover;
+                              background-repeat: no-repeat;
+                              background-position: center;
+                              "
+                              />
+                          @else
+                              <img
+                              src="/assets/img/noun-face-to-face-4877515.png"
+                              class="w-100 rounded"
+                              alt="..."
+                              style="height: 64px;
+                              object-fit: cover;
+                              background-repeat: no-repeat;
+                              background-position: center;
+                              "
+                              />
+                          @endif
+                          </div>
+                        </div>
+                        <div class="card-body pt-0 pb-1 text-center">
+                          <h6 class="text-center mb-0">{{$AppointsInfo->consultation}} </h6>
+                          <span class="text-xs">Consultation</span>
+                            @if ($AppointsInfo->consultation=='Online')
+                              <div class="input-group m-0">
+                                <input type="text" name="OnlineConsultation" class="form-control" placeholder="Online consultation link" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                            @endif
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 mt-md-0 mt-2 ps-lg-0">
+                      <div
+                        class="card shadow-none rounded-0"
+                        style="min-height: 230px"
+                      >
+                        <span class="card-header pb-0 pt-3 text-xs text-center"
+                          >Schedule
+                        </span>
+                        <div class="card-body pt-0 p-3 text-center">
+                          <hr class="horizontal dark mb-2" />
+                          <span class="text-xs">Date</span>
+                          <h6 class="text-center mb-0">
+                            {{date('D, F d, Y', strtotime($AppointsInfo->date))}}
+                          </h6>
+                          <span class="text-xs">Time</span>
+                          <h6 class="text-center mb-0">{{$AppointsInfo->time}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 mb-lg-0 mb-2">
+                  <div class="card rounded-0 rounded-bottom">
+                    <div class="card-body p-3">
+                      <div class="col-6 d-flex align-items-center">
+                        <h6 class="mb-3">Other Option</h6>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-md-0 mb-4">
+                          <div
+                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
+                          >
+                            <h6 class="mb-0">Reschedule Appointment</h6>
+                            <i
+                              class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Edit Card"
+                            ></i>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
+                          >
+                            <h6 class="mb-0">
+                              Message Patient
+                            </h6>
+                            <i
+                              class="fas fa-message ms-auto text-dark cursor-pointer"
+                              data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="Edit Card"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 ps-lg-0">
+              <div class="card" style="height: 382px">
+                <div class="card-header pb-0 pt-4">
+                  <div class="row">
+                    <div class="col-6 d-flex align-items-center">
+                      <h6 class="mb-0">Complaints</h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body  p-3 py-0">
+                  <div
+                    class="border-radius-lg p-2 text-xs text-justify overflow-auto
+                     border "
+                    style="height: 250px"
+                  >
+                  {{$AppointsInfo->reason}}
+                  </div>
+                  <h6 class="my-2 px-2 ">Special ID's</h6>
+                  <div class="px-2">
+                    <button class="btn btn-outline-primary btn-sm mb-4 py-1">
+                      View special ID
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2 p-3">
+                  <h6 class="">Confirmation</h6>
+                <div class="row">
+                  <div class="col-6">
+                    <a
+                      class="btn bg-gradient-danger w-100"
+                      href="{{ url('/clinics/appointments-cancel', $AppointsInfo->id) }}"
+                      ><i class="fas fa-times"></i>&nbsp;&nbsp;Decline</a
+                    >
+                  </div>
+                  <div class="col-6">
+                    <a
+                    class="btn bg-gradient-success w-100"
+                    href="{{ url('/clinics/appointments-approval', $AppointsInfo->id) }}"
+                    ><i class="fas fa-check"></i>&nbsp;&nbsp;Approve</a
+                    >
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+        @else
+        @endif
+        @endforeach
+        </div>
+        {{-- <div class="row">{{ $dataAppoints->links() }}</div> --}}
 
       {{-- upcoming request --}}
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-4">
           <div class="card mb-4" style="height: 576px">
             <div class="card-header pb-0 px-3">
               <div class="row">
@@ -395,7 +660,7 @@
                 >
                   <i class="far fa-calendar-alt me-2"></i>
                   <small> 
-                    {{  now('Singapore')->format('F d, Y | h:ma') }}
+                    {{  now('Singapore')->format('F d, Y H:i') }}
                    </small>
                 </div>
               </div>
@@ -403,38 +668,32 @@
             <div class="card-body pt-4 p-3 overflow-auto">
             
               <div class="list-group">
-                @if (count($allAppoints) >= 1)
-                  @foreach ($allAppoints as $appointInfo)
-                    @if ($appointInfo->status=='pending')
-                      <a href="{{ url('clinics/appointment-request', $appointInfo->id)}}"
-                        id="appointInfo"
-                        class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
+                @foreach ($allAppoints as $appointInfo)
+                  @if ($appointInfo->status=='pending')
+                    <a id="appointInfo" 
+                      class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
+                    >
+                      <div class="d-flex align-items-center">
+                        {{-- <button
+                          class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
                         >
-                        <div class="d-flex align-items-center">
-                          {{-- <button
-                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
-                          >
-                            o
-                          </button> --}}
-                          <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
-                            <span class="text-xs">
-                              {{date('D, F d, Y', strtotime($appointInfo->date))}} | {{ $appointInfo->time }} 
-                            </span>
-                          </div>
+                          o
+                        </button> --}}
+                        <div class="d-flex flex-column">
+                          <h6 class="mb-1 text-dark text-sm text-truncate">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h6>
+                          <span class="text-xs">
+                            {{date('D, F d, Y', strtotime($AppointsInfo->date))}} | {{ $appointInfo->time }} 
+                          </span>
                         </div>
-                        <div
-                          class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                        >
-                        {{$appointInfo->consultation}} Consultation
-                        </div>
-                      </a>
-                    @endif
-                  @endforeach
-                @else
-                  <div class="text-center p-5">No Upcoming Request</div>
-                @endif
-                
+                      </div>
+                      <div
+                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
+                      >
+                      {{$appointInfo->consultation}} Consultation
+                      </div>
+                    </a>
+                  @endif
+                @endforeach
               </div>
             </div>
           </div>
@@ -443,7 +702,7 @@
 
 
         {{-- approved status --}}
-        <div class="col-md-6">
+        <div class="col-md-6 my-4">
           <div class="card" style="height: 576px">
             <div class="card-header pb-0 px-3">
               <h6 class="mb-0">Approved Status</h6>
@@ -549,4 +808,5 @@
     </main>
 
     @include('Admin.Separated.script')
+  </body>
 </html>
