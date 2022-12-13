@@ -151,13 +151,10 @@
                 <div class="left-items show-up">
                   <div class="row">
                     <div class="col-lg-12">
-                      <h1 class="display-2">Check-Up</h1>
+                      <h1 class="display-2">CheckApp</h1>
                       <h2>Web Application</h2>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquet ipsum, auctor quis sagittis felis risus, a odio.
-                        Amet ante nulla sem mauris. Sollicitudin ultrices enim
-                        quam.
+                        Is a telemedicine system that allows you to set your appointments and consult to a licensed doctor at the tip of your fingertips. You can set have your consultation via video call conferencing or face-to-face consultation
                       </p>
                       <a href="{{ route('register') }}" class="btn btn-primary rounded-pill"
                         >Register</a
@@ -187,9 +184,7 @@
                 <img class="offer-img" src="../assets/img/1.png" />
                 <h5>Online Appointment</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Diam sit amet nisl suscipit. Pellentesque .
+                  No need to find a mobile number of the clinic of your choice and you don’t need to get in line just to set an appointment to a doctor. CheckAPP will allow you to set your appointment at your convenience E-Check up
                 </p>
               </div>
             </div>
@@ -198,9 +193,7 @@
                 <img class="offer-img" src="../assets/img/2.png" />
                 <h5>E-Check up</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut tortor pretium.
+                  CheckAPP offers an E-check up feature or virtual consultation. The system will let you choose whether what kind of consultation will you choose, either virtual or face-to-face. This will allow you to stay at your home while having a check up to avoid also the contraction of the Covid 19 virus.
                 </p>
               </div>
             </div>
@@ -209,9 +202,7 @@
                 <img class="offer-img" src="../assets/img/3.png" />
                 <h5>E-Result and Prescription</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut tortor .
+                  The system also allows you to have a copy of your prescription and medical results on a soft copy which means you can a soft copy of your medical results on your notification area of your dashboard for your convenience
                 </p>
               </div>
             </div>
@@ -232,25 +223,16 @@
                 <div class="col-lg-6 wow fadeInRight">
                   <div class="work-content">
                     <div class="img-place custom-img-1">
-                      <img src="../assets/img/Home.png" alt="" />
+                      <img src="../assets/img/landing/reg.png" alt="" />
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
                   <div class="work-content">
-                    <h2 class="display-5">Home</h2>
+                    <h2 class="display-5">Register</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      To Register, Fill out all the necessary information about yourself, and create a strong password for your account details, and hit the register button
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
               </div>
@@ -259,25 +241,16 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 wow fadeInUp">
                   <div class="work-content">
-                    <h2 class="display-5">Select Clinics</h2>
+                    <h2 class="display-5">Home</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      Our system uses a user-friendly interface designed for users to easily navigate through the system's services and features. The home page displays a summary of data for the user to easily see. 
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
                   <div class="work-content">
                     <div class="img-place custom-img-1">
-                      <img src="../assets/img/Clinics.png" alt="" />
+                      <img src="../assets/img/landing/home.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -289,7 +262,7 @@
                   <div class="work-content">
                     <div class="img-place custom-img-1">
                       <img
-                        src="../assets/img/Setting an appointmnet.png"
+                        src="../assets/img/landing/slctclnc.png"
                         alt=""
                       />
                     </div>
@@ -297,19 +270,10 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
                   <div class="work-content">
-                    <h2 class="display-5">Set an Appointment</h2>
+                    <h2 class="display-5">Select Clinics</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      The "clinics" page displays all registered clinics under CheckAPP. Doctors registered under specific clinics can be seen at the clinics page. The page also displays all registered clinics' basic information such as name and contact information.
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
               </div>
@@ -321,25 +285,16 @@
                 <div class="col-lg-6 wow fadeInRight">
                   <div class="work-content">
                     <div class="img-place custom-img-1">
-                      <img src="../assets/img/Home.png" alt="" />
+                      <img src="../assets/img/landing/set.png" alt="" />
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
                   <div class="work-content">
-                    <h2 class="display-5">Home</h2>
+                    <h2 class="display-5">Set an Appointment</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      Easily set your appointment in the "appointment" page. Simply specify your preferred clinic, doctor, date and time to your convenience.
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
               </div>
@@ -348,25 +303,16 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 wow fadeInUp">
                   <div class="work-content">
-                    <h2 class="display-5">Select Clinics</h2>
+                    <h2 class="display-5">Notifications</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      Easily see through your notification with the systems dedicated "Notification" page. Notifications such as appointments being approved, declined and rescheduled, and personally sent messages can be seen through the notification page.
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
                   <div class="work-content">
                     <div class="img-place custom-img-1">
-                      <img src="../assets/img/Clinics.png" alt="" />
+                      <img src="../assets/img/landing/notif.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -378,7 +324,7 @@
                   <div class="work-content">
                     <div class="img-place custom-img-1">
                       <img
-                        src="../assets/img/Setting an appointmnet.png"
+                        src="../assets/img/landing/records.png"
                         alt=""
                       />
                     </div>
@@ -386,108 +332,10 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
                   <div class="work-content">
-                    <h2 class="display-5">Set an Appointment</h2>
+                    <h2 class="display-5">Records</h2>
                     <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
+                      The records table displays information about the set appointments. Details such as the appointment's assigned doctor, clinic, date and time could be seen through the record page.
                     </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="left-part-img">
-              <div class="row align-items-center">
-                <div class="col-lg-6 wow fadeInRight">
-                  <div class="work-content">
-                    <div class="img-place custom-img-1">
-                      <img src="../assets/img/Home.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
-                  <div class="work-content">
-                    <h2 class="display-5">Home</h2>
-                    <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
-                    </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="right-part-img">
-              <div class="row align-items-center">
-                <div class="col-lg-6 wow fadeInUp">
-                  <div class="work-content">
-                    <h2 class="display-5">Select Clinics</h2>
-                    <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
-                    </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
-                  </div>
-                </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
-                  <div class="work-content">
-                    <div class="img-place custom-img-1">
-                      <img src="../assets/img/Clinics.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="left-part-img">
-              <div class="row align-items-center">
-                <div class="col-lg-6 wow fadeInRight">
-                  <div class="work-content">
-                    <div class="img-place custom-img-1">
-                      <img
-                        src="../assets/img/Setting an appointmnet.png"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="400ms">
-                  <div class="work-content">
-                    <h2 class="display-5">Set an Appointment</h2>
-                    <p class="text-grey mb-2">
-                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                      magna aliquyam erat, sed diam voluptua. At vero eos et
-                      accusam et justo duo dolores et ea rebum. Accusantium
-                      aperiam earum ipsa eius, inventore nemo labore eaque porro
-                      consequatur ex aspernatur. Explicabo, excepturi
-                      accusantium! Placeat voluptates esse ut optio facilis!
-                    </p>
-                    <a href="#" class="btn btn-primary rounded-pill"
-                      >Learn more</a
-                    >
                   </div>
                 </div>
               </div>
@@ -504,26 +352,23 @@
         <h1 class="text-center wow fadeInUp">
           Choose the price that’s right for you.
         </h1>
-        <h4 class="text-center wow fadeInUp">
-          Lorem Ipsum is simply dummy text
-        </h4>
+       
         <div class="row mt-5">
           <div class="col-lg-4">
             <div class="pricing-item-regular">
               <span class="price">$12</span>
               <h4>Standard Plan App</h4>
               <div class="icon">
-                <img src="../assets/img/4040101.png" alt="" />
+                <img src="../assets/img/4040101.png" alt="" style="object-fit: cover"/>
               </div>
               <ul>
-                <li>Lorem Ipsum Dolores</li>
                 <li>20 TB of Storage</li>
                 <li class="non-function">Life-time Support</li>
                 <li class="non-function">Premium Add-Ons</li>
                 <li class="non-function">Fastest Network</li>
                 <li class="non-function">More Options</li>
               </ul>
-              <div class="border-button">
+              <div class="card border-button">
                 <a href="#">Purchase This Plan Now</a>
               </div>
             </div>
@@ -533,17 +378,16 @@
               <span class="price">$25</span>
               <h4>Business Plan App</h4>
               <div class="icon">
-                <img src="../assets/img/3594609.png" alt="" />
+                <img src="../assets/img/3594609.png" alt="" style="object-fit: cover" />
               </div>
               <ul>
-                <li>Lorem Ipsum Dolores</li>
                 <li>50 TB of Storage</li>
                 <li>Life-time Support</li>
                 <li>Premium Add-Ons</li>
                 <li class="non-function">Fastest Network</li>
                 <li class="non-function">More Options</li>
               </ul>
-              <div class="border-button">
+              <div class="card border-button">
                 <a href="#">Purchase This Plan Now</a>
               </div>
             </div>
@@ -553,17 +397,16 @@
               <span class="price">$66</span>
               <h4>Premium Plan App</h4>
               <div class="icon">
-                <img src="../assets/img/TaeAugust11-[Converted].png" alt="" />
+                <img src="../assets/img/TaeAugust11-[Converted].png" alt="" style="object-fit: cover"/>
               </div>
               <ul>
-                <li>Lorem Ipsum Dolores</li>
                 <li>120 TB of Storage</li>
                 <li>Life-time Support</li>
                 <li>Premium Add-Ons</li>
                 <li>Fastest Network</li>
                 <li>More Options</li>
               </ul>
-              <div class="border-button">
+              <div class="card border-button">
                 <a href="#">Purchase This Plan Now</a>
               </div>
             </div>
@@ -576,7 +419,7 @@
 
     <footer class="page-footer"  id="page-footer">
       <div class="page-about banner-home">
-        <div class="container py-5 py-lg-0">
+        {{-- <div class="container py-5 py-lg-0">
           <h1 class="wow fadeInUp text-primary display-4">About Us</h1>
           <div class="row align-items-center">
             <div class="col-lg-4 wow zoomIn">
@@ -646,11 +489,11 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
       <!-- .banner-home -->
 
-      <div class="page-footer-main">
+      <div class="page-footer-main" style="color: #26312f">
         <div class="container">
           <div class="row px-md-3">
             <div class="col-sm-6 col-lg-3 py-3">
@@ -663,7 +506,7 @@
 
               </ul>
             </div>
-            <div class="col-sm-6 col-lg-3 py-3">
+            <div class="col-sm-6 col-lg-3 py-3" >
               <h5>More</h5>
               <ul class="footer-menu">
                 <li><a href="#">Terms & Condition</a></li>

@@ -1491,7 +1491,7 @@ header {
 }
 
 .pricing-item-regular ul li {
-    color: #4b8ef1;
+    color: #26312f;
     font-size: 15px;
     margin-bottom: 15px;
 }
@@ -1569,7 +1569,7 @@ header {
 }
 
 .pricing-item-pro ul li {
-    color: #4b8ef1;
+    color: #26312f;
     font-size: 15px;
     margin-bottom: 15px;
 }
@@ -1823,14 +1823,14 @@ footer {
     display: inline-block;
     padding-top: 6px;
     padding-bottom: 6px;
-    color: rgba(255, 255, 255, 0.6);
+    color: #26312f;
     transition: all 0.2s ease;
 }
 
 .footer-menu a:hover,
 .footer-link:hover {
     text-decoration: none;
-    color: #fff;
+    color: #07be94;
 }
 
 .footer-link {
