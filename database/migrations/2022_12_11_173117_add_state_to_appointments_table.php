@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('appointments', function (Blueprint $table) {
             //
-            $table->string('state');
-            $table->string('paymentstatus');
+            $table->string('state')->default('Confirming');
+            $table->string('paymentstatus')->nullable();
         });
     }
 
@@ -29,8 +29,8 @@ return new class extends Migration
     {
         Schema::table('appointments', function (Blueprint $table) {
             //
-            $table->dropColumn('state');
-            $table->dropColumn('paymentstatus');
+            $table->string('state')->default('Confirming');
+            $table->string('paymentstatus')->nullable();
         });
     }
 };
