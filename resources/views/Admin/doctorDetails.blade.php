@@ -162,7 +162,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/sign-in.html">
+            <a class="nav-link" href="{{url('clinics/doctors-records', $data->id)}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -202,7 +202,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="nav-link-text ms-1">Settings</span>
+              <span class="nav-link-text ms-1">Records</span>
             </a>
           </li>
           <li class="nav-item">

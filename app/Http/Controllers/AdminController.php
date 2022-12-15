@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use App\Models\Doctor;
 use App\Models\Clinic;
 use App\Models\Appointment;
@@ -46,28 +47,6 @@ class AdminController extends Controller
         return view('admin.appointments', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData', 'dataAppoints1')); 
     }
 
-    public function selectedAppointment($id){
-        $idUser = Auth::id(); 
-        // get clinic info
-        $ClinicInfo = clinic::where('user_id', $idUser)->get();
-        
-        // get who have appointment in this clinic
-        $ClinicId = clinic::where('user_id', $idUser)->pluck('id')->first();    
-        $dataAppoints = appointment::where('clinic_id', $ClinicId)
-        ->where('status', 'pending')->where('id', $id)
-        // ->with('User')
-        ->get();
-        
-        $allAppoints = appointment::where('clinic_id', $ClinicId)
-        ->get();
-
-        $getSelectDoc = appointment::where('clinic_id', $ClinicId)->pluck('doctor');
-        $docData = doctor::whereIn('id', $getSelectDoc)
-        ->get();
-
-            
-        return view('admin.AppointmentChose', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
-    }
     public function approvalview(Request $request, $id){
         $idUser = Auth::id(); 
         // get clinic info
@@ -76,10 +55,15 @@ class AdminController extends Controller
         // get who have appointment in this clinic
         $ClinicId = clinic::where('user_id', $idUser)->pluck('id')->first();    
         $dataAppoints = appointment::where('clinic_id', $ClinicId)
-        ->where('status', 'pending')->where('id', $id)
+        ->where('status', 'pending')
+        ->where('id', $id)
         // ->with('User')
         ->get();
         
+        $dataAppointment = appointment::where('clinic_id', $ClinicId)
+        ->where('state', 'Waiting')->get();
+        
+        // all appointment data
         $allAppoints = appointment::where('clinic_id', $ClinicId)
         ->get();
 
@@ -87,8 +71,10 @@ class AdminController extends Controller
         $docData = doctor::whereIn('id', $getSelectDoc)
         ->get();
 
-            
-        return view('admin.AppointmentChose', compact('dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
+        // $getdoc = appointment::where('id', $id)->pluck('doctor');
+        // $getDate = appointmentSet::where('doctor_id', $getdoc)->get();
+        // return $getDate;
+        return view('admin.AppointmentChose', compact('dataAppointment', 'dataAppoints', 'ClinicInfo', 'allAppoints', 'docData')); 
     }
     
     public function AppRoval(Request $request, $id){
@@ -125,7 +111,8 @@ class AdminController extends Controller
             'clinicname' => $clinicInfo->clinicname,
             'caddress' => $clinicInfo->caddress,
             'cemail' => $clinicInfo->cemail,
-            'Ccontact' => $clinicInfo->Ccontact
+            'Ccontact' => $clinicInfo->Ccontact,
+            'qrimage' => $clinicInfo->qrimage
         ];
         
         if($appoint->consultation =='Face-to-Face'){
@@ -189,7 +176,6 @@ class AdminController extends Controller
         // $dates = doctor::where('id', $id)->pluck('bdate')->first();
 
         // $newformat = date('Y-m-d',$dates);
-        // return $data;
         return view('admin.doctorDetails', compact('data', 'profiles'));
     }
 
@@ -318,10 +304,55 @@ class AdminController extends Controller
         return view('admin.ClinicProfile', compact('profiles'));
     }
 
-    public function SetEmail(){
-      
-        return view('admin.SetEmail');
+    public function recordsClinic($id){
+        $profile = Auth::id();
+        $profiles = clinic::where('user_id', $profile)
+        ->get();
+
+        // get appointment in this doctor
+        $getdappointments = appointment::where('doctor', $id)->where('state', 'Completed')->get();
+
+        // get who have appointment in this clinic
+        $data=doctor::where('id', $id)->first();
+    
+        return view('admin.recordss', compact('getdappointments', 'data'));
+  
     }
+
+    
+    public function uploadresults($id){
+        $appointment = appointment::with('user')->find($id);
+        return response()->json($appointment);
+    }
+
+    public function newresult(request $request, $id){
+
+        appointment::where('id', $id)
+        ->update([
+            'paymentstatus' => $request->result,
+        ]);
+        return response()->json();
+
+    }
+    
+    public function complete($id){
+        $idUser = Auth::id(); 
+
+        $ClinicId = clinic::where('user_id', $idUser)->pluck('id')->first();    
+        $dataAppoints = appointment::where('clinic_id', $ClinicId)
+        ->where('status', 'pending')
+        ->where('id', $id)->get();
+
+        appointment::where('id', $id)
+        ->update([
+            'state' => 'Completed',
+        ]);
+
+        return redirect()->back()->with('message', 'Appointment Completed');
+
+  
+    }
+
 
     
 }

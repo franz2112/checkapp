@@ -32,7 +32,7 @@
                   <a href="#" class="hover-design">
                     <div class="card">
                       <div class="card-body"
-                      style="background-image:url(//../assets/img/Advertisment.gif);
+                      style="background-image:url(/../assets/img/Advertisment.gif);
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-position: center; 
@@ -73,7 +73,7 @@
                   <a href="#" class="hover-design">
                     <div class="card one-part">
                       <div class="card-body"
-                      style="background-image:url(//../assets/img/Explore_Clinics.gif);
+                      style="background-image:url(/../assets/img/Explore_Clinics.gif);
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-position: center; 

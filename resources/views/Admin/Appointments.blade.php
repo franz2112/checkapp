@@ -118,7 +118,7 @@
               <span class="nav-link-text ms-1">Appointments</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="../pages/tables.html">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
@@ -164,7 +164,7 @@
               </div>
               <span class="nav-link-text ms-1">Tables</span>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="/clinics/doctors-information">
               <div
@@ -413,6 +413,20 @@
                     class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg"
                     >
                     <div class="d-flex align-items-center">
+                      <div
+                          class="mb-0 me-3 d-flex align-items-center justify-content-center">
+                            <img
+                            src="/storage/{{$appointInfo->user->profile_photo_path}} "
+                            class=" rounded border"
+                            alt="..."
+                            style="height: 50px;
+                            width: 50px; 
+                            object-fit: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            "/> 
+                             
+                        </div>
                       {{-- <button
                         class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"
                       >
@@ -454,13 +468,92 @@
         {{-- approved status --}}
         <div class="col-md-6">
           <div class="card" style="height: 576px">
+              <div class="card-header pb-0 px-3">
+                <h6 class="mb-0">Approved Appointment Status</h6>
+              </div>
+              <div class="card-body pt-4 p-3 overflow-auto">
+                <ul class="list-group">
+                  @if ($dataAppoints1->count()<=0 )
+                    <span class="text-center p-5 fw-light">No Approved Appointment</span>
+                  @endif
+                  @foreach ($allAppoints as $historyAppoints)
+                    @if ($historyAppoints->state == 'Waiting')
+                    {{-- <form action="{{ url('/clinics/appointments-approval', $AppointsInfo->id) }}" method="POST">
+                    
+                    </form> --}}
+                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-3 text-sm">{{$historyAppoints->user->fname}}  {{$historyAppoints->user->mname}} {{$historyAppoints->user->lname}} </h6>
+                        <span class="mb-1 text-xs">Appointment ID:
+                          <span class="text-dark ms-sm-2 font-weight-bold">
+                            000{{$historyAppoints->id}}
+                          </span>
+                        </span>
+                        <span class="mb-1 text-xs">
+                          Doctor:
+                          <span class="text-dark font-weight-bold ms-sm-2"
+                            > 
+                            @foreach ($docData as $doc)
+                            @if ($historyAppoints->doctor==$doc->id)
+                                <span class="mb-0 text-truncate fw-bold">  
+                                  {{$doc->Dfname }} {{$doc->Dlname }}
+                                </span>
+                            @endif
+                          @endforeach  
+                            </span
+                          ></span>
+                        <span class="mb-1 text-xs"
+                          >Consultation Type:
+                          <span class="text-dark ms-sm-2 font-weight-bold">
+                          {{$historyAppoints->consultation}}</span></span>
+                        <span class="mb-1 text-xs"
+                          >Date and Time:
+                          <span class="text-dark ms-sm-2 font-weight-bold"
+                            >                              
+                            {{date('F d, Y', strtotime($historyAppoints->date))}}
+                            | {{$historyAppoints->time}}</span>
+                        </span>
+                        <span class="mb-1 text-xs"
+                          >Status:
+                          <span class="text-dark ms-sm-2 font-weight-bold"
+                            >{{$historyAppoints->state}}</span
+                          ></span
+                        >
+                      </div>
+                      <div class="ms-auto text-end">
+                        <a
+                          class="btn btn-link text-danger text-gradient px-3 mb-0"
+                          href=""
+                          >Cancel</a
+                        >
+                        <a
+                          class="btn btn-link text-primary px-3 mb-0"
+                          href="{{ url('clinics/appointment-complete', $historyAppoints->id)}}"
+                          ><i
+                            class="fas fa-arrow-up text-primary me-2"
+                            aria-hidden="true"
+                          ></i
+                          >Complete</a
+                        >
+                      </div>
+                    </li>
+                    @endif
+                  @endforeach
+                </ul>
+              </div>
+            </div>
+          </div>
+      </div>
+
+        {{-- <div class="col-md-6">
+          <div class="card" style="height: 576px">
             <div class="card-header pb-0 px-3">
               <h6 class="mb-0">Approved Appointment Status</h6>
             </div>
             <div class="card-body pt-4 p-3 overflow-auto">
               <ul class="list-group">
                 @if ($dataAppoints1->count()<=0 )
-                  <div class="text-center p-5 fw-light">No Upcoming Approved Appointment</div>
+                  <div class="text-center p-5 fw-light">No Approved Appointment</div>
                 @endif
                 @foreach ($allAppoints as $historyAppoints)
                   @if ($historyAppoints->state == 'Waiting')
@@ -526,7 +619,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
 

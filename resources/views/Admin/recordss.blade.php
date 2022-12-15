@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   @section('title') 
-  {{ $data->Dfname }} {{ $data->Dlname }} - Set Available
-  Date and Time |  
+  {{ $data->Dfname }} {{ $data->Dlname }} - Records |  
   @endsection
   @include('Admin.Separated.header')
 
@@ -31,7 +30,7 @@
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a id="active" class="nav-link " href="{{url('clinics/doctors-details', $data->id)}}">
+            <a id="active" class="nav-link" href="{{url('clinics/doctors-details', $data->id)}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -75,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="">
+            <a class="nav-link" href="{{url('clinics/appointments-create', $data->id)}}">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -163,7 +162,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('clinics/doctors-records', $data->id)}}">
+            <a class="nav-link active" href="">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
               >
@@ -261,8 +260,7 @@
                 Doctors Details
               </li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Doctor's Availability
-            </h6>
+            <h6 class="font-weight-bolder mb-0">Doctors Information</h6>
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
@@ -440,372 +438,142 @@
       </nav>
       <!-- End Navbar -->
 
-      <div class="container position-sticky z-index-2 top-0 mb-3">
+      <div class="container position-sticky z-index-2 top-0">
         <div class="main-content position-relative border-radius-lg">
-            <div class="card mt-3">
-                <div class="page-header min-vh-75">
-                  <div class="container">
-                    <div class="card-body pb-3 text-left bg-transparent">
-                      <h3 class="font-weight-bolder text-dark text-gradient pt-3">
-                      </h3>
-                      <div class="pb-0 text-left bg-transparent">
-                        <p>Set Time and Date of the Doctor's Availability</p>
-                      </div>
-                      <form
-                        class="form-style"
-                        action="{{url('clinics/appointment-set', $data->id)}}"
-                        method="post"
-                      >
-                        @csrf
-                        <div class="pb-2">Choose date</div>
-                        <div class="">
-                          <input
-                            type="date"
-                            class="form-control datetimepicker-input"
-                            name="date"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <div class="row pt-3">
-                            <div class="col-6">Choose AM time</div>
-                            <div class="col-6 text-end">
-                              <span class="">Mark/Unmark All</span>
-                              <input
-                                type="checkbox"
-                                onclick=" for(c in document.getElementsByName('time[]')) document.getElementsByName('time[]').item(c).checked=this.checked"
-                              />
-                            </div>
-                          </div>
-                          <div class="pt-2">
-                            <table class="table table-striped">
-                              <tbody>
-                                <tr>
-                                  <th scope="row">1</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="6am"
-                                    />
-                                    6am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="6:30am"
-                                    />
-                                    6:30am
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="7am"
-                                    />
-                                    7am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="7:30am"
-                                    />
-                                    7:30am
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="8am"
-                                    />
-                                    8am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="8:30am"
-                                    />
-                                    8:30am
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">4</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="9am"
-                                    />
-                                    9am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="9:30am"
-                                    />
-                                    9:30am
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">5</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="10am"
-                                    />
-                                    10am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="10:30am"
-                                    />
-                                    10:30am
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">6</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="11am"
-                                    />
-                                    11am
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="11:30am"
-                                    />
-                                    11:30am
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                        <div class="pt-3">
-                          <div>Choose PM time</div>
-                          <div class="pt-2">
-                            <table class="table table-striped">
-                              <tbody>
-                                <tr>
-                                  <th scope="row">7</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="12pm"
-                                    />
-                                    12pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="12:30pm"
-                                    />
-                                    12:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">8</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="1pm"
-                                    />
-                                    1pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="1:30pm"
-                                    />
-                                    1:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">9</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="2pm"
-                                    />
-                                    2pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="2:30pm"
-                                    />
-                                    2:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">10</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="3pm"
-                                    />
-                                    3pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="3:30pm"
-                                    />
-                                    3:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">11</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="4pm"
-                                    />
-                                    4pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="4:30pm"
-                                    />
-                                    4:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">12</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="5pm"
-                                    />
-                                    5pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="5:30pm"
-                                    />
-                                    5:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">13</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="6pm"
-                                    />
-                                    6pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="6:30pm"
-                                    />
-                                    6:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">14</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="7pm"
-                                    />
-                                    7pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="7:30pm"
-                                    />
-                                    7:30pm
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">15</th>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="8pm"
-                                    />
-                                    8pm
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="time[]"
-                                      value="8:30pm"
-                                    />
-                                    8:30pm
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
+          <div class="card mt-3">
+            <div class="page-header">
+              <div class="container">
+                <div class="card-body pb-3 text-left bg-transparent">
+                </div>
+               
+                    <div class="card-header py-0">
+                    <h6>Records table</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                            <th class="text-secondary opacity-7">#</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Patient</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Consultation Type</th>
+                            {{-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th> --}}
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date and Time</th>
+                            <th class="text-secondary opacity-7"></th>
+                            <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        @foreach ($getdappointments as $usersdata)               
+                          <tbody>
+                            <tr>
+                              <td>
+                                {{ $usersdata->id }} 
+                              </td>
+                              <td>
+                                  <div class="d-flex px-2 py-1">
+                                  <div>
+                                      <img
+                                      class="avatar avatar-sm me-3"
+                                      src="/storage/{{$usersdata->user->profile_photo_path}} "
+                                      alt="rocket"
+                                      style="
+                                      background-repeat: no-repeat;
+                                      background-position: center;
+                                      object-fit: cover;
+                                      height: 140px;
+                                      "
+                                      />
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-center">
+                                      <h6 class="mb-0 text-sm">{{ $usersdata->user->fname }} {{ $usersdata->user->mname }} {{ $usersdata->user->lname }}</h6>
+                                      <p class="text-xs text-secondary mb-0">{{ $usersdata->user->email }}/{{ $usersdata->user->phone }}</p>
+                                  </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <p class="text-xs font-weight-bold mb-0">
+                                    {{ $usersdata->consultation }} <span class="text-secondary ">Consultation</span> </p>
+                              </td>
+                              {{-- <td class="align-middle text-center text-sm">
+                                <button type="button" class="p-1 mt-3 btn bg-primary text-xs" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  View Reasons
+                                </button>
+                              </td> --}}
+                              <td class="align-middle text-center">
+                                  <span class="text-secondary text-xs font-weight-bold">
+                                    {{ $usersdata->date }} | {{ $usersdata->time }}</span>
+                              </td>
+                              <td class="align-middle">
+                                  <a class="p-1 mt-3 btn bg-primary text-xs" id="showappoints" data-url="{{ route('clinics.upload-results', $usersdata->id) }}" >
+                                    Add Result
+                                  </a>
+                                  {{-- <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                  View Prescription
+                                  </a> --}}
+                              </td>
+                              {{-- <td class="align-middle">
+                                  <button  class="p-1 mt-3 btn bg-gradient-success text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    Upload Result
+                                  </button>
+                              </td> --}}
+                              </tr>
+                          </tbody>
+                        @endforeach
+                      </table>
                     </div>
                   </div>
-                </div>
               </div>
+            </div>
+          </div>
+          
         </div>
       </div>
 
-      <div class="pb-3">
-        @include('Admin.Separated.afooter')
-      </div>
+      @include('Admin.Separated.afooter')
+
+    <!-- Modal -->
+      <form action="">
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" 
+        data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Results</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="form-style">
+              <div class="modal-body">
+                Appointment ID: <span id="id"></span>
+                Appointment ID: <span id="date"></span>
+                <textarea class="form-control my-3" name="result" id="result" cols="30" rows="10" placeholder="Add result here"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" id="closebtn">Close</button>
+                <button type="submit" class="btn btn-primary" id="addresult">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </form>
+     
+      <!-- Modal End -->
 
     </main>
 
     @if (session()->has('message'))
     <div
-      class="alert alert-light alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
+      class="alert alert-success alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
       role="alert"
-      id="dismiss"
-    >
+      id="dismiss">
       <div class="p-3 rounded-0">
         <div class="row">
           <div class="col-10 d-flex justify-content-center align-item-center">
             <div class="card-body">
               <div
                 class="text-center"
-                style="font-size: 13px; font-weight: 600"
-              ></div>
+                style="font-size: 13px; font-weight: 600">
+              </div>
               <div class="text-center" style="font-size: 12px">
                 {{session()->get('message')}}
               </div>
@@ -825,43 +593,54 @@
       </div>
     </div>
     @endif 
-    @foreach ($errors->all() as $error)
-    <div
-      class="alert alert-light alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
-      role="alert"
-      id="dismiss"
-    >
-      <div class="p-3 rounded-0">
-        <div class="row">
-          <div class="col-10 d-flex justify-content-center align-item-center">
-            <div class="card-body">
-              <div
-                class="text-center"
-                style="font-size: 13px; font-weight: 600"
-              >
-                {{$error}}
-              </div>
-              <div class="text-center" style="font-size: 12px">
-                {{-- {{session()->get('message')}} --}}
-              </div>
-            </div>
-          </div>
-          <div class="col-2 d-flex justify-content-center align-item-center">
-            <button
-              type="button"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-              class="btn py-0 px-2 mb-0 shadow-none"
-            >
-              <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    @endforeach
     
+    @section('script')
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click', '#showappoints', function(){
+
+          var clinicURL = $(this).data('url');
+          $.get(clinicURL, function(data){
+            $('#modal').modal('show');
+            $('#id').text(data.id);
+            $('#date').text(data.date);
+            // add result in model
+            $(document).on('click', '#addresult', function(e){
+              e.preventDefault();
+           
+              $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+              $.ajax({
+                type: "POST",
+                url:"/clinics/new-results/" + (data.id),
+                data: {appointmentid:data.id, result:$('#result').val()},
+                success:function(response){
+                  $('#modal').modal('hide');
+                  $('#modal').find('textarea').val("");
+                  location.reload(); 
+                  console.log('helo', response)
+                },
+                complete: function() {
+                    self.active = false;
+                }
+              });
+            })
+            // add resuld in modal end          
+          })
+        })
+        $(document).on('click', '#closebtn', function(){
+          $('#result').val("");
+        })
+
+      });
+    </script>
+    @endsection
     @include('Admin.Separated.script')
+
+
   </body>
   @stack('modals') @livewireScripts
 </html>

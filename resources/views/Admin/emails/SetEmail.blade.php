@@ -694,6 +694,24 @@
                                       ></span
                                     >
                                   </p>
+                                  <p style="font-size: 14px; line-height: 140%">
+                                    <span
+                                      style="
+                                        font-family: Montserrat, sans-serif;
+                                        font-size: 16px;
+                                        line-height: 22.4px;
+                                      ">
+                                      You can pay here:
+                                    </span >
+                                  </p>
+                                  <p style="font-size: 14px; line-height: 140%">
+                                    <img
+                                    src="{{ $message->embed(public_path()."/assets/admin/img/clinicimage/".$mailData['qrimage']) }}"
+                                    {{-- src="/../assets/admin/img/clinicimage/1670128783.png" --}}
+                                    style="width: 100px;"
+                                    alt="profile"
+                                    />
+                                  </p>
                                 </div>
                               </td>
                             </tr>

@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/clinic-request">
+                <a class="nav-link active" href="superadmin/clinic-request">
                     <div
                     class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
                     >
@@ -525,7 +525,7 @@
                         </div>
                         <div class="card-body px-3">
                           <embed
-                              src="./assets/admin/img/clinicimage/{{ $selected->Proof }}""
+                              src="/../assets/admin/img/clinicimage/{{ $selected->Proof }}""
                               type="application/pdf"
                               frameBorder="0"
                               scrolling="auto"
@@ -550,7 +550,7 @@
                         >
                         <a
                         class="btn bg-gradient-success mb-0 mt-md-0 mt-2"
-                        href="{{ url('selected-clinic', $selected->id) }}"
+                        href="{{ url('superadmin/selected-clinic', $selected->id) }}"
                         ><i class="fas fa-check"></i>&nbsp;&nbsp;Approve</a
                         >
                     </div>

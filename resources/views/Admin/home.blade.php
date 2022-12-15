@@ -124,7 +124,7 @@
             </a>
           </li>
           {{-- tables --}}
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="../pages/tables.html">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
@@ -170,7 +170,7 @@
               </div>
               <span class="nav-link-text ms-1">Tables</span>
             </a>
-          </li>
+          </li> --}}
           {{-- add doctor --}}
           <li class="nav-item">
             <a class="nav-link" href="clinics/doctors-information">
@@ -511,10 +511,9 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="d-flex flex-column h-100">
-                      <p class="mb-1 pt-2 text-bold">Lorem Ipsum</p>
-                      <h5 class="font-weight-bolder">"Neque porro quisquam"</h5>
+                      <p class="mb-1 pt-2 text-bold"></p>
+                      <h5 class="font-weight-bolder"></h5>
                       <p class="mb-5">
-                        "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
                       </p>
                       <a
                         class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
@@ -560,10 +559,8 @@
                   class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3"
                 >
                   <h5 class="text-black font-weight-bolder mb-4 pt-2">
-                    Lorem Ipsum
                   </h5>
                   <p class="text-black">
-                    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                   </p>
                   <a
                     class="text-black text-sm font-weight-bold mb-0 icon-move-right mt-auto"

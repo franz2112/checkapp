@@ -118,7 +118,7 @@
               <span class="nav-link-text ms-1">Appointments</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="../pages/tables.html">
               <div
                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
@@ -164,7 +164,7 @@
               </div>
               <span class="nav-link-text ms-1">Tables</span>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="/clinics/doctors-information">
               <div
@@ -379,12 +379,12 @@
       {{-- End Navbar --}}
 
       <div class="container-fluid py-4">
-        <div class="card shadow-lg bg-light p-3 pt-2 mb-3" style="height: 580px;">
+        <div class="card shadow-lg bg-light p-3 pt-2 mb-2" >
             <div class="pb-2 pt-0 px-1 text-end">
                 <a type="button" class="" href="{{ url('clinics/appointment-request')}}" style="font-size: 25px"><i class="fa-solid fa-circle-xmark"></i></a>
             </div>
             @if ($dataAppoints->count()<=0 )
-                <div class="text-center p-5 fw-light">No Upcoming Request</div>
+                <span class="text-center p-5 fw-light">No Upcoming Request</span>
             @endif 
             @foreach ($dataAppoints as $AppointsInfo)
                 @if ($AppointsInfo->status=='pending')
@@ -392,418 +392,449 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-8">
-                            <div class="row">
+                              <div class="row">
                                 <div class="col-md-12 mb-2">
-                                <div class="card rounded-bottom-0">
-                                    <div
-                                    class="overflow-hidden position-relative border-radius-xl"
-                                    >
-                                    <div class="card-body position-relative z-index-1 p-3">
-                                        <div class="row">
-                                        <div class="col">
-                                            <div
-                                            class="position-relative d-flex justify-content-center"
-                                            >
-                                            <img
-                                                src="/storage/{{$AppointsInfo->user->profile_photo_path}} "
+                                  <div class="card rounded-bottom-0">
+                                      <div class="overflow-hidden position-relative border-radius-xl">
+                                        <div class="card-body position-relative z-index-1 p-3">
+                                            <div class="row">
+                                              <div class="col">
+                                                  <div class="position-relative d-flex justify-content-center">
+                                                      <img
+                                                      src="/storage/{{$AppointsInfo->user->profile_photo_path}} "
+                                                      class="w-100 rounded"
+                                                      alt="..."
+                                                      style="height: 88px;
+                                                      object-fit: cover;
+                                                      background-repeat: no-repeat;
+                                                      background-position: center;
+                                                      "/> 
+                                                  </div>
+                                              </div>
+                                              <div class="col-10">
+                                                  <div class="me-4">
+                                                  <p class="text-sm opacity-8 mb-0"> 000{{$AppointsInfo->id}} </p>
+                                                  <h6 class="mb-0 text-sm col-lg text-truncate">
+                                                      {{$AppointsInfo->user->fname}} {{$AppointsInfo->user->mname}}  {{$AppointsInfo->user->lname}}
+                                                  </h6>
+                                                  <p class="mb-0 text-sm col-lg text-truncate">
+                                                      {{$AppointsInfo->user->address}} 
+                                                  </p>
+                                                  <p class="text-sm opacity-8 mb-0">
+                                                      {{$AppointsInfo->user->phone}} / {{$AppointsInfo->user->email}} 
+                                                  </p>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-xl-12 mb-2">
+                                  <div class="row">
+                                    <div class="col-lg-4 mt-md-0 pe-lg-0">
+                                      <div class="card shadow-none rounded-0" style="min-height: 230px">
+                                        <span class="card-header pb-0 pt-3 text-xs text-center">
+                                          Physician
+                                        </span>
+                                        <hr class="horizontal dark mb-0" />
+                                        <div class="card-header mx-4 px-3 py-2 mb-0 text-center">
+                                          <div class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg">
+                                            @foreach ($docData as $doc)
+                                              @if ($AppointsInfo->doctor==$doc->id)
+                                              <img
+                                              src="/assets/admin/img/doctorimage/{{$doc->file}}"
+                                              class="w-100 rounded"
+                                              alt="..."
+                                              style="height: 64px;
+                                              object-fit: cover;
+                                              background-repeat: no-repeat;
+                                              background-position: center;
+                                              "
+                                              />
+                                              @endif
+                                            @endforeach
+                                              {{-- <i class="fab fa-paypal opacity-10"></i> --}}
+                                          </div>
+                                        </div>
+                                        <div class="card-body pt-0 mt-0 p-2 pb-0 text-center">
+                                          @if ($AppointsInfo->doctor !='suggest')
+                                              @foreach ($docData as $doc)
+                                              @if ($AppointsInfo->doctor==$doc->id)
+                                                  <span class="text-xs">Doctor</span>
+                                                  <h6 class="mb-0 text-truncate">  
+                                                      {{$doc->Dfname }} {{$doc->Dlname }}
+                                                  </h6>
+                                                  <h6 class="text-sm fw-light">{{$doc->Specialization }}</h6>
+                                                  @endif
+                                              @endforeach
+                                          @else
+                                          <h6 class="text-sm py-2">Suggest Doctor </h6>
+                                          <button class="btn btn-outline-primary btn-sm py-1">
+                                              Select
+                                          </button>
+                                          @endif
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-md-0 mt-2 px-lg-2">
+                                      <div class="card shadow-none rounded-0" style="min-height: 230px">
+                                        <span class="card-header pb-0 pt-3 text-xs text-center">
+                                          Consultation Type
+                                        </span>
+                                        <hr class="horizontal dark mb-0" />
+                                        <div class="card-header mx-4 px-3 py-2 text-center">
+                                          <div class="icon icon-shape icon-lg bg-gradient-light shadow text-center border-radius-lg">
+                                            @if ($AppointsInfo->consultation=='Online')
+                                                <img
+                                                src="/assets/img/noun-medical-check-up-2583365.png"
                                                 class="w-100 rounded"
                                                 alt="..."
-                                                style="height: 88px;
+                                                style="height: 64px;
                                                 object-fit: cover;
                                                 background-repeat: no-repeat;
                                                 background-position: center;
                                                 "
-                                            />                            
-                                            </div>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="me-4">
-                                            <p class="text-sm opacity-8 mb-0"> 000{{$AppointsInfo->user->id}} </p>
-                                            <h6 class="mb-0 text-sm col-lg text-truncate">
-                                                {{$AppointsInfo->user->fname}} {{$AppointsInfo->user->mname}}  {{$AppointsInfo->user->lname}}
-                                            </h6>
-                                            <p class="mb-0 text-sm col-lg text-truncate">
-                                                {{$AppointsInfo->user->address}} 
-                                            </p>
-                                            <p class="text-sm opacity-8 mb-0">
-                                                {{$AppointsInfo->user->phone}} / {{$AppointsInfo->user->email}} 
-                                            </p>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="col-xl-12 mb-2">
-                                <div class="row">
-                                    <div class="col-lg-4 mt-md-0 pe-lg-0">
-                                    <div
-                                        class="card shadow-none rounded-0"
-                                        style="min-height: 230px"
-                                    >
-                                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                                        >Physician
-                                        </span>
-                                        <hr class="horizontal dark mb-0" />
-                                        <div class="card-header mx-4 px-3 py-2 mb-0 text-center">
-                                        <div
-                                        class="icon icon-shape icon-lg bg-gradient-primary shadow text-center border-radius-lg"
-                                        >
-                                            @foreach ($docData as $doc)
-                                            @if ($AppointsInfo->doctor==$doc->id)
-                                            <img
-                                            src="/assets/admin/img/doctorimage/{{$doc->file}}"
-                                            class="w-100 rounded"
-                                            alt="..."
-                                            style="height: 64px;
-                                            object-fit: cover;
-                                            background-repeat: no-repeat;
-                                            background-position: center;
-                                            "
-                                            />
+                                                />
+                                            @else
+                                                <img
+                                                src="/assets/img/noun-face-to-face-4877515.png"
+                                                class="w-100 rounded"
+                                                alt="..."
+                                                style="height: 64px;
+                                                object-fit: cover;
+                                                background-repeat: no-repeat;
+                                                background-position: center;
+                                                "
+                                                />
                                             @endif
-                                            @endforeach
-                                            {{-- <i class="fab fa-paypal opacity-10"></i> --}}
-                                        </div>
-                                        </div>
-                                        <div class="card-body pt-0 mt-0 p-2 pb-0 text-center">
-                                        @if ($AppointsInfo->doctor !='suggest')
-                                            @foreach ($docData as $doc)
-                                            @if ($AppointsInfo->doctor==$doc->id)
-                                                <span class="text-xs">Doctor</span>
-                                                <h6 class="mb-0 text-truncate">  
-                                                    {{$doc->Dfname }} {{$doc->Dlname }}
-                                                </h6>
-                                                <h6 class="text-sm fw-light">Specialization</h6>
-                                                @endif
-                                            @endforeach
-                                        @else
-                                        <h6 class="text-sm py-2">Suggest Doctor </h6>
-                                        <button class="btn btn-outline-primary btn-sm py-1">
-                                            Select
-                                        </button>
-                                        @endif
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="col-lg-4 mt-md-0 mt-2 px-lg-2">
-                                    <div
-                                        class="card shadow-none rounded-0"
-                                        style="min-height: 230px"
-                                    >
-                                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                                        >Consultation Type
-                                        </span>
-                                        <hr class="horizontal dark mb-0" />
-                                        <div class="card-header mx-4 px-3 py-2 text-center">
-                                        <div
-                                            class="icon icon-shape icon-lg bg-gradient-light shadow text-center border-radius-lg"
-                                        >
-                                        @if ($AppointsInfo->consultation=='Online')
-                                            <img
-                                            src="/assets/img/noun-medical-check-up-2583365.png"
-                                            class="w-100 rounded"
-                                            alt="..."
-                                            style="height: 64px;
-                                            object-fit: cover;
-                                            background-repeat: no-repeat;
-                                            background-position: center;
-                                            "
-                                            />
-                                        @else
-                                            <img
-                                            src="/assets/img/noun-face-to-face-4877515.png"
-                                            class="w-100 rounded"
-                                            alt="..."
-                                            style="height: 64px;
-                                            object-fit: cover;
-                                            background-repeat: no-repeat;
-                                            background-position: center;
-                                            "
-                                            />
-                                        @endif
-                                        </div>
+                                          </div>
                                         </div>
                                         <div class="card-body pt-0 pb-1 text-center">
-                                        <h6 class="text-center mb-0">{{$AppointsInfo->consultation}} </h6>
-                                        <span class="text-xs">Consultation</span>
-                                            @if ($AppointsInfo->consultation=='Online')
-                                            <div class="input-group m-0">
-                                                <input type="text" name="meetingLink" class="form-control" placeholder="Online consultation link" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                            @endif
+                                          <h6 class="text-center mb-0">{{$AppointsInfo->consultation}} </h6>
+                                          <span class="text-xs">Consultation</span>
+                                              @if ($AppointsInfo->consultation=='Online')
+                                              <div class="input-group m-0">
+                                                  <input type="text" name="meetingLink" class="form-control" placeholder="Online consultation link" aria-label="Username" aria-describedby="basic-addon1">
+                                              </div>
+                                              @endif
                                         </div>
-                                    </div>
+                                      </div>
                                     </div>
                                     <div class="col-lg-4 mt-md-0 mt-2 ps-lg-0">
-                                    <div
-                                        class="card shadow-none rounded-0"
-                                        style="min-height: 230px"
-                                    >
-                                        <span class="card-header pb-0 pt-3 text-xs text-center"
-                                        >Schedule
+                                      <div class="card shadow-none rounded-0" style="min-height: 230px">
+                                        <span class="card-header pb-0 pt-3 text-xs text-center">
+                                          Schedule
                                         </span>
                                         <div class="card-body pt-0 p-3 text-center">
-                                        <hr class="horizontal dark mb-2" />
-                                        <span class="text-xs">Date</span>
-                                        <h6 class="text-center mb-0">
-                                            {{date('D, F d, Y', strtotime($AppointsInfo->date))}}
-                                        </h6>
-                                        <span class="text-xs">Time</span>
-                                        <h6 class="text-center mb-0">{{$AppointsInfo->time}}</h6>
+                                          <hr class="horizontal dark mb-2" />
+                                          <span class="text-xs">Date</span>
+                                          <h6 class="text-center mb-0">
+                                              {{date('D, F d, Y', strtotime($AppointsInfo->date))}}
+                                          </h6>
+                                          <span class="text-xs">Time</span>
+                                          <h6 class="text-center mb-0">{{$AppointsInfo->time}}</h6>
                                         </div>
+                                      </div>
                                     </div>
-                                    </div>
-                                </div>
+                                  </div>
                                 </div>
                                 <div class="col-md-12 mb-lg-0 mb-2">
-                                <div class="card">
+                                  <div class="card">
                                     <div class="card-body p-3">
-                                    <div class="col-6 d-flex align-items-center">
-                                        <h6 class="mb-3">Other Option</h6>
-                                    </div>
-                                    <div class="row">
+                                      <div class="col-6 d-flex align-items-center">
+                                          <h6 class="mb-3">Other Option</h6>
+                                      </div>
+                                      <div class="row">
                                         <div class="col-md-6 mb-md-0 mb-4">
-                                        <div
-                                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
-                                        >
-                                            <h6 class="mb-0">Reschedule Appointment</h6>
-                                            <i
-                                            class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title="Edit Card"
-                                            ></i>
-                                        </div>
+                                          <div class="card card-body border py-3 card-plain border-radius-lg d-flex align-items-center flex-row">
+                                              <div class="col-10">                                              
+                                                <h6 class="mb-0">Reschedule Appointment</h6>
+                                              </div>
+                                              <div class="col-2"> 
+                                                <button type="button" class="btn m-0 shadow-none" data-bs-toggle="modal" data-bs-target="#Reschedule">
+                                                <i
+                                                class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Edit Card">
+                                                </i>
+                                              </button>  
+                                            </div>
+                                          </div>
                                         </div>
                                         <div class="col-md-6">
-                                        <div
-                                            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
-                                        >
-                                            <h6 class="mb-0">
-                                            Message Patient
-                                            </h6>
-                                            <i
-                                            class="fas fa-message ms-auto text-dark cursor-pointer"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title="Edit Card"
-                                            ></i>
+                                          <div class="card card-body border py-3 card-plain border-radius-lg d-flex align-items-center flex-row">
+                                            <div class="col-10">                                              
+                                              <h6 class="mb-0">Message Patient</h6>
+                                            </div>
+                                            <div class="col-2"> 
+                                              <button type="button" class="btn m-0 shadow-none" data-bs-toggle="modal" data-bs-target="#message">
+                                                <i
+                                                class="fas fa-message ms-auto text-dark cursor-pointer"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Edit Card"></i>
+                                              </button>  
+                                            </div>
+                                          </div>
                                         </div>
-                                        </div>
+                                      </div>
                                     </div>
-                                    </div>
+                                  </div>
                                 </div>
-                                </div>
-                            </div>
+                              </div>
                             </div>
                             <div class="col-lg-4 ps-lg-0">
-                            <div class="card" style="height: 382px">
-                                <div class="card-header pb-0 pt-4">
-                                <div class="row">
-                                    <div class="col-6 d-flex align-items-center">
-                                    <h6 class="mb-0">Complaints</h6>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="card-body  p-3 py-0">
-                                <div
-                                    class="border-radius-lg p-2 text-xs text-justify overflow-auto
-                                    border "
-                                    style="height: 250px"
-                                >
-                                {{$AppointsInfo->reason}}
-                                </div>
-                                <h6 class="my-2 px-2 ">Special ID's</h6>
-                                <div class="px-2">
-                                    <button class="btn btn-outline-primary btn-sm mb-4 py-1">
-                                    View special ID
-                                    </button>
-                                </div>
-                                </div>
-                            </div>
-                                <div class="card mt-2 p-3">
-                                <h6 class="">Confirmation</h6>
+                              <div class="card" style="height: 382px">
+                                  <div class="card-header pb-0 pt-4">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <a
-                                            class="btn bg-gradient-danger w-100"
-                                            href="{{ url('/clinics/appointments-cancel', $AppointsInfo->id) }}"
-                                            ><i class="fas fa-times"></i>&nbsp;&nbsp;Decline</a
-                                            >
+                                        <div class="col-6 d-flex align-items-center">
+                                        <h6 class="mb-0">Complaints</h6>
                                         </div>
-                                        <div class="col-6">
+                                    </div>
+                                  </div>
+                                  <div class="card-body  p-3 py-0">
+                                    <div
+                                        class="border-radius-lg p-2 text-xs text-justify overflow-auto
+                                        border "
+                                        style="height: 250px">
+                                        {{$AppointsInfo->reason}}
+                                    </div>
+                                    <h6 class="my-2 px-2 ">Special ID's</h6>
+                                    <div class="px-2">
+                                        <button class="btn btn-outline-primary btn-sm mb-4 py-1">
+                                        View special ID
+                                        </button>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="card mt-2 p-3">
+                                <h6 class="">Confirmation</h6>
+                                  <div class="row">
+                                    <div class="col-6">
+                                        <a
+                                        class="btn bg-gradient-danger w-100"
+                                        href="{{ url('/clinics/appointments-cancel', $AppointsInfo->id) }}"
+                                        ><i class="fas fa-times"></i>&nbsp;&nbsp;Decline</a
+                                        >
+                                    </div>
+                                    <div class="col-6">
                                             <button type="success"
                                             class="btn bg-gradient-success w-100">
                                                 <i class="fas fa-check"></i>&nbsp;&nbsp;Approve
                                             </button>
-                                        </div>
                                     </div>
-                                </div>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </form>
                 @endif
             @endforeach
         </div>
+      </div>
         {{-- <div class="row">{{ $dataAppoints->links() }}</div> --}}
-
-      {{-- upcoming request --}}
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card mb-4" style="height: 576px">
-            <div class="card-header pb-0 px-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <h6 class="mb-0">Upcoming Request</h6>
+    
+      <div class="container-fluid ">
+              {{-- upcoming request --}}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4" style="height: 576px">
+              <div class="card-header pb-0 px-3">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="mb-0">Upcoming Request</h6>
+                  </div>
+                  <div
+                    class="col-md-6 d-flex justify-content-end align-items-center"
+                  >
+                    <i class="far fa-calendar-alt me-2"></i>
+                    <small> 
+                      {{  now('Singapore')->format('F d, Y | h:ma') }}
+                    </small>
+                  </div>
                 </div>
-                <div
-                  class="col-md-6 d-flex justify-content-end align-items-center"
-                >
-                  <i class="far fa-calendar-alt me-2"></i>
-                  <small> 
-                    {{  now('Singapore')->format('F d, Y | h:ma') }}
-                   </small>
+              </div>
+              <div class="card-body pt-4 p-3 overflow-auto">
+                  <div class="list-group">
+                  {{-- @if ($dataAppoints->count()<=0 )
+                    <div class="text-center p-5 fw-light">No Upcoming Request</div>
+                  @endif --}}
+                  @if (count($allAppoints) > 1)
+                      @foreach ($allAppoints as $appointInfo)
+                          @if ($appointInfo->status=='pending')
+                          <hr class="horizontal dark mt-0">
+                          <a href="{{ url('clinics/appointments-request', $appointInfo->id)}}"
+                              id="appointInfo"
+                              class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg "
+                              >
+                              <div class="d-flex align-items-center">
+                              <div
+                                  class="mb-0 me-3 d-flex align-items-center justify-content-center"
+                              >
+                                  <img
+                                  src="/storage/{{$appointInfo->user->profile_photo_path}} "
+                                  class=" rounded border"
+                                  alt="..."
+                                  style="height: 50px;
+                                  width: 50px; 
+                                  object-fit: cover;
+                                  background-repeat: no-repeat;
+                                  background-position: center;
+                                  "
+                                  />  
+                              </div>
+                              <div class="d-flex flex-column">
+                                  <h6 class="mb-0 text-dark text-sm text-truncate text-capitalize">000{{$appointInfo->id}}</h6>
+                                  <h5 class="mb-1 text-dark text-sm text-truncate text-capitalize">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h5>
+                                  <span class="text-xs mb-1">
+                                  {{date('D, F d, Y', strtotime($appointInfo->date))}} | {{ $appointInfo->time }} 
+                                  </span>
+                                  <span class="text-xs">
+                                  @foreach ($docData as $doc)
+                                  @if ($appointInfo->doctor==$doc->id)
+                                      <span class=" fw-bold">Doctor</span>
+                                      <span class="mb-0 text-truncate fw-bold">  
+                                          {{$doc->Dfname }} {{$doc->Dlname }}
+                                      </span>
+                                  @endif
+                                  @endforeach                            
+                              </span>
+                              </div>
+                              </div>
+                              <div
+                              class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
+                              >
+                              {{$appointInfo->consultation}} Consultation
+                              </div>
+                          </a>
+                          <hr class="horizontal dark mt-0">
+                          @endif
+                      @endforeach
+                  @endif
+                  </div>
+              </div>
+            </div>
+          </div>
+          {{-- upcoming request --}}
+
+
+          {{-- approved status --}}
+          <div class="col-md-6">
+            <div class="card" style="height: 576px">
+                <div class="card-header pb-0 px-3">
+                  <h6 class="mb-0">Approved Appointment Status</h6>
+                </div>
+                <div class="card-body pt-4 p-3 overflow-auto">
+                  <ul class="list-group">
+                    @if ($dataAppointment->count()<=0 )
+                      <span class="text-center p-5 fw-light">No Approved Appointment</span>
+                    @endif
+                    @foreach ($allAppoints as $historyAppoints)
+                      @if ($historyAppoints->state == 'Waiting')
+                      <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                        <div class="d-flex flex-column">
+                          <h6 class="mb-3 text-sm">{{$historyAppoints->user->fname}}  {{$historyAppoints->user->mname}} {{$historyAppoints->user->lname}} </h6>
+                          <span class="mb-1 text-xs">Appointment ID:
+                            <span class="text-dark ms-sm-2 font-weight-bold">
+                              000{{$historyAppoints->id}}
+                            </span>
+                          </span>
+                          <span class="mb-1 text-xs">
+                            Doctor:
+                            <span class="text-dark font-weight-bold ms-sm-2"
+                              > 
+                              @foreach ($docData as $doc)
+                              @if ($historyAppoints->doctor==$doc->id)
+                                  <span class="mb-0 text-truncate fw-bold">  
+                                    {{$doc->Dfname }} {{$doc->Dlname }}
+                                  </span>
+                              @endif
+                            @endforeach  
+                              </span
+                            ></span>
+                          <span class="mb-1 text-xs"
+                            >Consultation Type:
+                            <span class="text-dark ms-sm-2 font-weight-bold">
+                            {{$historyAppoints->consultation}}</span></span>
+                          <span class="mb-1 text-xs"
+                            >Date and Time:
+                            <span class="text-dark ms-sm-2 font-weight-bold"
+                              >                              
+                              {{date('F d, Y', strtotime($historyAppoints->date))}}
+                              | {{$historyAppoints->time}}</span>
+                          </span>
+                          <span class="mb-1 text-xs"
+                            >Status:
+                            <span class="text-dark ms-sm-2 font-weight-bold"
+                              >{{$historyAppoints->state}}</span
+                            ></span
+                          >
+                        </div>
+                        <div class="ms-auto text-end">
+                          <a
+                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                            href=""
+                            >Cancel</a
+                          >
+                          <a
+                            class="btn btn-link text-primary px-3 mb-0"
+                            href="{{ url('clinics/appointment-complete', $historyAppoints->id)}}"
+                            ><i
+                              class="fas fa-arrow-up text-primary me-2"
+                              aria-hidden="true"
+                            ></i
+                            >Complete</a
+                          >
+                        </div>
+                      </li>
+                      @endif
+                    @endforeach
+                  </ul>
                 </div>
               </div>
             </div>
-            <div class="card-body pt-4 p-3 overflow-auto">
-                <div class="list-group">
-                @if ($dataAppoints->count()<=0 )
-                  <div class="text-center p-5 fw-light">No Upcoming Request</div>
-                @endif
-                @if (count($allAppoints) > 1)
-                    @foreach ($allAppoints as $appointInfo)
-                        @if ($appointInfo->status=='pending')
-                        <hr class="horizontal dark mt-0">
-                        <a href="{{ url('clinics/appointments-request', $appointInfo->id)}}"
-                            id="appointInfo"
-                            class="list-group-item list-group-item-action border-0 d-flex justify-content-between mb-2 border-radius-lg "
-                            >
-                            <div class="d-flex align-items-center">
-                            <div
-                                class="mb-0 me-3 d-flex align-items-center justify-content-center"
-                            >
-                                <img
-                                src="/storage/{{$appointInfo->user->profile_photo_path}} "
-                                class=" rounded border"
-                                alt="..."
-                                style="height: 50px;
-                                min-width: 50px; 
-                                object-fit: cover;
-                                background-repeat: no-repeat;
-                                background-position: center;
-                                "
-                                />  
-                            </div>
-                            <div class="d-flex flex-column">
-                                <h6 class="mb-0 text-dark text-sm text-truncate text-capitalize">000{{$appointInfo->user->id}}</h6>
-                                <h5 class="mb-1 text-dark text-sm text-truncate text-capitalize">{{$appointInfo->user->fname}}  {{$appointInfo->user->mname}} {{$appointInfo->user->lname}} </h5>
-                                <span class="text-xs mb-1">
-                                {{date('D, F d, Y', strtotime($appointInfo->date))}} | {{ $appointInfo->time }} 
-                                </span>
-                                <span class="text-xs">
-                                @foreach ($docData as $doc)
-                                @if ($appointInfo->doctor==$doc->id)
-                                    <span class=" fw-bold">Doctor</span>
-                                    <span class="mb-0 text-truncate fw-bold">  
-                                        {{$doc->Dfname }} {{$doc->Dlname }}
-                                    </span>
-                                @endif
-                                @endforeach                            
-                            </span>
-                            </div>
-                            </div>
-                            <div
-                            class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
-                            >
-                            {{$appointInfo->consultation}} Consultation
-                            </div>
-                        </a>
-                        <hr class="horizontal dark mt-0">
-                        @endif
-                    @endforeach
-                @endif
-                </div>
-            </div>
-          </div>
         </div>
-        {{-- upcoming request --}}
+    
+      </div>
 
-
-        {{-- approved status --}}
-        <div class="col-md-6">
-          <div class="card" style="height: 576px">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Approved Status</h6>
+      @if (session()->has('message'))
+      <div class="alert
+      alert-dissmissible 
+      fade show 
+      position-fixed
+      z-index-2  
+      bottom-0 end-0 p-0 m-3 shadow-lg  rounded-0
+      "
+      style="
+      background-color: #D1E7DD;
+      border-color: #add1a4;
+      color: #2E5724;
+      "
+      role="alert"
+      id="dismiss">
+        <div class="p-3  rounded-0">
+          <div class="row">
+            <div class="col-10 d-flex justify-content-center align-item-center">
+              <div class="card-body">
+                <div class="text-center" style="font-size: 13px; font-weight: 600">
+                    {{session()->get('message')}}
+                </div>
+                <div class="text-center" style="font-size: 12px">
+                  Information sent!
+                </div>
+              </div>
             </div>
-            <div class="card-body pt-4 p-3 overflow-auto">
-              <ul class="list-group">
-                @if ($dataAppoints->count()<=0 )
-                    <div class="text-center p-5 fw-light">No Approved Status</div>
-                @endif
-                @foreach ($allAppoints as $historyAppoints)
-                  @if ($historyAppoints->state == 'Waiting')
-                  <li
-                  class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                    <div class="d-flex flex-column">
-                      <h5 class="mb-3 text-sm">{{$historyAppoints->user->fname}} {{$historyAppoints->user->mname}} {{$historyAppoints->user->lname}} </h5>
-                      <span class="text-xs mb-0 text-dark font-weight-bold">#000{{$historyAppoints->user->id}} </span>
-                      <span class="mb-1 text-xs">
-                        Doctor:
-                        <span class="text-dark font-weight-bold ms-sm-2"> 
-                          @foreach ($docData as $doc)
-                             @if ($historyAppoints->doctor==$doc->id)
-                                <span class=" fw-bold">Doctor</span>
-                                <span class="mb-0 text-truncate fw-bold">  
-                                {{$doc->Dfname }} {{$doc->Dlname }}
-                                </span>
-                                @endif
-                            @endforeach  
-                          </span>
-                        </span>
-                        <span class="mb-1 text-xs">
-                        Consultation Type:
-                        <span class="text-dark ms-sm-2 font-weight-bold">
-                          {{$historyAppoints->consultation}}</span>
-                        </span>
-                        <span class="mb-1 text-xs">
-                            Date and Time:
-                            <span class="text-dark ms-sm-2 font-weight-bold">
-                                {{date('F d, Y', strtotime($historyAppoints->date))}}
-                                | {{$historyAppoints->time}}
-                            </span>
-                        </span>
-                        <span class="mb-1 text-xs">
-                            Appintment Status:
-                        <span class="text-dark ms-sm-2 font-weight-bold">
-                          {{$historyAppoints->state}}</span>
-                        </span>
-                      </div>
-                    <div class="ms-auto text-end">
-                      <a
-                        class="btn btn-link text-danger text-gradient px-3 mb-0"
-                        href="javascript:;">
-                        <i class="far fa-trash-alt me-2"></i>Delete</a>
-                     <a
-                        class="btn btn-link text-dark px-3 mb-0"
-                        href="javascript:;">
-                        <i
-                          class="fas fa-arrow-up text-dark me-2"
-                          aria-hidden="true">
-                        </i>
-                        View</a>
-                     </div>
-                  </li>
-                  @endif
-                @endforeach
-              </ul>
+            <div class="col-2 d-flex justify-content-center align-item-center">
+              <button type="button" data-bs-dismiss="alert" aria-label="Close" class="btn py-0 px-2 mb-0 shadow-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </button>      
             </div>
           </div>
         </div>
       </div>
-    </div>
+      @endif
 
       @if (session()->has('message'))
       <div class="alert
@@ -845,6 +876,45 @@
       @include('Admin.Separated.afooter')
     </main>
 
+    {{-- modals --}}
+    <div class="modal fade" id="Reschedule" tabindex="-1" aria-labelledby="Reschedule" aria-hidden="true">
+      <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Reschedule Appointment</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            @foreach ($dataAppoints as $AppointsInfo)
+            <form action="{{ url('/clinics/appointments-reschedule', $AppointsInfo->id) }}" method="POST">
+              @csrf
+              <div class="pb-2">Choose a date to Reschedule</div>
+              <div class="">
+                <input
+                type="date"
+                class="form-control datetimepicker-input"
+                name="date"
+                />
+                <div class="pb-2">Choose a Time to be Reschedule</div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Select Time</label>
+                  <select id="" class="form-select">
+                      <option>Disabled select</option>
+                    </select>
+                  </div>
+                  
+                @endforeach
+            </form> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     @include('Admin.Separated.script')
   </body>
 </html>

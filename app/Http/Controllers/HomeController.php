@@ -167,13 +167,13 @@ class HomeController extends Controller
     public function records(){
        $userId = Auth::id();
        $clinicId = appointment::where('user_id', $userId)->pluck('clinic_id');
-       $clinicDetails = clinic::where('id', $clinicId)->get();
+       $clinicDetails = clinic::find($clinicId);
        
        $doctorId = appointment::where('user_id', $userId)->pluck('doctor');
-       $doctorDetails = doctor::where('id', $doctorId)->get();
+       $doctorDetails = doctor::find($doctorId);
 
        $appointmentDetails = appointment::where('user_id', $userId)->get(); 
-        // return $allDocs;
+        // return $clinicDetails;
        return view('user.records', compact('clinicDetails', 'doctorDetails', 'appointmentDetails'));
     }
 
