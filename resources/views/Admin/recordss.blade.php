@@ -563,7 +563,7 @@
 
     @if (session()->has('message'))
     <div
-      class="alert alert-success alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-3 shadow-lg rounded-0"
+      class="alert alert-success alert-dissmissible fade show position-fixed z-index-2 bottom-0 end-0 p-0 m-2 shadow-lg rounded-0"
       role="alert"
       id="dismiss">
       <div class="p-3 rounded-0">
