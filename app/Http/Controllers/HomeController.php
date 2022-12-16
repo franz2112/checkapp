@@ -107,6 +107,9 @@ class HomeController extends Controller
         
 
     public function notif(){
+        $userId = Auth::id();
+        $appointments= appointment::with('clinic')->where('user_id',$userId)
+        ->where('state', 'Completed')->get();
         return view('user.notification');
     }
 
@@ -175,6 +178,11 @@ class HomeController extends Controller
        $appointmentDetails = appointment::where('user_id', $userId)->get(); 
         // return $clinicDetails;
        return view('user.records', compact('clinicDetails', 'doctorDetails', 'appointmentDetails'));
+    }
+
+    public function uploadrecords($id){
+        $appointment = appointment::with('user')->find($id);
+        return response()->json($appointment);
     }
 
 

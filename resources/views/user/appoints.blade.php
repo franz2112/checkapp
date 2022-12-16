@@ -179,7 +179,8 @@
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
                               href="{{ url('user/Cancel-appoint', $appoints->id) }}"
@@ -264,7 +265,8 @@
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
                               href="{{ url('Cancel-appoint', $appoints->id) }}"
@@ -273,7 +275,8 @@
                               Cancel Appointment
                             </a>
                             @elseif ($appoints->status=='Declined')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
                           </span>
                         </div>
@@ -368,7 +371,8 @@
                               Cancel Appointment
                             </a>
                             @elseif ($appoints->status=='Declined')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
                           </span>
                         </div>
@@ -454,7 +458,8 @@
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
                               href="{{ url('Cancel-appoint', $appoints->id) }}"
@@ -463,7 +468,8 @@
                               Cancel Appointment
                             </a>
                             @elseif ($appoints->status=='Declined')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
                           </span>
                         </div>
@@ -550,7 +556,8 @@
                           </span>
                           <span>
                             @if ($appoints->status=='Approved')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
                               href="{{ url('Cancel-appoint', $appoints->id) }}"
@@ -559,7 +566,8 @@
                               Cancel Appointment
                             </a>
                             @elseif ($appoints->status=='Declined')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
+                            data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
                           </span>
                         </div>
@@ -590,5 +598,127 @@
       {{-- footer --}} @include('user.separated.footer') {{-- footer end --}}
     </div>
   </body>
+
+  
+    {{-- modal --}}
+    @foreach ($dataAppoints as $appointments)
+
+    <div
+      class="modal fade"
+      id="add"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addDoctorTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" >
+          <div class="modal-header" style="background-color: #35bf53; font-size: 16px">
+            <div class="modal-title text-white" id="exampleModalLabel">
+              Appointment Details
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+    
+            <div class="container">
+              <div class="d-lg-flex flex-warp">
+                
+                
+                <div class="card col-lg-6 p-3 m-2">
+                  <span class="mt-1 fw-semibold" style="font-size: 11px">Consultation Type :</span>
+                  Online Consultation
+                  <hr class="mb-0">
+                  <span class="mt-1 fw-semibold" style="font-size: 11px">Date and Time of Appointment :</span>
+                  <div class="row">
+                    <div class="col-12">
+                      <span class="" style="font-size: 18px">                        
+                        Tue, December 13, 2022, 4pm 
+                        <hr class="mb-0">
+                        <span class="mt-0 fw-semibold" style="font-size: 11px">Appointment Doctor :</span>
+                        <div class="row">
+                          <div class="col-12">
+                                                                                                                                                    <div class="row">
+                                  <div class="col-2">
+                                    <img src="/../assets/admin/img/doctorimage/1667539095.jpg" class="py-2 rounded me-2 pe-2" alt="user1" style="width: 50px; height: 50px; object-fit: cover;">
+                                  </div>
+                                  <div class="col-10 ps-0">
+                                    <span> 
+                                      <span style="font-size: 13px">Doctor</span>
+                                      <span class="text-uppercase">
+                                        Doctor4
+                                        Sample4
+                                      </span>
+                                    </span>
+                                    <div class="row" style="font-size: 13px;">
+                                      <div class="col-12">
+                                        <span class="fst-italic">
+                                          Cardiologists
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                                                                                                                               </div>
+                        </div>
+                      </span>
+                      <hr class="mb-0">
+                      <span class="mt-0 fw-semibold" style="font-size: 11px">Clinic Appointment :</span>
+                      <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                              <div class="col-2">
+                                <div class="text-center">
+                                  <svg class="svg-inline--fa fa-location-dot p-2" style="font-size: 20px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-dot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z"></path></svg><!-- <i class="fa-solid fa-location-dot p-2" style="font-size: 20px"></i> Font Awesome fontawesome.com -->
+                                </div>
+                              </div>
+                              <div class="col-10 ps-0">
+                                <span class="">Diagnostic Clinic</span>
+                                <div class="row" style="font-size: 13px;">
+                                  <div class="col-12">
+                                    Korondal City, South Cotabato
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                <div class="col-lg pt-lg-0 pt-sm-3 st m-2">
+                  <div class="card p-2 mb-2">
+                    <span class="fw-semibold">Reason/Complaints:</span>
+                    <div class="">
+                      <div class="col-12">
+                        <span class="text-capitalize" style="font-size: 13px">axdf</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card p-2">
+                    <span class="fw-semibold">Consultation Link:</span>
+                    <div class="row">
+                      <div class="col-12">
+                        <span class="text-capitalize" style="font-size: 13px">axdf</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            
+        
+        </div>
+      </div>
+    </div>
+    @endforeach
   @stack('modals') @livewireScripts
 </html>

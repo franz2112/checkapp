@@ -543,8 +543,7 @@
             </div>
             <div class="form-style">
               <div class="modal-body">
-                Appointment ID: <span id="id"></span>
-                Appointment ID: <span id="date"></span>
+              
                 <textarea class="form-control my-3" name="result" id="result" cols="30" rows="10" placeholder="Add result here"></textarea>
               </div>
               <div class="modal-footer">

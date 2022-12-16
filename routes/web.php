@@ -59,7 +59,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ->middleware('auth');
         
         Route::get('/my-records', [HomeController::class, 'records'])
-        ->name('/my-records')
+        ->name('my-records')
+        ->middleware('auth');
+
+        Route::get('/get-records{id}', [HomeController::class, 'uploadrecords'])
+        ->name('get-records')
         ->middleware('auth');
     });
 
