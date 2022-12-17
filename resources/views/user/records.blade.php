@@ -26,7 +26,7 @@
           <!-- header end -->
           <div class="main-content ">
             <div class="content-wrapper px-3 ">
-              <div class="card mb-4 shadow-lg">
+              <div class="card mb-4 border-0">
                 <div class="card-header pb-0"
                   style="background-color: #35bf53;"
                 >
@@ -42,7 +42,7 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Clinic</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Time</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                          <th class="text-secondary opacity-7"></th>
+                          <th class="text-secondary opacity-7 text-center">Result and Prescription</th>
                           {{-- <th class="text-secondary opacity-7"></th> --}}
                         </tr>
                       </thead>
@@ -86,11 +86,24 @@
                                 {{-- <span class="text-secondary text-xs font-weight-bold">{{ date("F", mktime(0, 0, 0, $appointDetail->date, 1)) }}</span> --}}
                               </td>
                               <td class="align-middle text-center">
-                                @if (!empty($appointDetail->paymentstatus))
-                                <a id="showappoints" class="btn btn-outline-secondary p-1"  style="font-size: 12px" data-toggle="tooltip" data-url="{{ route('user.get-records', $appointDetail->id) }}">
-                                  View Details
-                                </a>
-                                @endif
+                                @foreach ($result as $r)
+                                  @if ($appointDetail->id==$r->appointments_id)
+                                    @if (!empty($r->id))
+                                    <a id="showappoints" class="btn btn-outline-secondary p-1"  style="font-size: 12px" data-toggle="tooltip" data-url="{{ route('user.get-records', $appointDetail->id) }}">
+                                      View Result
+                                    </a>
+                                    @endif
+                                  @endif
+                                @endforeach
+                                @foreach ($prescription as $p)
+                                  @if ($appointDetail->id==$p->appointments_id)
+                                    @if (!empty($p->id))
+                                    <a id="showpresc" class="btn btn-outline-secondary p-1 mt-md-2 mt-lg-0"  style="font-size: 12px" data-toggle="tooltip" data-url="{{ route('user.get-prescription', $appointDetail->id) }}">
+                                      View Prescription
+                                    </a>
+                                    @endif
+                                  @endif
+                                @endforeach
                               </td>
                               {{-- <td class="align-middle text-center">
                                 <button href="javascript:;" class="btn btn-outline-secondary p-1"  style="font-size: 12px" data-toggle="tooltip" data-original-title="Edit user">
@@ -118,7 +131,7 @@
 
     </div>
 
-    {{-- modal --}}
+    {{--result modal --}}
     @foreach ($appointmentDetails as $appointments)
 
     <div
@@ -133,7 +146,7 @@
         <div class="modal-content" >
           <div class="modal-header" style="background-color: #35bf53; font-size: 16px">
             <div class="modal-title text-white" id="exampleModalLabel">
-              Result and Prescription
+              Result
             </div>
             <button
               type="button"
@@ -149,16 +162,8 @@
                   <div class="col-lg pt-lg-0 pt-sm-3 st m-2">
                     <div class="card p-2 mb-2 " >
                       <span class="fw-semibold">Results</span>
-                        <div class="col-12 text-center" style="min-height: 250px; max-width:337px;">
-                          <span class="text-capitalize" style="font-size: 13px"><span id="paymentstatus"></span></span>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col-lg pt-lg-0 pt-sm-3 st m-2">
-                    <div class="card p-2 mb-2">
-                      <span class="fw-semibold">Prescription</span>
-                        <div class="col-12" style="min-height: 250px; max-width:337px;">
-                          <span class="text-capitalize" style="font-size: 13px">axdf</span>
+                        <div class="col-12 pt-3" style="min-height: 250px; max-width:337px;">
+                          <span class="text-capitalize" style="font-size: 15px"><span id="result"></span></span>
                         </div>
                     </div>
                   </div>
@@ -166,6 +171,48 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    
+    {{-- prescription modal --}}
+    <div
+      class="modal fade"
+      id="modalpresc"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="prescription"
+      aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content" >
+            <div class="modal-header" style="background-color: #35bf53; font-size: 16px">
+              <div class="modal-title text-white" id="exampleModalLabel">
+                Prescription
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <div class="d-lg-flex flex-warp">
+                  @if ($appointments->user_id)
+                    <div class="col-lg pt-lg-0 pt-sm-3 st m-2">
+                      <div class="card p-2 mb-2">
+                        <span class="fw-semibold">Prescription</span>
+                          <div class="col-12 pt-3" style="min-height: 250px; max-width:300px;">
+                            <span class="text-capitalize" style="font-size: 15px"><span id="prescription"></span></span>
+                          </div>
+                      </div>
+                    </div>
+                  @endif               
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
     @endforeach
@@ -178,10 +225,18 @@
           $.get(clinicURL, function(data){
             $('#modal').modal('show');
             $('#id').text(data.id);
-            $('#paymentstatus').text(data.paymentstatus);    
-            console.log(data.paymentstatus)     
+            $('#result').text(data.result);   
+            // console.log(data.id)     
           })
-
+        })
+        $(document).on('click', '#showpresc', function(){
+          var clinicURL = $(this).data('url');
+          $.get(clinicURL, function(data){
+            $('#modalpresc').modal('show');
+            $('#id').text(data.id);
+            $('#prescription').text(data.prescription);   
+            console.log(data.id)     
+          })
         })
       });
     </script>

@@ -9,6 +9,8 @@ use App\Models\Doctor;
 use App\Models\Clinic;
 use App\Models\Appointment;
 use App\Models\AppointmentSet;
+use App\Models\MedicalRecord;
+use App\Models\Prescription;
 use App\Models\Time;
 use Carbon\Carbon;
 class HomeController extends Controller
@@ -175,14 +177,22 @@ class HomeController extends Controller
        $doctorId = appointment::where('user_id', $userId)->pluck('doctor');
        $doctorDetails = doctor::find($doctorId);
 
-       $appointmentDetails = appointment::where('user_id', $userId)->get(); 
-        // return $clinicDetails;
-       return view('user.records', compact('clinicDetails', 'doctorDetails', 'appointmentDetails'));
+       $appointmentDetails = appointment::where('user_id', $userId)->get();
+       
+       $appointment_id = appointment::where('user_id', $userId)->where('state', 'Completed')->pluck('id');
+       $result = MedicalRecord::whereIn('appointments_id', $appointment_id)->get();
+       $prescription = Prescription::whereIn('appointments_id', $appointment_id)->get();
+       return view('user.records', compact('clinicDetails', 'doctorDetails', 'appointmentDetails', 'result', 'prescription'));
     }
 
     public function uploadrecords($id){
-        $appointment = appointment::with('user')->find($id);
-        return response()->json($appointment);
+        $record = MedicalRecord::where('appointments_id', $id)->first();
+        return response()->json($record);
+    }
+    
+    public function uploadprescription($id){
+        $prescription = Prescription::where('appointments_id', $id)->first();
+        return response()->json($prescription);
     }
 
 

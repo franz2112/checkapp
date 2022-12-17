@@ -507,6 +507,9 @@
                                   <a class="p-1 mt-3 btn bg-primary text-xs" id="showappoints" data-url="{{ route('clinics.upload-results', $usersdata->id) }}" >
                                     Add Result
                                   </a>
+                                  <a class="p-1 mt-3 btn bg-primary text-xs" id="Prescription" data-url="{{ route('clinics.upload-prescription', $usersdata->id) }}" >
+                                    Add Prescription
+                                  </a>
                                   {{-- <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                   View Prescription
                                   </a> --}}
@@ -531,7 +534,7 @@
 
       @include('Admin.Separated.afooter')
 
-    <!-- Modal -->
+    <!--Result Modal -->
       <form action="">
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" 
         data-bs-keyboard="false">
@@ -556,7 +559,33 @@
         </div>
       </form>
      
-      <!-- Modal End -->
+    <!--Result Modal End -->
+
+    <!--Prescription Modal -->
+      <form action="">
+        <div class="modal fade" id="modalpresc" tabindex="-1" aria-labelledby="modalpresc"  role="dialog" aria-hidden="true" data-bs-backdrop="static" 
+        data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="Prescription">Add Prescription</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="form-style">
+              <div class="modal-body">
+              
+                <textarea class="form-control my-3" name="prescription" id="prescription" cols="30" rows="10" placeholder="Add Prescription here"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" id="closebtns">Close</button>
+                <button type="submit" class="btn btn-primary" id="addpresc">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </form>
+    <!--Prescription Modal End -->
 
     </main>
 
@@ -601,8 +630,6 @@
           var clinicURL = $(this).data('url');
           $.get(clinicURL, function(data){
             $('#modal').modal('show');
-            $('#id').text(data.id);
-            $('#date').text(data.date);
             // add result in model
             $(document).on('click', '#addresult', function(e){
               e.preventDefault();
@@ -620,7 +647,7 @@
                   $('#modal').modal('hide');
                   $('#modal').find('textarea').val("");
                   location.reload(); 
-                  console.log('helo', response)
+                  // console.log('helo', response)
                 },
                 complete: function() {
                     self.active = false;
@@ -632,6 +659,42 @@
         })
         $(document).on('click', '#closebtn', function(){
           $('#result').val("");
+        })
+
+        // Prescription
+        $(document).on('click', '#Prescription', function(){
+          var clinicURL = $(this).data('url');
+          $.get(clinicURL, function(data){
+            $('#modalpresc').modal('show');
+            // add result in model
+            $(document).on('click', '#addpresc', function(e){
+              e.preventDefault();
+           
+              $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+              $.ajax({
+                type: "POST",
+                url:"/clinics/new-prescription/" + (data.id),
+                data: {appointmentid:data.id, prescription:$('#prescription').val()},
+                success:function(response){
+                  $('#modalpresc').modal('hide');
+                  $('#modalpresc').find('textarea').val("");
+                  location.reload(); 
+                  console.log('helo', response)
+                },
+                complete: function() {
+                    self.active = false;
+                }
+              });
+            })
+            // add resuld in modal end          
+          })
+        })
+        $(document).on('click', '#closebtns', function(){
+          $('#modalpresc').val("");
         })
 
       });

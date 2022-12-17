@@ -65,6 +65,10 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('/get-records{id}', [HomeController::class, 'uploadrecords'])
         ->name('get-records')
         ->middleware('auth');
+
+        Route::get('/get-prescription{id}', [HomeController::class, 'uploadprescription'])
+        ->name('get-prescription')
+        ->middleware('auth');
     });
 
    
@@ -147,10 +151,17 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         ->name('upload-results')
         ->middleware('auth');
 
+        Route::get('/upload-prescription/{id}', [AdminController::class,'uploadPrescription'])
+        ->name('upload-prescription')
+        ->middleware('auth');
+        
         Route::post('/new-results/{id}', [AdminController::class,'newresult'])
         ->name('new-results')
         ->middleware('auth');
-
+        
+        Route::post('/new-prescription/{id}', [AdminController::class,'newPrescription'])
+        ->name('new-prescription')
+        ->middleware('auth');
 
 
     });

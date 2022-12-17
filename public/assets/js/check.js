@@ -171,19 +171,19 @@ $("document").ready(function () {
 });
 
 // line clinic
-$("document").ready(function () {
-    var likesBtn = document.querySelector(".like-btn");
-    var likeIcon = document.querySelector("#icon");
+// $("document").ready(function () {
+//     var likesBtn = document.querySelector(".like-btn");
+//     var likeIcon = document.querySelector("#icon");
 
-    var clicked = false;
+//     var clicked = false;
 
-    likesBtn.addEventListener("click", () => {
-        if (!clicked) {
-            clicked = true;
-            likeIcon.innerHTML = `<i class="fas fa-star"></i>`;
-        } else {
-            clicked = false;
-            likeIcon.innerHTML = `<i class="far fa-star"></i>`;
-        }
-    });
-});
+//     likesBtn.addEventListener("click", () => {
+//         if (!clicked) {
+//             clicked = true;
+//             likeIcon.innerHTML = `<i class="fas fa-star"></i>`;
+//         } else {
+//             clicked = false;
+//             likeIcon.innerHTML = `<i class="far fa-star"></i>`;
+//         }
+//     });
+// });

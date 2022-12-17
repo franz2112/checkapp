@@ -11,6 +11,8 @@ use App\Models\Appointment;
 use App\Models\AppointmentSet;
 use App\Models\Time;
 use App\Models\User;
+use App\Models\MedicalRecord;
+use App\Models\Prescription;
 use App\Mail\AppointmentMail;
 use App\Mail\OnlineMail;
 use Carbon\Carbon;
@@ -326,13 +328,26 @@ class AdminController extends Controller
     }
 
     public function newresult(request $request, $id){
+        $records=new MedicalRecord;
+        $records->result=$request->result;
+        $records->appointments_id=$id;
+        $records->save();
 
-        appointment::where('id', $id)
-        ->update([
-            'paymentstatus' => $request->result,
-        ]);
         return response()->json();
+    }
 
+    public function uploadPrescription($id){
+        $appointment = appointment::with('user')->find($id);
+        return response()->json($appointment);
+    }
+
+    public function newPrescription(request $request, $id){
+        $records=new Prescription;
+        $records->prescription=$request->prescription;
+        $records->appointments_id=$id;
+        $records->save();
+
+        return response()->json();
     }
     
     public function complete($id){

@@ -21,6 +21,14 @@ class Appointment extends Model
         return $this->hasMany('App\Models\Doctor');
     }
 
+    public function MedicalRecord(){
+        return $this->belongsTo('App\Models\MedicalRecord');
+    }
+
+    public function Prescription(){
+        return $this->belongsTo('App\Models\Prescription');
+    }
+
     protected $fillable = [
         'meetingLink',
     ];
