@@ -110,9 +110,8 @@ class HomeController extends Controller
 
     public function notif(){
         $userId = Auth::id();
-        $appointments= appointment::with('clinic')->where('user_id',$userId)
-        ->where('state', 'Completed')->get();
-        return view('user.notification');
+        $appointments= appointment::with('clinic')->where('user_id',$userId)->orderBy('created_at', 'DESC')->get();
+        return view('user.notification', compact('appointments'));
     }
 
     public function SelectDoc($id){

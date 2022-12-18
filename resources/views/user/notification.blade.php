@@ -31,25 +31,29 @@
                 <h3 class="m-b-50 heading-line">
                   Notifications <i class="fa fa-bell text-muted"></i>
                 </h3>
-                <div class="notification-ui_dd-content">
-                  <div class="notification-list notification-list--unread">
-                    <div class="notification-list_content">
-                      <div class="notification-list_img">
-                          <img src="https://picsum.photos/500/500?random=2">
+                <div class="container">
+                  @foreach ( $appointments as $a )
+                  <div class="notification-ui_dd-content">
+                    <div class="notification-list notification-list--unread">
+                      <div class="notification-list_content">
+                        <div class="notification-list_img pt-2">
+                            <img src="/../assets/admin/img/clinicimage/{{ $a->clinic->Profile}}" >
+                        </div>
+                        <div class="notification-list_detail pt-3">
+                          <p><b>{{ $a->clinic->clinicname}}</b> {{ $a->status }} your appointment</p>
+                          {{-- <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Unde, dolorem.
+                          </p> --}}
+                          <p class="text-muted"><small>{{ date('F d, Y', strtotime($a->created_at)) }}</small></p>
+                        </div>
                       </div>
-                      <div class="notification-list_detail">
-                        <p><b>CinicName1</b> Approve your appointment</p>
-                        <p class="text-muted">
-                          Lorem ipsum dolor sit amet consectetur, adipisicing
-                          elit. Unde, dolorem.
-                        </p>
-                        <p class="text-muted"><small>1 min ago</small></p>
+                      <div class="notification-list_feature-img pt-2">
+                        <a href="{{ url('user/appointment') }}" class="btn view">View Details</a>
                       </div>
-                    </div>
-                    <div class="notification-list_feature-img">
-                      <a href="#" class="btn view">View Details</a>
                     </div>
                   </div>
+                  @endforeach
                 </div>
                 {{-- <div class="text-center">
                   <a href="#!" class="dark-link">Load more activity</a>
@@ -58,6 +62,9 @@
             </div>
           </div>
           <!-- main content end -->
+
+
+
         </div>
       </div>
       <!-- Body part-->

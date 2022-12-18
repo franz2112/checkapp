@@ -19176,8 +19176,9 @@ p {
   top: 0;
   left: 0;
   min-height: 100vh;
-  min-width: 245px;
+  min-width: 216px;
   padding: 0;
+  position: fixed;
 }
 .sidebar-part ul {
   position: sticky;
@@ -19328,6 +19329,12 @@ p {
   transition: all 0.25s ease;
   width: 100%;
   min-height: 100vh;
+  margin-left: 216px;
+}
+@media screen and (max-width: 991px) {
+  .body-part {
+    margin-left: auto;
+  }
 }
 .body-part .content-wrapper {
   width: 100%;
@@ -20152,7 +20159,7 @@ footer a {
 }
 
 .notification-ui_dd-content {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .notification-list {

@@ -17,7 +17,7 @@
       <!-- sidebar ends -->
       <!-- body part -->
       <div class="body-part">
-        <div class="container">
+        <div class=" px-lg-0 px-4" style="max-width: 1320px;margin-right: auto;margin-left: auto;">
           <!-- header -->
 
           <!-- nav -->
@@ -189,7 +189,7 @@
                               Cancel Appointment
                             </a>
                             @elseif ($appoints->status=='Declined')
-                            <a href="#" class="btn view">View Details</a>
+                            <a href="clinics" class="btn view">Reschedule</a>
                             @endif
                           </span>
                         </div>
@@ -632,39 +632,46 @@
                 
                 <div class="card col-lg-6 p-3 m-2">
                   <span class="mt-1 fw-semibold" style="font-size: 11px">Consultation Type :</span>
-                  Online Consultation
+                  {{ $appointments->consultation }}
                   <hr class="mb-0">
                   <span class="mt-1 fw-semibold" style="font-size: 11px">Date and Time of Appointment :</span>
                   <div class="row">
                     <div class="col-12">
                       <span class="" style="font-size: 18px">                        
-                        Tue, December 13, 2022, 4pm 
+                        {{ date('F d, Y', strtotime($appointments->date)) }} | {{$appointments->time}} 
                         <hr class="mb-0">
                         <span class="mt-0 fw-semibold" style="font-size: 11px">Appointment Doctor :</span>
                         <div class="row">
                           <div class="col-12">
-                                                                                                                                                    <div class="row">
-                                  <div class="col-2">
-                                    <img src="/../assets/admin/img/doctorimage/1667539095.jpg" class="py-2 rounded me-2 pe-2" alt="user1" style="width: 50px; height: 50px; object-fit: cover;">
-                                  </div>
-                                  <div class="col-10 ps-0">
-                                    <span> 
-                                      <span style="font-size: 13px">Doctor</span>
-                                      <span class="text-uppercase">
-                                        Doctor4
-                                        Sample4
-                                      </span>
+                             <div class="row">
+                                <div class="col-2">
+                                  <img src="/../assets/admin/img/doctorimage/1667539095.jpg" class="py-2 rounded me-2 pe-2" alt="user1" style="width: 50px; height: 50px; object-fit: cover;">
+                                </div>
+                                <div class="col-10 ps-0">
+                                  <span> 
+                                    <span style="font-size: 13px">Doctor</span>
+                                    <span class="text-uppercase">
+                                      @foreach ($doctorNames as $doc)
+                                        @if ($appointments->doctor==$doc->id)
+                                          Doc {{$doc->Dfname }}
+                                        @endif
+                                      @endforeach
                                     </span>
-                                    <div class="row" style="font-size: 13px;">
-                                      <div class="col-12">
-                                        <span class="fst-italic">
-                                          Cardiologists
-                                        </span>
-                                      </div>
+                                  </span>
+                                  <div class="row" style="font-size: 13px;">
+                                    <div class="col-12">
+                                      <span class="fst-italic">
+                                        @foreach ($doctorNames as $doc)
+                                          @if ($appointments->doctor==$doc->id)
+                                            Doc {{$doc->specialization }}
+                                          @endif
+                                        @endforeach
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
-                                                                                                                                               </div>
+                              </div>
+                            </div>
                         </div>
                       </span>
                       <hr class="mb-0">
@@ -678,10 +685,10 @@
                                 </div>
                               </div>
                               <div class="col-10 ps-0">
-                                <span class="">Diagnostic Clinic</span>
+                                <span class="">{{$appoints->clinic->clinicname}}</span>
                                 <div class="row" style="font-size: 13px;">
                                   <div class="col-12">
-                                    Korondal City, South Cotabato
+                                    {{$appoints->clinic->caddress}}
                                     </div>
                                 </div>
                               </div>
@@ -698,11 +705,12 @@
                     <span class="fw-semibold">Reason/Complaints:</span>
                     <div class="">
                       <div class="col-12">
-                        <span class="text-capitalize" style="font-size: 13px">axdf</span>
+                        <span class="text-capitalize" style="font-size: 13px">{{$appoints->reason}}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="card p-2">
+                  @if ($appointments->consultation=='Online')
+                  <div class="card p-2 mb-2">
                     <span class="fw-semibold">Consultation Link:</span>
                     <div class="row">
                       <div class="col-12">
@@ -710,12 +718,23 @@
                       </div>
                     </div>
                   </div>
+                  @endif
+                  <div class="card p-2 mb-2">
+                    <span class="fw-semibold">Payment:</span>
+                    <div class="">
+                      <div class="col-12">
+                        <img
+                        src="../assets/admin/img/clinicimage/{{$appoints->clinic->qrimage}}"
+                        alt=""
+                        style="width: 100px"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           
-            
-        
         </div>
       </div>
     </div>

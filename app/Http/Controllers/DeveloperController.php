@@ -41,6 +41,7 @@ class DeveloperController extends Controller
         $clinic->ofname=$request->ofname;
         $clinic->olname=$request->olname;
         $clinic->caddress=$request->caddress;
+        $clinic->street=$request->street;
         $clinic->cemail=$request->cemail;
         $clinic->Ccontact=$request->Ccontact;
         $clinic->save();

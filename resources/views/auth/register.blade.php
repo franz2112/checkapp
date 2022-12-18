@@ -62,7 +62,7 @@
                                 
                                 <div class="mb-3">
                                     <x-jet-label for="phone" value="{{ __('Phone *') }}" />
-                                    <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" maxlength="11"/>
+                                    <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" maxlength="11"  minlength="11"/>
                                 </div>
 
                                 <div class="mb-3">

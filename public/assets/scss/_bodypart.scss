@@ -6,6 +6,10 @@
     transition: all 0.25s ease;
     width: 100%;
     min-height: 100vh;
+    margin-left: 216px;
+    @media screen and (max-width: 991px) {
+        margin-left: auto;
+    }
 
     // content
     .content-wrapper {

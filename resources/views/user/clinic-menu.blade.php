@@ -66,7 +66,7 @@
 
     <div class="master-part">
       <!-- body part -->
-      <div class="body-part">
+      <div class="body-part m-0">
         <!-- modal -->
         <div class="modal fade" id="myModal">
           <div class="modal-dialog modal-dialog-centered">
@@ -176,9 +176,7 @@
                         <div class="col-lg-12">
                           <h5>About Us</h5>
                           <p>
-                            Sed ut perspiciatis unde omnis iste natus error sit
-                            voluptatem accusantium vdoloremque laudantium, totam
-                            Sed
+                            General Practitioner
                           </p>
                         </div>
 
@@ -367,11 +365,7 @@
                               >
                                 <div class="row">
                                   <p>
-                                    Sed ut perspiciatis unde omnis iste natus
-                                    error sit voluptatem accusantium vdoloremque
-                                    laudantium, totam rem aasdasd asdas d Sed ut
-                                    perspiciatis unde omnis iste natus error sit
-                                    
+                                    Doctor Fritz Tuazon will not be available on Monday due to Vacation.
                                   </p>
                                 </div>
                               </div>

@@ -1,9 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-  @include('Admin.Separated.header')
-  
+    
+@section('title') 
+Clinic Registration |  
+@endsection
+    @include('Admin.Separated.header')
   <body class="g-sidenav-show bg-gray-100">
     
     @if (session()->has('message'))
@@ -74,17 +76,62 @@
                                     </div>
 
                                     <div class="form-floating mb-2">
-                                        <input type="name" name="caddress" class="form-control" id="floatingInput" placeholder="olname" required>
-                                        <label for="floatingInput" class="text-secondary ">Address</label>
+                                        <input type="name" class="form-control" id="floatingInput" placeholder="olname" value="Koronadal City" required disabled>
+                                        <label for="floatingInput" class="text-secondary ">Clinc Address</label>
+                                    </div>
+
+                                    <div class="form-floating mb-2">
+                                        {{-- <input type="name" name="caddress" class="form-control" id="floatingInput" placeholder="olname" required> --}}
+                                        <label for="floatingPresc" class="text-secondary "></label>
+                                        <select name="caddress" id="showings" class="form-control pb-1 pt-0 text-secondary text-center " placeholder="floatingPresc" required>
+              
+                                            <option>--Select Barangggay--</option> 
+                                            <option value="Brgy. GPS Koronadal City">Brgy. GPS</option>
+                                            <option value="Brgy. Sto. Niño Koronadal City">Brgy. Sto. Niño</option>
+                                            <option value="Brgy. Zone I Koronadal City">Brgy. Zone I</option>
+                                            <option value="Brgy. Zone II Koronadal City">Brgy. Zone II</option>
+                                            <option value="Brgy. Zone III Koronadal City">Brgy. Brgy. Zone III</option>
+                                            <option value="Brgy. Zone IV Koronadal City">Brgy. Brgy. Zone IV</option>
+                                            <option value="Brgy. Assumption Koronadal City">Brgy. Brgy. Assumption</option>
+                                            <option value="Brgy. Avanceña Koronadal City">Brgy. Avanceña</option>
+                                            <option value="Brgy. Cacub Koronadal City">Brgy. Cacub</option>
+                                            <option value="Brgy. Caloocan Koronadal City">Brgy. Caloocan</option>
+                                            <option value="Brgy. Carpenter Hill Koronadal City">Brgy. Carpenter Hill</option>
+                                            <option value="Brgy. Concepcion Koronadal City">Brgy. Concepcion</option>
+                                            <option value="Brgy. Esperanza Koronadal City">Brgy. Esperanza</option>
+                                            <option value="Brgy. Mabini Koronadal City">Brgy. Mabini</option>
+                                            <option value="Brgy. Magsaysay Koronadal City">Brgy. Magsaysay</option>
+                                            <option value="Brgy. Mambucal Koronadal City">Brgy. Mambucal</option>
+                                            <option value="Brgy. Morales Koronadal City">Brgy. Morales</option>
+                                            <option value="Brgy. Namnama Koronadal City">Brgy. Namnama</option>
+                                            <option value="Brgy. New Pangasinan Koronadal City">Brgy. New Pangasinan</option>
+                                            <option value="Brgy. Paraiso Koronadal City">Brgy. Paraiso</option>
+                                            <option value="Brgy. Rotonda Koronadal City">Brgy. Rotonda</option>
+                                            <option value="Brgy. San Isidro Koronadal City">Brgy. San Isidro</option>
+                                            <option value="Brgy. San Jose Koronadal City">Brgy.San Jose</option>
+                                            <option value="Brgy. San Roque Koronadal City">Brgy. San Roque</option>
+                                            <option value="Brgy. Santa Cruz Koronadal City">Brgy. Santa Cruz</option>
+                                            <option value="Brgy. Saravia Koronadal City">Brgy. Saravia</option>
+                                            <option value="Brgy. Topland Koronadal City">Brgy. Topland</option>
+                                        
+                                            {{-- <option value="cardiology">Cardiology</option>
+                                            <option value="neurology" disabled>Neurology</option>
+                                            <option value="orthopaedics" disabled>Orthopaedics</option> --}}
+                                        </select>
                                     </div>
                                 
+                                    <div class="form-floating mb-2" id="showing">
+                                        <input type="text" name="street" class="form-control " id="floatingInput showing" placeholder="street" required>
+                                        <label for="floatingInput" class="text-secondary" id="showing">Stree/Purok</label>
+                                    </div>
+
                                     <div class="form-floating mb-2">
                                         <input type="email" name="cemail" class="form-control" id="floatingInput" placeholder="email address" required>
                                         <label for="floatingInput" class="text-secondary ">Email Address</label>
                                     </div>
                                     
                                     <div class="form-floating mb-1">
-                                        <input type="name" name="Ccontact" class="form-control" id="floatingInput" placeholder="Contact" required>
+                                        <input type="name" name="Ccontact" class="form-control" id="floatingInput" placeholder="Contact" maxlength="11" minlength="11" required>
                                         <label for="floatingInput" class="text-secondary ">Contact Number</label>
                                     </div>
                                 
@@ -172,17 +219,23 @@
         </footer>
         <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     </main>
-    <!--   Core JS Files   -->
-    <script src="../assets/admin/js/core/popper.min.js"></script>
-    <script src="../assets/admin/js/core/bootstrap.min.js"></script>
-    <script src="../assets/admin/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="../assets/admin/js/plugins/chartjs.min.js"></script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    @section('script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#showing").hide();
+            $("#showings").change(function(){
+                if($(this).val().length > 0){
+                    $("#showing").show();
+                }
+            });
 
-    <script>
+        });
+    </script>
+    @endsection
+    
+    @include('Admin.Separated.script')
+
+    <script type="text/javascript">
       var win = navigator.platform.indexOf("Win") > -1;
       if (win && document.querySelector("#sidenav-scrollbar")) {
         var options = {
@@ -192,7 +245,7 @@
         Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
       }
     </script>
-    <script>
+    <script type="text/javascript">
         window.setTimeout(function () {
             $(".alert")
                 .fadeTo(3000, 0)
@@ -201,6 +254,7 @@
                 });
         }, 2000);
     </script>
+ 
   </body>
   @stack('modals')
 
