@@ -33,26 +33,30 @@
                 </h3>
                 <div class="container">
                   @foreach ( $appointments as $a )
-                  <div class="notification-ui_dd-content">
-                    <div class="notification-list notification-list--unread">
-                      <div class="notification-list_content">
-                        <div class="notification-list_img pt-2">
-                            <img src="/../assets/admin/img/clinicimage/{{ $a->clinic->Profile}}" >
+                    @if($a->status != 'pending')
+                    <div class="notification-ui_dd-content">
+                      <div class="notification-list notification-list--unread">
+                        <div class="notification-list_content">
+                          <div class="notification-list_img pt-2">
+                              <img src="/../assets/admin/img/clinicimage/{{ $a->clinic->Profile}}" >
+                          </div>
+                          <div class="notification-list_detail pt-3">
+                            <p><b>{{ $a->clinic->clinicname}}</b> {{ $a->status }} your appointment</p>
+                            {{-- <p class="text-muted">
+                              Lorem ipsum dolor sit amet consectetur, adipisicing
+                              elit. Unde, dolorem.
+                            </p> --}}
+                            {{-- <p class="text-muted"><small>{{ date('F d, Y', strtotime($a->created_at)->diffForHumans()) }}</small></p> --}}
+                            <p class="text-muted"><small>{{Carbon\Carbon::parse($a->created_at)->diffForHumans()}}</small></p>
+                          </div>
                         </div>
-                        <div class="notification-list_detail pt-3">
-                          <p><b>{{ $a->clinic->clinicname}}</b> {{ $a->status }} your appointment</p>
-                          {{-- <p class="text-muted">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Unde, dolorem.
-                          </p> --}}
-                          <p class="text-muted"><small>{{ date('F d, Y', strtotime($a->created_at)) }}</small></p>
+                        <div class="notification-list_feature-img pt-2">
+                          <a href="{{ url('user/appointment') }}" class="btn view">View Details</a>
                         </div>
-                      </div>
-                      <div class="notification-list_feature-img pt-2">
-                        <a href="{{ url('user/appointment') }}" class="btn view">View Details</a>
                       </div>
                     </div>
-                  </div>
+                    @endif
+
                   @endforeach
                 </div>
                 {{-- <div class="text-center">

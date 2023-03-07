@@ -12,6 +12,7 @@ use App\Models\AppointmentSet;
 use App\Models\MedicalRecord;
 use App\Models\Prescription;
 use App\Models\Time;
+use App\Notifications\CheckAppNotification;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
@@ -103,8 +104,8 @@ class HomeController extends Controller
 
     public function CnclAppnt(Request $request, $id){
         $appoint = appointment::where('id', $id)
-            ->update(['status' => 'Declined']);
-            return redirect()->back()->with('message', 'Appointment has been declined!');
+            ->update(['status' => 'Decline']);
+            return redirect()->back()->with('message', 'Appointment has been decline!');
     }
         
 
@@ -192,6 +193,16 @@ class HomeController extends Controller
     public function uploadprescription($id){
         $prescription = Prescription::where('appointments_id', $id)->first();
         return response()->json($prescription);
+    }
+
+    
+    public function notify(){
+        
+        $userId = Auth::id();
+        $user = user::find($userId);
+        auth()->user()->notify(new CheckAppNotification($user));
+
+
     }
 
 

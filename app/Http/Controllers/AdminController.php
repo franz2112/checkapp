@@ -82,7 +82,7 @@ class AdminController extends Controller
     public function AppRoval(Request $request, $id){
         appointment::where('id', $id)
         ->update([
-            'status' => 'Approved',
+            'status' => 'Approve',
             'state' => 'Waiting',
         ]);
                  
@@ -127,14 +127,14 @@ class AdminController extends Controller
             ->send(new OnlineMail($mailData));
             // return $clinicInfo;
         }
-        return redirect()->back()->with('message', 'Appointment has been Approved!');
+        return redirect()->back()->with('message', 'Appointment has been Approve!');
 
     }
 
     public function AppCel(Request $request, $id){
         $appoint = appointment::where('id', $id)
-            ->update(['status' => 'Declined']);
-            return redirect()->back()->with('message', 'Appointment has been declined!');
+            ->update(['status' => 'Decline']);
+            return redirect()->back()->with('message', 'Appointment has been decline!');
     }
     // add new doctor
     public function upload(Request $request){
@@ -312,7 +312,7 @@ class AdminController extends Controller
         ->get();
 
         // get appointment in this doctor
-        $getdappointments = appointment::where('doctor', $id)->where('state', 'Completed')->get();
+        $getdappointments = appointment::where('doctor', $id)->where('state', 'Completed')->orderBy('created_at', 'DESC')->get();
 
         // get who have appointment in this clinic
         $data=doctor::where('id', $id)->first();

@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-6">
                               <div class="cover">
-                                @if ($appoints->status=='Approved')
+                                @if ($appoints->status=='Approve')
                                 <span class="active">Approved</span>
                                 @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
@@ -178,7 +178,7 @@
                             <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            @if ($appoints->status=='Approved')
+                            @if ($appoints->status=='Approve')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
@@ -188,7 +188,7 @@
                             >
                               Cancel Appointment
                             </a>
-                            @elseif ($appoints->status=='Declined')
+                            @elseif ($appoints->status=='Decline')
                             <a href="clinics" class="btn view">Reschedule</a>
                             @endif
                           </span>
@@ -208,7 +208,7 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    @if ($dataAppoints->count()<=0 )
+                    {{-- @if ($dataAppoints->count()<=0 )
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -218,9 +218,9 @@
                         </div>
                       </div>
                     </div>
-                    @endif 
+                    @endif  --}}
                     @foreach ($dataAppoints as $appoints)
-                    @if($appoints->status == 'Approved')
+                    @if($appoints->status == 'Approve')
                     <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                       <div class="card-appoint">
                         <div class="header">
@@ -233,7 +233,7 @@
                             </div>
                             <div class="col-6">
                               <div class="cover">
-                                @if ($appoints->status=='Approved')
+                                @if ($appoints->status=='Approve')
                                 <span class="active">Approved</span>
                                 @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
@@ -264,7 +264,7 @@
                             <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            @if ($appoints->status=='Approved')
+                            @if ($appoints->status=='Approve')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
@@ -274,7 +274,7 @@
                             >
                               Cancel Appointment
                             </a>
-                            @elseif ($appoints->status=='Declined')
+                            @elseif ($appoints->status=='Decline')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
@@ -282,7 +282,7 @@
                         </div>
                       </div>
                     </div>
-                    @else
+                    {{-- @else
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -291,8 +291,9 @@
                           There are no approved appointments.
                         </div>
                       </div>
-                    </div>
-                    @endif @endforeach
+                    </div> --}}
+                    @endif 
+                    @endforeach
                   </div>
                 </div>
 
@@ -305,7 +306,7 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    @if ($dataAppoints->count()<=0 )
+                    {{-- @if ($dataAppoints->count()<=0 )
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -315,7 +316,7 @@
                         </div>
                       </div>
                     </div>
-                    @endif 
+                    @endif  --}}
                     @foreach ($dataAppoints as $appoints)
                     @if($appoints->status=='pending')
                     <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
@@ -330,7 +331,7 @@
                             </div>
                             <div class="col-6">
                               <div class="cover">
-                                @if ($appoints->status=='Approved')
+                                @if ($appoints->status=='Approve')
                                 <span class="active">Approved</span>
                                 @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
@@ -361,7 +362,7 @@
                             <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            @if ($appoints->status=='Approved')
+                            @if ($appoints->status=='Approve')
                             <a href="#" class="btn view">View Details</a>
                             @elseif ($appoints->status=='pending')
                             <a
@@ -370,7 +371,7 @@
                             >
                               Cancel Appointment
                             </a>
-                            @elseif ($appoints->status=='Declined')
+                            @elseif ($appoints->status=='Decline')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @endif
@@ -378,7 +379,7 @@
                         </div>
                       </div>
                     </div>
-                    @else
+                    {{-- @else
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -387,8 +388,9 @@
                           There are no pending appointments.
                         </div>
                       </div>
-                    </div>
-                    @endif @endforeach
+                    </div> --}}
+                    @endif 
+                    @endforeach
                   </div>
                 </div>
 
@@ -401,7 +403,7 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    @if ($dataAppoints->count()<=0 )
+                    {{-- @if ($dataAppoints->count()<=0 )
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -411,9 +413,9 @@
                         </div>
                       </div>
                     </div>
-                    @endif 
+                    @endif  --}}
                     @foreach ($dataAppoints as $appoints)
-                    @if($appoints->status == 'Declined')
+                    @if($appoints->status == 'Decline')
                     <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
                       <div class="card-appoint">
                         <div class="header">
@@ -426,7 +428,7 @@
                             </div>
                             <div class="col-6">
                               <div class="cover">
-                                @if ($appoints->status=='Approved')
+                                @if ($appoints->status=='Approve')
                                 <span class="active">Approved</span>
                                 @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
@@ -457,7 +459,7 @@
                             <p>{{ date('F d, Y', strtotime($appoints->date)) }}  | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            @if ($appoints->status=='Approved')
+                            @if ($appoints->status=='Approve')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
@@ -475,7 +477,7 @@
                         </div>
                       </div>
                     </div>
-                    @else
+                    {{-- @else
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -484,7 +486,7 @@
                           There are no cancelled appointments.
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                     @endif 
                     @endforeach
                   </div>
@@ -499,7 +501,7 @@
                   tabindex="0"
                 >
                   <div class="row">
-                    @if ($dataAppoints->count()<=0 )
+                    {{-- @if ($dataAppoints->count()<=0 )
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -509,7 +511,7 @@
                         </div>
                       </div>
                     </div>
-                    @endif 
+                    @endif  --}}
                     @foreach ($dataAppoints as $appoints)
                     @if($appoints->status !== 'pending')
                     <div class="col-xl-4 col-lg-6 pt-2 pb-4 wow zoomIn">
@@ -524,7 +526,7 @@
                             </div>
                             <div class="col-6">
                               <div class="cover">
-                                @if ($appoints->status=='Approved')
+                                @if ($appoints->status=='Approve')
                                 <span class="active">Approved</span>
                                 @elseif ($appoints->status=='pending')
                                 <span class="pending">Pending</span>
@@ -555,7 +557,7 @@
                             <p>{{ date('F d, Y', strtotime($appoints->date)) }} | {{$appoints->time}}</p>
                           </span>
                           <span>
-                            @if ($appoints->status=='Approved')
+                            @if ($appoints->status=='Approve')
                             <a href="#" class="btn view" data-toggle="tooltip" data-original-title="Edit user"
                             data-bs-toggle="modal" data-bs-target="#add">View Details</a>
                             @elseif ($appoints->status=='pending')
@@ -573,7 +575,7 @@
                         </div>
                       </div>
                     </div>
-                    @else
+                    {{-- @else
                     <div class="col-12 m-2 p-lg-5">
                       <div
                         class="d-flex align-item-center justify-content-center"
@@ -582,7 +584,7 @@
                           There are no history appointments.
                         </div>
                       </div>
-                    </div>
+                    </div> --}}
                     @endif 
                     @endforeach
                   </div>
